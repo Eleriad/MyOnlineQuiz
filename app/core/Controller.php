@@ -1,6 +1,6 @@
 <?php
 
-class Controller
+class COntroller
 {
     /**
      * Function that returns a model
@@ -28,7 +28,7 @@ class Controller
         if (file_exists($viewPath)) {
             include($viewPath);
         } else {
-            echo "ERREUR : la vue intitulée $view n'existe pas !"
+            echo "ERREUR : la vue intitulée $view n'existe pas !";
         }
     }
 }
