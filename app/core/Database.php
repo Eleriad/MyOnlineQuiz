@@ -2,14 +2,14 @@
 
 class Database
 {
-    protected $_connection = null;
+    protected static $_connection = null;
 
     public function __construct()
     {
-        if (self::$_connection = null) {
+        if (self::$_connection == null) {
 
             $host = "localhost";
-            $dbname = "";
+            $dbname = "myonlinequiz";
             $user = "root";
             $password = "root";
 

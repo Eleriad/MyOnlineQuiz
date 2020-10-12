@@ -13,7 +13,7 @@ class App
     {
         $url = $this->parseURL();
 
-        if (isset($url[1]) && file_exists('app/controller/' . $url[0] . 'Controller.php')) {
+        if (isset($url[0]) && file_exists('app/controllers/' . $url[0] . 'Controller.php')) {
             $this->controller = $url[0] . 'Controller';
             unset($url[0]);
         }
@@ -37,7 +37,7 @@ class App
     public function parseURL()
     {
         if (isset($_GET['url'])) {
-            return explode('/', filter_var(rtrim($GET['url'], '/'), FILTER_SANITIZE_URL));
+            return explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
         }
     }
 }
