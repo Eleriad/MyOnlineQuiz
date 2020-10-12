@@ -6,4 +6,17 @@ class CategorieController extends Controller
     {
         $this->view('categorie/index');
     }
+
+    public function create()
+    {
+        if (isset($_POST["addCategory"])) {
+            $newCategory = $this->model('Categorie');
+
+            $newCategory->name = $_POST["newCategory"];
+            $newCategory->create();
+            header('Location: /categorie/index');
+        } else {
+            $this->view('categorie/create');
+        }
+    }
 }

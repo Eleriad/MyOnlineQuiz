@@ -1,10 +1,12 @@
 <h1>Bienvenue sur la page d'accueil Administrateur</h1>
 
 
-<button><a href="/categorie/index">Gérer les catégories</a></button>
+<a href="/categorie/index" class="btn btn-info">Gérer les catégories</a>
 
-<button><a href="/niveau/index">Gérer les niveaux</a></button>
+<a href="/niveau/index" class="btn btn-info">Gérer les niveaux</a>
 
-<button><a href="/question/index">Gérer les questions</a></button>
+<a href="/question/index" class="btn btn-info">Gérer les questions</a>
 
-<button><a href="/user/index">Gérer les utilisateurs</a></button>
+<a href="/user/index" class="btn btn-info">Gérer les utilisateurs</a>
+
+<a href="/quiz/index" class="btn btn-dark">Retour</a>
