@@ -15,3 +15,18 @@
 <link rel="stylesheet" href="/app/components/bootstrap/bootstrap.min.css">
 <script src="/app/components/bootstrap/popper.min.js"></script>
 <script src="/app/components/bootstrap/bootstrap.min.js"></script>
+
+<!-- DATATABLES -->
+<link rel="stylesheet" href="/app/components/bootstrap/dataTable/dataTables.bootstrap4.css">
+<link rel="stylesheet" href="/app/components/bootstrap/dataTable/fixedHeader.bootstrap4.css">
+<link rel="stylesheet" href="/app/components/bootstrap/dataTable/responsive.bootstrap4.css">
+<script src="/app/components/bootstrap/dataTable/dataTables.bootstrap4.min.js"></script>
+<script src="/app/components/bootstrap/dataTable/dataTables.fixedHeader.min.js"></script>
+<script src="/app/components/bootstrap/dataTable/dataTables.responsive.min.js"></script>
+<script src="/app/components/bootstrap/dataTable/jquery.dataTables.min.js"></script>
+<script src="/app/components/bootstrap/dataTable/responsive.bootstrap4.min.js"></script>
+<link rel="stylesheet" href="/app/components/bootstrap/dataTable/dataTableStyle.css">
+<script src="/app/components/bootstrap/dataTable/diacritics-sort.js"></script>
+
+<!-- FONTAWESOME -->
+<script src="https://kit.fontawesome.com/8303064131.js" crossorigin="anonymous"></script>
