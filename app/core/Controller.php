@@ -26,9 +26,11 @@ class Controller
         $viewPath = 'app/views/' . $view . '.php';
 
         if (file_exists($viewPath)) {
+            include('app/views/includes/header.php');
             include($viewPath);
+            include('app/views/includes/footer.php');
         } else {
-            echo "ERREUR : la vue intitulée $view n'existe pas !"
+            echo "ERREUR : la vue intitulée $view n'existe pas !";
         }
     }
 }
