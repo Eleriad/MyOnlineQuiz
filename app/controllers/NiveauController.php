@@ -10,32 +10,26 @@ class NiveauController extends Controller
 
     public function create()
     {
-        if (isset($_POST['addNiveau']))
-        {
+        if (isset($_POST['addNiveau'])) {
             $newNiveau = $this->model('Niveau');
             $newNiveau->name = $_POST['newNiveau'];
             $newNiveau->create();
             header('Location: /niveau/index');
-        }
-        else
-        {
+        } else {
             $this->view('niveau/create');
         }
     }
 
-    public function edit($idNiveau) 
+    public function edit($idNiveau)
     {
         $editNiveau = $this->model('Niveau')->getNiveauById($idNiveau);
 
-        if (isset($_POST['updateNiveau']))
-        {
+        if (isset($_POST['updateNiveau'])) {
             $editNiveau->name = $_POST['niveauName'];
             $editNiveau->update();
             header('Location: /niveau/index');
-        }
-        else
-        {
-            $this->view('niveau/edit/', $idNiveau);
+        } else {
+            $this->view('niveau/edit', $editNiveau);
         }
     }
 
@@ -43,14 +37,11 @@ class NiveauController extends Controller
     {
         $editNiveau = $this->model('Niveau')->getNiveauById($idNiveau);
 
-        if (isset($_POST['deleteNiveau']))
-        {
+        if (isset($_POST['deleteNiveau'])) {
             $editNiveau->delete();
             header('Location: /niveau/index');
-        }
-        else
-        {
-            $this->view('niveau/edit/', $idNiveau);
+        } else {
+            $this->view('niveau/delete', $editNiveau);
         }
     }
 }
