@@ -15,11 +15,42 @@ class NiveauController extends Controller
             $newNiveau = $this->model('Niveau');
             $newNiveau->name = $_POST['newNiveau'];
             $newNiveau->create();
-            header('Location: /niveau/index/success');
+            header('Location: /niveau/index');
         }
         else
         {
             $this->view('niveau/create');
+        }
+    }
+
+    public function edit($idNiveau) 
+    {
+        $editNiveau = $this->model('Niveau')->getNiveauById($idNiveau);
+
+        if (isset($_POST['updateNiveau']))
+        {
+            $editNiveau->name = $_POST['niveauName'];
+            $editNiveau->update();
+            header('Location: /niveau/index');
+        }
+        else
+        {
+            $this->view('niveau/edit/', $idNiveau);
+        }
+    }
+
+    public function delete($idNiveau)
+    {
+        $editNiveau = $this->model('Niveau')->getNiveauById($idNiveau);
+
+        if (isset($_POST['deleteNiveau']))
+        {
+            $editNiveau->delete();
+            header('Location: /niveau/index');
+        }
+        else
+        {
+            $this->view('niveau/edit/', $idNiveau);
         }
     }
 }
