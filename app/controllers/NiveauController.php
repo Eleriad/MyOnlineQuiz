@@ -7,7 +7,6 @@ class NiveauController extends Controller
         $niveaux = $this->model('Niveau')->getNiveaux();
         $this->view('niveau/index', ['niveaux' => $niveaux]);
     }
-<<<<<<< HEAD
 
     public function create()
     {
@@ -45,6 +44,4 @@ class NiveauController extends Controller
             $this->view('niveau/delete', $editNiveau);
         }
     }
-=======
->>>>>>> origin/Sokou
 }
