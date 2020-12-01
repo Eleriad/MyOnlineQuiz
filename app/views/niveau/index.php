@@ -12,7 +12,7 @@
             <tbody>
                 <?php foreach ($data['niveaux'] as $niveaux) : ?>
                     <tr>
-                        <td><?= $niveaux->name ?></td>
+                        <td><?= $niveaux->level ?></td>
                         <td>
                             <a href="/niveau/edit/<?= $niveaux->id_niveau ?>" class="btn btn-warning btn-sm"><span><i class="fas fa-pencil-alt mr-2"></i></span>Modifier</a>
                             <a href="/niveau/delete/<?= $niveaux->id_niveau ?>" class="btn btn-danger btn-sm"><span><i class="far fa-trash-alt mr-2"></i></span>Supprimer</a>

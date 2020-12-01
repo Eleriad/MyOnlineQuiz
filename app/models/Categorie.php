@@ -57,4 +57,15 @@ class Categorie extends Database
         $result = $stmt->fetch();
         return $result;
     }
+
+    public function getNameById($idCategorie)
+    {
+        $sql = "SELECT name FROM categories WHERE id_categorie = $idCategorie";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('id_categorie', $idCategorie, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Categorie');
+        $result = $stmt->fetch();
+        return $result;
+    }
 }

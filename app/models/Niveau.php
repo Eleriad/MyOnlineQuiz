@@ -2,13 +2,13 @@
 
 class Niveau extends Database
 {
-    public $name;
+    public $level;
 
     public function create()
     {
-        $sql = "INSERT INTO niveaux (name) VALUE (:name)";
+        $sql = "INSERT INTO niveaux (level) VALUE (:level)";
         $stmt = self::$_connection->prepare($sql);
-        $stmt->bindParam('name', $this->name, PDO::PARAM_STR);
+        $stmt->bindParam('level', $this->level, PDO::PARAM_STR);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Niveau');
         $result = $stmt->rowCount();
@@ -27,9 +27,9 @@ class Niveau extends Database
 
     public function update()
     {
-        $sql = "UPDATE niveaux SET name = :name WHERE id_niveau = :id_niveau";
-        $stmt = self::$_connection->prepare($sql); 
-        $stmt->bindParam('name', $this->name, PDO::PARAM_STR);
+        $sql = "UPDATE niveaux SET level = :level WHERE id_niveau = :id_niveau";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('level', $this->level, PDO::PARAM_STR);
         $stmt->bindParam('id_niveau', $this->id_niveau, PDO::PARAM_INT);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Niveau');
@@ -39,7 +39,7 @@ class Niveau extends Database
 
     public function delete()
     {
-        $sql ="DELETE FROM niveaux WHERE id_niveau = :id_niveau";
+        $sql = "DELETE FROM niveaux WHERE id_niveau = :id_niveau";
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam('id_niveau', $this->id_niveau, PDO::PARAM_INT);
         $stmt->execute();
@@ -49,7 +49,7 @@ class Niveau extends Database
 
     public function getNiveauById($idNiveau)
     {
-        $sql ="SELECT * FROM niveaux WHERE id_niveau = $idNiveau";
+        $sql = "SELECT * FROM niveaux WHERE id_niveau = $idNiveau";
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam('id_niveau', $idNiveau, PDO::PARAM_INT);
         $stmt->execute();

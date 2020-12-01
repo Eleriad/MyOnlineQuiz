@@ -3,11 +3,11 @@
 
     <form action="" method="post">
         <div class="form-group">
-            <label for="newNiveau">Nom du niveau :</label>
-            <input type="text" class="form-control" name="newNiveau" id="newNiveau">
+            <label for="newLevel">Nom du niveau :</label>
+            <input type="text" class="form-control" name="newLevel" id="newLevel">
         </div>
 
-        <input type="submit" name="addNiveau" class="btn btn-success" value="Créer"></input>
+        <input type="submit" name="addLevel" class="btn btn-success" value="Créer"></input>
         <a href="/niveau/index" class="btn btn-dark">Retour</a>
     </form>
 
