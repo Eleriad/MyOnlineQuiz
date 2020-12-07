@@ -7,9 +7,7 @@ class QuestionController extends Controller
         $questions = $this->model('Question')->getAllQuestions();
 
         foreach ($questions as &$question) {
-            // var_dump($question);
             $question->categories = $this->model('Question')->getCategoryNameByQuestionId($question->id_question);
-            // var_dump($categories);
         }
 
         $this->view('question/index', ["questions" => $questions]);
@@ -42,6 +40,21 @@ class QuestionController extends Controller
             header('Location: /question/index');
         } else {
             $this->view('question/create', ["niveaux" => $niveaux, "categories" => $categories]);
+        }
+    }
+
+    public function delete($idQuestion)
+    {
+        $deleteQuestion = $this->model('Question')->getQuestionById($idQuestion);
+
+        $deleteCategories = $this->model('Question')->getCategoryNameByQuestionId($idQuestion);
+
+
+        if (isset($_POST['deleteQuestion'])) {
+            //     $deleteQuestion->delete();
+            // header('Location: /question/index');
+        } else {
+            $this->view('question/delete', [$deleteQuestion, $deleteCategories]);
         }
     }
 }

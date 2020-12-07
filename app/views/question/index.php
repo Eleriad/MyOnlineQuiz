@@ -16,12 +16,18 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($data['questions'] as $question) : ?>
+            <!-- 1st foreach to display datas -->
+            <?php foreach ($data['questions'] as $question) :
+                $out = array();
+
+                // 2nd foreach to display specific categories' datas
+                foreach ($question->categories as $categorie) {
+                    array_push($out, $categorie["name"]);
+                }
+            ?>
                 <tr>
                     <td>
-                        <?php foreach ($question->categories as $categorie) : ?>
-                            <?= $categorie["name"] ?></br>
-                        <?php endforeach; ?>
+                        <?= implode(', ', $out) ?></br>
                     </td>
                     <td><?= $question->level ?></td>
                     <td><?= $question->question ?></td>

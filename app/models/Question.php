@@ -30,7 +30,7 @@ class Question extends Database
 
     public function getCategoryNameByQuestionId($idQuestion)
     {
-        $sql = "SELECT * FROM posseder AS p
+        $sql = "SELECT `name` FROM posseder AS p
                 JOIN categories AS c ON c.id_categorie = p.id_categorie
                 WHERE p.id_question = $idQuestion";
         $stmt = self::$_connection->prepare($sql);
@@ -83,6 +83,19 @@ class Question extends Database
         $sql = "SELECT name FROM categories WHERE id_categorie = $idCategorie";
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam('id_categorie', $idCategorie, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
+        $result = $stmt->fetch();
+        return $result;
+    }
+
+    public function getQuestionById($idQuestion)
+    {
+        $sql = "SELECT * FROM questions AS q 
+        JOIN niveaux AS n ON q.niveau_id = n.id_niveau
+        WHERE q.id_question = $idQuestion";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
         $result = $stmt->fetch();
