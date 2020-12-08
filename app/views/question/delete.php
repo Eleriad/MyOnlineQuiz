@@ -1,9 +1,9 @@
 <?php
-// Foreach to display categories' datas
 $out = array();
 foreach ($data[1] as $categories) {
     array_push($out, $categories['name']);
-} ?>
+}
+?>
 
 <div class="container">
     <h1 class="text-center">Supprimer une question</h1>

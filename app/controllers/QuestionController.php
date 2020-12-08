@@ -48,8 +48,41 @@ class QuestionController extends Controller
         $editQuestion = $this->model('Question')->getQuestionById($idQuestion);
         $niveaux = $this->model('Niveau')->getNiveaux();
         $categories = $this->model('Categorie')->getCategories();
+        $categorieNames = $this->model('Question')->getCategoryNameByQuestionId($idQuestion);
 
-        $this->view('question/edit', ["question" => $editQuestion, "niveaux" => $niveaux, "categories" => $categories]);
+        if (isset($_POST['editQuestion'])) {
+
+            // var_dump($_POST["categories"]);
+
+            $editedQuestion = $this->model('Question');
+
+            $editedQuestion->niveau_id = $_POST['niveaux'];
+            $editedQuestion->question = $_POST['question'];
+            $editedQuestion->feedback = $_POST['feedback'];
+            $editedQuestion->reponse = $_POST['reponse'];
+            $editedQuestion->facile = $_POST['facile'];
+            $editedQuestion->normal = $_POST['normal'];
+            $editedQuestion->difficile = $_POST['difficile'];
+            $editedQuestion->update(intval($idQuestion));
+
+            $categories = $this->model('Question')->checkCategorieByQuestionId($idQuestion);
+
+            // foreach ($_POST['categories'] as $categorie) {
+            //     var_dump($categorie);
+            //     foreach ($categories as $finalCategorie) {
+            //         if ($categorie != $finalCategorie->id_categorie) {
+            //             echo "toto";
+            //         }
+            //         var_dump($finalCategorie->id_categorie);
+            //     }
+            //     // $this->model('Question')->assignCategorieToQuestion($lastId, $categorie);
+            // }
+            // die;
+
+            // header('Location: /question/index');
+        } else {
+            $this->view('question/edit', ["question" => $editQuestion, "niveaux" => $niveaux, "categories" => $categories, "categorieNames" => $categorieNames]);
+        }
     }
 
     public function delete($idQuestion)

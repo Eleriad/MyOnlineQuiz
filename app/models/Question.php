@@ -28,6 +28,46 @@ class Question extends Database
         return $result;
     }
 
+    public function update($idQuestion)
+    {
+        $sql = "UPDATE questions SET niveau_id = :niveau_id, question = :question, feedback = :feedback, reponse = :reponse, facile = :facile, normal =:normal, difficile = :difficile WHERE id_question = $idQuestion";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('niveau_id', $this->niveau_id, PDO::PARAM_INT);
+        $stmt->bindParam('question', $this->question, PDO::PARAM_STR);
+        $stmt->bindParam('feedback', $this->feedback, PDO::PARAM_STR);
+        $stmt->bindParam('reponse', $this->reponse, PDO::PARAM_STR);
+        $stmt->bindParam('facile', $this->facile, PDO::PARAM_STR);
+        $stmt->bindParam('normal', $this->normal, PDO::PARAM_STR);
+        $stmt->bindParam('difficile', $this->difficile, PDO::PARAM_STR);
+        // $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
+        $result = $stmt->rowCount();
+        return $result;
+    }
+
+    public function checkCategorieByQuestionId($idQuestion)
+    {
+        $sql = "SELECT id_categorie FROM posseder WHERE id_question = :id_question";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
+    public function updateCategorieToQuestion($idQuestion, $idCategorie)
+    {
+        $sql = "UPDATE posseder SET id_categorie = :id_categorie WHERE id_question = :id_question";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
+        $stmt->bindParam('id_categorie', $idCategorie, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        return $result;
+    }
+
     public function getCategoryNameByQuestionId($idQuestion)
     {
         $sql = "SELECT `name` FROM posseder AS p
