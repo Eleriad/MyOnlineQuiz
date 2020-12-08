@@ -43,16 +43,23 @@ class QuestionController extends Controller
         }
     }
 
+    public function edit($idQuestion)
+    {
+        $editQuestion = $this->model('Question')->getQuestionById($idQuestion);
+        $niveaux = $this->model('Niveau')->getNiveaux();
+        $categories = $this->model('Categorie')->getCategories();
+
+        $this->view('question/edit', ["question" => $editQuestion, "niveaux" => $niveaux, "categories" => $categories]);
+    }
+
     public function delete($idQuestion)
     {
         $deleteQuestion = $this->model('Question')->getQuestionById($idQuestion);
-
         $deleteCategories = $this->model('Question')->getCategoryNameByQuestionId($idQuestion);
 
-
         if (isset($_POST['deleteQuestion'])) {
-            //     $deleteQuestion->delete();
-            // header('Location: /question/index');
+            $deleteQuestion->delete($deleteQuestion->id_question);
+            header('Location: /question/index');
         } else {
             $this->view('question/delete', [$deleteQuestion, $deleteCategories]);
         }

@@ -101,4 +101,16 @@ class Question extends Database
         $result = $stmt->fetch();
         return $result;
     }
+
+    public function delete($idQuestion)
+    {
+        $sql = "DELETE q.*, p.* FROM questions AS q 
+        JOIN posseder AS p ON q.id_question = p.id_question 
+        WHERE q.id_question = $idQuestion";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        return $result;
+    }
 }
