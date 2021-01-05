@@ -52,34 +52,35 @@ class QuestionController extends Controller
 
         if (isset($_POST['editQuestion'])) {
 
-            // var_dump($_POST["categories"]);
+            if ($_POST['categories'] != null) {
+                $editedQuestion = $this->model('Question');
 
-            $editedQuestion = $this->model('Question');
+                $editedQuestion->niveau_id = $_POST['niveaux'];
+                $editedQuestion->question = $_POST['question'];
+                $editedQuestion->feedback = $_POST['feedback'];
+                $editedQuestion->reponse = $_POST['reponse'];
+                $editedQuestion->facile = $_POST['facile'];
+                $editedQuestion->normal = $_POST['normal'];
+                $editedQuestion->difficile = $_POST['difficile'];
+                $editedQuestion->update(intval($idQuestion));
 
-            $editedQuestion->niveau_id = $_POST['niveaux'];
-            $editedQuestion->question = $_POST['question'];
-            $editedQuestion->feedback = $_POST['feedback'];
-            $editedQuestion->reponse = $_POST['reponse'];
-            $editedQuestion->facile = $_POST['facile'];
-            $editedQuestion->normal = $_POST['normal'];
-            $editedQuestion->difficile = $_POST['difficile'];
-            $editedQuestion->update(intval($idQuestion));
+                // On supprime toutes les références de la table posséder afin deles recréer ensuite
+                $editedQuestion->deleteCategorieToQuestion(intval($idQuestion));
 
-            $categories = $this->model('Question')->checkCategorieByQuestionId($idQuestion);
+                $categories = $this->model('Question')->checkCategorieByQuestionId($idQuestion);
 
-            // foreach ($_POST['categories'] as $categorie) {
-            //     var_dump($categorie);
-            //     foreach ($categories as $finalCategorie) {
-            //         if ($categorie != $finalCategorie->id_categorie) {
-            //             echo "toto";
-            //         }
-            //         var_dump($finalCategorie->id_categorie);
-            //     }
-            //     // $this->model('Question')->assignCategorieToQuestion($lastId, $categorie);
-            // }
-            // die;
 
-            // header('Location: /question/index');
+                foreach ($_POST['categories'] as $categorie) {
+                    $categorie = intval($categorie);
+                    $editedQuestion->createCategorieToQuestion($idQuestion, $categorie);
+                }
+                // On renvoie sur la page d'index
+                header('Location: /question/index');
+            } else {
+
+                // En cas d'erreur, retour sur la page edit avec message explicatif
+                header('Location: /question/edit/' . $idQuestion . '?Message=errCat');
+            }
         } else {
             $this->view('question/edit', ["question" => $editQuestion, "niveaux" => $niveaux, "categories" => $categories, "categorieNames" => $categorieNames]);
         }

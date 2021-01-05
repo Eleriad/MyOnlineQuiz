@@ -57,12 +57,33 @@ class Question extends Database
         return $result;
     }
 
+    public function createCategorieToQuestion($idQuestion, $idCategorie)
+    {
+        $sql = "INSERT INTO posseder(id_categorie, id_question) VALUE(:id_categorie, :id_question)";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
+        $stmt->bindParam('id_categorie', $idCategorie, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        return $result;
+    }
+
     public function updateCategorieToQuestion($idQuestion, $idCategorie)
     {
         $sql = "UPDATE posseder SET id_categorie = :id_categorie WHERE id_question = :id_question";
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
         $stmt->bindParam('id_categorie', $idCategorie, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        return $result;
+    }
+
+    public function deleteCategorieToQuestion($idQuestion)
+    {
+        $sql = "DELETE FROM posseder WHERE id_question = $idQuestion";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
         $stmt->execute();
         $result = $stmt->rowCount();
         return $result;

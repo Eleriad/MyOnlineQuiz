@@ -1,6 +1,17 @@
 <div class="container">
     <h1 class="text-center">Modifier une question</h1>
 
+    <?php
+    if (isset($_GET['Message'])) {
+        if ($_GET['Message'] = "errCat") { ?>
+            <div class="alert alert-danger my-3" role="alert">
+                Aucune catégorie n'a été sélectionnée !
+            </div>
+    <?php
+        }
+    }
+    ?>
+
     <form action="" method="post">
         <div class="mb-3">
             <p>Catégorie(s) :</p>
