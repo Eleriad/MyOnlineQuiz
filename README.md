@@ -11,3 +11,11 @@ QuestionVF : si ce qu'on retourne ne contient que 2 éléments, alors on a affai
 
 TODO : ajouter des messages à chaque vérification (revoir toutes les pages !)
 Faire le phpdoc pour toutes les functions :-(
+    
+    - Faire les vérification des niveaux et catégories en JS et PHP  :
+
+        - si l'input est vide (JS & PHP) ;
+        
+        - si la valeur existe déjà à la création ou à la modification (voir pour l'orthographe avec ou sans "s" par exemple ; faire un try-catch pour afficher l'erreur en cas de doublon (Sql avec unique)) - en PHP uniquement;
+    
+    - mettre des required pour tous les input une fois les vérif en JS et PHP effectuées !
