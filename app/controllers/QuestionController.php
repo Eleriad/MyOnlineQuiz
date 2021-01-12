@@ -64,7 +64,7 @@ class QuestionController extends Controller
                 $editedQuestion->difficile = $_POST['difficile'];
                 $editedQuestion->update(intval($idQuestion));
 
-                // On supprime toutes les références de la table posséder afin deles recréer ensuite
+                // On supprime toutes les références de la table posséder afin de les recréer ensuite
                 $editedQuestion->deleteCategorieToQuestion(intval($idQuestion));
 
                 $categories = $this->model('Question')->checkCategorieByQuestionId($idQuestion);

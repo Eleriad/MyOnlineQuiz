@@ -1,26 +1,26 @@
 <div class="container">
     <h1 class="text-center">Modifier une question</h1>
 
-    <?php
-    if (isset($_GET['Message'])) {
-        if ($_GET['Message'] = "errCat") { ?>
-            <div class="alert alert-danger my-3" role="alert">
-                Aucune catégorie n'a été sélectionnée !
-            </div>
-    <?php
-        }
-    }
-    ?>
+    <!-- Vérification du formulaire en JS -->
+    <div role="alert" id="errorMessage">
+    </div>
 
-    <form action="" method="post">
+    <?php if (isset($_GET['Message']) && $_GET['Message'] = "errCat") : ?>
+        <!-- Vérification du formulaire en PHP -->
+        <div class="alert alert-danger my-3" role="alert">
+            Aucune catégorie n'a été sélectionnée !
+        </div>
+    <?php endif; ?>
+
+    <form action="" method="post" id="editQuestionForm">
         <div class="mb-3">
             <p>Catégorie(s) :</p>
             <div class="d-flex">
                 <?php foreach ($data['categories'] as $categories) : ?>
                     <div class="form-check mr-3">
-                        <input type="checkbox" class="form-check-input" name="categories[]" id="categories" value="<?= $categories->id_categorie ?>" <?php foreach ($data["categorieNames"] as $names) {
-                                                                                                                                                            if ($categories->name === $names["name"]) echo "checked";
-                                                                                                                                                        } ?>>
+                        <input type="checkbox" class="form-check-input inputCategories" name="categories[]" id="categories" value="<?= $categories->id_categorie ?>" <?php foreach ($data["categorieNames"] as $names) {
+                                                                                                                                                                            if ($categories->name === $names["name"]) echo "checked='checked'";
+                                                                                                                                                                        } ?>>
                         <label for="categories" class="form-check-label"><?= $categories->name ?></label>
                     </div>
                 <?php endforeach ?>
@@ -59,8 +59,9 @@
             <input type="text" class="form-control" name="feedback" id="feedback" value="<?= $data["question"]->feedback ?>">
         </div>
 
-        <input type="submit" name="editQuestion" class="btn btn-success" value="Modifier"></input>
+        <input type="submit" name="editQuestion" class="btn btn-success" value="Modifier" id="editQuestionButton"></input>
         <a href="/question/index" class="btn btn-dark">Retour</a>
     </form>
-
 </div>
+
+<script src="/app/components/js/verifCheckboxes.js"></script>
