@@ -25,6 +25,16 @@ class Niveau extends Database
         return $result;
     }
 
+    public function getNiveauxByID()
+    {
+        $sql = "SELECT * FROM niveaux ORDER BY id_niveau";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Niveau');
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
     public function update()
     {
         $sql = "UPDATE niveaux SET level = :level WHERE id_niveau = :id_niveau";

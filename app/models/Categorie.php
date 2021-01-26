@@ -25,6 +25,16 @@ class Categorie extends Database
         return $result;
     }
 
+    public function getCategoriesByName()
+    {
+        $sql = "SELECT * FROM categories ORDER BY name";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Categorie');
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
     public function update()
     {
         $sql = "UPDATE categories SET name  = :name WHERE id_categorie = :id_categorie";
