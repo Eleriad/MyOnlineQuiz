@@ -4,7 +4,11 @@
 
 <div class="container my-4 p-3">
 
-    <!-- Quiz aléatoire -->
+    <?php if (isset($data["erreur"])) : ?>
+    <div class="alert alert-danger my-3" role="alert"><?= $data["erreur"]; ?></div>
+    <?php endif; ?>
+
+    <!-- TODO : Quiz aléatoire -->
 
     <!-- Formulaire de création du quiz -->
     <form action="/quiz/quiz" method="post">
@@ -25,11 +29,24 @@
                 <p>Choisissez une ou plusieurs catégories :</p>
                 <?php foreach ($data["categories"] as $categorie) : ?>
                 <label class="btn btn-primary" for="<?= $categorie->id_categorie ?>">
-                    <input type="checkbox" id="<?= $categorie->id_categorie ?>" value="<?= $categorie->name ?>"
+                    <input type="checkbox" id="<?= $categorie->id_categorie ?>" value="<?= $categorie->id_categorie ?>"
                         name="Categories[]"><?= $categorie->name ?>
                 </label>
                 <?php endforeach; ?>
             </div>
+        </div>
+
+        <!-- Nombre de questions -->
+        <div class="my-3">
+            <label for="questionNb">Choisissez un nombre de questions :</label>
+            <select name="questionNb" id="questionNb">
+                <!-- For loop to display specific number of questions -->
+                <?php for ($i = 1; $i <= $data["questionMax"]; $i++) : ?>
+                <?php if ($i === 1 or $i === 5 or $i === $data["questionMax"] or ($i % 10) === 0) : ?>
+                <option value="<?= $i ?>"><?= $i ?></option>
+                <?php endif; ?>
+                <?php endfor; ?>
+            </select>
         </div>
 
         <!-- Submit -->

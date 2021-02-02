@@ -30,7 +30,8 @@
             <label for="selectNiveaux">niveau(x) :</label>
             <select name="niveaux" id="selectNiveaux">
                 <?php foreach ($data['niveaux'] as $niveaux) : ?>
-                    <option value="<?= $niveaux->id_niveau ?>" <?php if ($niveaux->level === $data["question"]->level) echo 'selected="selected"'; ?>><?= $niveaux->level ?></option>
+                    <option value="<?= $niveaux->id_niveau ?>" <?php if ($niveaux->level === $data["question"]->level) echo 'selected="selected"'; ?>>
+                        <?= $niveaux->level ?></option>
                 <?php endforeach ?>
             </select>
         </div>

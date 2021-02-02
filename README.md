@@ -34,3 +34,12 @@ Pour la version suivante :
 <!-- <label class="btn btn-primary">
                 <input type="checkbox"><?= //$categorie->name ?>
                 </label> -->
+
+A AJOUTER :
+
+- "question x/y" avec barre de progression ;
+
+QUESTION D'AMELIORATION :
+
+- Ajouter une colonne "nombre de questions" dans la table catégories pour compter le nombre de questions associé à chaque catégorie ?
+- Si oui, il faut qu'à chaque ajout de question, cela incrémente ce nombre.
