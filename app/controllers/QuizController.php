@@ -24,26 +24,35 @@ class QuizController extends Controller
         // Data pour l'affichage du quiz
 
         // Si on a un POST
-        if (isset($_POST) && !empty($_POST) && !empty($_POST["Categories"])) {
+        if (isset($_POST) && !empty($_POST)) {
 
-            $nb = $quiz->countQuestions($_POST["Categories"]);
-            var_dump($nb[0]);
-            var_dump($nb[0]);
+            // Si on a un POST mais pas de catégorie sélectionnée
+            if (empty($_POST["Categories"]) or $_POST["levels"] === "0" or empty($_POST["levels"])) {
+                $error = "Veuillez sélectionner au moins une catégorie ou un niveau !";
+                $this->view('quiz/index', ["niveaux" => $niveaux, "categories" => $categories, "erreur" => $error, "questionMax" => $questionMax]);
+            }
 
+            // Si tout est ok, on lance le quizz
+            else {
+                // $nb = $quiz->countQuestionsByLevel($_POST["Categories"], $_POST["levels"]);
+                // var_dump($nb[0]);
+                var_dump($_POST);
 
-            // lancer quizz avec en paramètres les 2 données (niveau + catégorie(s))
-            $this->view('quiz/quiz');
-        }
+                // $_POST["questionNb"] = nombre de questions à envoyer pour le quiz
 
-        // Si on a un POST mais pas de catégorie sélectionnée
-        else if (isset($_POST) && !empty($_POST) && empty($_POST["Categories"])) {
-            $error = "Veuillez sélectionner au moins une catégorie !";
-            $this->view('quiz/index', ["niveaux" => $niveaux, "categories" => $categories, "erreur" => $error, "questionMax" => $questionMax]);
+                // lancer quizz avec en paramètres les 2 données (niveau + catégorie(s))
+                $this->view('quiz/quiz');
+            }
         }
 
         // Si pas de POST, on renvoie sur la page d'index
         else {
             $this->view('quiz/index', ["niveaux" => $niveaux, "categories" => $categories, "questionMax" => $questionMax]);
         }
+    }
+
+    public function ajax()
+    {
+        $this->view('quiz/ajax');
     }
 }

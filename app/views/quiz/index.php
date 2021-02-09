@@ -5,18 +5,19 @@
 <div class="container my-4 p-3">
 
     <?php if (isset($data["erreur"])) : ?>
-    <div class="alert alert-danger my-3" role="alert"><?= $data["erreur"]; ?></div>
+    <div class="alert alert-danger my-3" id="divAlert" role="alert"><?= $data["erreur"]; ?></div>
     <?php endif; ?>
 
     <!-- TODO : Quiz aléatoire -->
 
     <!-- Formulaire de création du quiz -->
-    <form action="/quiz/quiz" method="post">
+    <form action="/quiz/quiz" method="post" id="quizForm">
 
         <!-- Select pour choix du niveau -->
         <div class="my-3">
             <label for="level-select">Choisissez un niveau :</label>
-            <select name="levels" id="level-select">
+            <select name="levels" id="level-select" class="onChange">
+                <option value="0">--- niveau ---</option>
                 <?php foreach ($data["niveaux"] as $niveau) : ?>
                 <option value="<?= $niveau->id_niveau ?>"><?= $niveau->level ?></option>
                 <?php endforeach; ?>
@@ -30,7 +31,7 @@
                 <?php foreach ($data["categories"] as $categorie) : ?>
                 <label class="btn btn-primary" for="<?= $categorie->id_categorie ?>">
                     <input type="checkbox" id="<?= $categorie->id_categorie ?>" value="<?= $categorie->id_categorie ?>"
-                        name="Categories[]"><?= $categorie->name ?>
+                        name="Categories[]" class="onChange"><?= $categorie->name ?>
                 </label>
                 <?php endforeach; ?>
             </div>
@@ -55,25 +56,55 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
 <!-- TODO : 
 
 page index = accueil <=> choix
 page quiz = là où tu fais le quiz
 page de résultats = score ; feedback
 
-Afficher la liste des niveaux
-Afficher la liste des catégories
-
 Afficher les 3 derniers quizz créés = table posséder, voir les 3 derniers ID ajoutés et récupérer la catégorie et/ou le niveau dans les tables correspondantes
 
 Afficher la possibilité de quizz aléatoire -->
+
+<script>
+$(document).ready(function() {
+
+    $(".onChange").change(function() {
+        // console.log("change");
+
+        // Récupère la valeur du select
+        let option = $('#level-select').val();
+        // console.log(option);
+
+        // Récupère la ou les valeurs de l'input
+        let categorieArray = [];
+        $("input:checkbox[class='onChange']:checked").each(function() {
+            categorieArray.push($(this).val());
+        });
+        // console.log(categorieArray);
+
+        // TODO : AJAX request avec change et MVC
+
+        $.ajax({
+            type: "GET",
+            url: "ajax.php",
+            data: {
+                niveau: option,
+                categories: categorieArray
+            },
+            dataType: 'json',
+            // success: function(data) {
+            //     alert("succès");
+            // },
+            // error: function(request, error) {
+            //     alert("échec !");
+            // }
+        });
+    });
+
+    setTimeout(function() {
+        $('#divAlert').fadeOut();
+    }, 3000);
+
+});
+</script>
