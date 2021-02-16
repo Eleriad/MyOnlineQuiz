@@ -4,12 +4,29 @@ class QuizController extends Controller
 {
     public function index()
     {
-        $niveaux = $this->model('Niveau')->getNiveauxByID();
-        $categories = $this->model('Categorie')->getCategoriesByName();
-        $questionMax = $this->model('Quiz')->getMaxQuestion();
-        $questionMax = intval($questionMax[0]);
+        if (isset($_POST) && isset($_POST["level"])) {
+            // var_dump($_POST["level"]);
 
-        $this->view('quiz/index', ["niveaux" => $niveaux, "categories" => $categories, "questionMax" => $questionMax]);
+            $level = $_POST["level"];
+            $newCategories = $this->model("Quiz")->getCategoriesByLevel($level);
+            // var_dump($newCategories);
+
+            $categories = [];
+
+            foreach ($newCategories as $newCat) {
+                // var_dump($newCat["name"]);
+                $categories[$newCat["id_categorie"]] = $newCat["name"];
+            }
+
+            echo json_encode($categories);
+        } else {
+            $niveaux = $this->model('Niveau')->getNiveauxByID();
+            $categories = $this->model('Categorie')->getCategoriesByName();
+            $questionMax = $this->model('Quiz')->getMaxQuestion();
+            $questionMax = intval($questionMax[0]);
+
+            $this->view('quiz/index', ["niveaux" => $niveaux, "categories" => $categories, "questionMax" => $questionMax]);
+        }
     }
 
     public function quiz()
@@ -22,7 +39,7 @@ class QuizController extends Controller
         $questionMax = intval($questionMax[0]);
 
         // Data pour l'affichage du quiz
-
+        var_dump($_POST);
         // Si on a un POST
         if (isset($_POST) && !empty($_POST)) {
 
@@ -49,10 +66,5 @@ class QuizController extends Controller
         else {
             $this->view('quiz/index', ["niveaux" => $niveaux, "categories" => $categories, "questionMax" => $questionMax]);
         }
-    }
-
-    public function ajax()
-    {
-        $this->view('quiz/ajax');
     }
 }

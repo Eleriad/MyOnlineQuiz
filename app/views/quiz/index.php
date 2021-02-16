@@ -14,32 +14,19 @@
     <form action="/quiz/quiz" method="post" id="quizForm">
 
         <!-- Select pour choix du niveau -->
-        <div class="my-3">
-            <label for="level-select">Choisissez un niveau :</label>
-            <select name="levels" id="level-select" class="onChange">
-                <option value="0">--- niveau ---</option>
+        <div class="my-3" id="levelDiv">
+            <label for="level-select">Veuillez choisir un niveau de difficulté :</label>
+            <select name="level" id="level-select" class="onChangeLevel">
+                <option value="0">-------</option>
                 <?php foreach ($data["niveaux"] as $niveau) : ?>
                 <option value="<?= $niveau->id_niveau ?>"><?= $niveau->level ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
 
-        <!-- Checkboxes pour choix de la ou des catégories -->
-        <div class="my-3">
-            <div class="btn-group-toggle" data-toggle="buttons">
-                <p>Choisissez une ou plusieurs catégories :</p>
-                <?php foreach ($data["categories"] as $categorie) : ?>
-                <label class="btn btn-primary" for="<?= $categorie->id_categorie ?>">
-                    <input type="checkbox" id="<?= $categorie->id_categorie ?>" value="<?= $categorie->id_categorie ?>"
-                        name="Categories[]" class="onChange"><?= $categorie->name ?>
-                </label>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
         <!-- Nombre de questions -->
         <div class="my-3">
-            <label for="questionNb">Choisissez un nombre de questions :</label>
+            <label for="questionNb" id="questionLabel">Choisissez un nombre de questions :</label>
             <select name="questionNb" id="questionNb">
                 <!-- For loop to display specific number of questions -->
                 <?php for ($i = 1; $i <= $data["questionMax"]; $i++) : ?>
@@ -55,56 +42,11 @@
     </form>
 </div>
 
+<script src="/app/components/js/quizIndex.js"></script>
 
 <!-- TODO : 
-
 page index = accueil <=> choix
 page quiz = là où tu fais le quiz
 page de résultats = score ; feedback
-
 Afficher les 3 derniers quizz créés = table posséder, voir les 3 derniers ID ajoutés et récupérer la catégorie et/ou le niveau dans les tables correspondantes
-
 Afficher la possibilité de quizz aléatoire -->
-
-<script>
-$(document).ready(function() {
-
-    $(".onChange").change(function() {
-        // console.log("change");
-
-        // Récupère la valeur du select
-        let option = $('#level-select').val();
-        // console.log(option);
-
-        // Récupère la ou les valeurs de l'input
-        let categorieArray = [];
-        $("input:checkbox[class='onChange']:checked").each(function() {
-            categorieArray.push($(this).val());
-        });
-        // console.log(categorieArray);
-
-        // TODO : AJAX request avec change et MVC
-
-        $.ajax({
-            type: "GET",
-            url: "ajax.php",
-            data: {
-                niveau: option,
-                categories: categorieArray
-            },
-            dataType: 'json',
-            // success: function(data) {
-            //     alert("succès");
-            // },
-            // error: function(request, error) {
-            //     alert("échec !");
-            // }
-        });
-    });
-
-    setTimeout(function() {
-        $('#divAlert').fadeOut();
-    }, 3000);
-
-});
-</script>

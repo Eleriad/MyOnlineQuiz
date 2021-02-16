@@ -36,4 +36,19 @@ class Quiz extends Database
     {
         // TODO : prévoir de récupérer un nombre défini ($questionNb) de questions avec comme spécificité 1 niveau ($level) et une ou plusieurs catégories ($categories)
     }
+
+    public function getCategoriesByLevel($level)
+    {
+        $sql = "SELECT DISTINCT c.name, c.id_categorie 
+                FROM categories AS c
+                JOIN posseder AS p
+                ON c.id_categorie = p.id_categorie
+                JOIN questions AS q
+                ON q.id_question = p.id_question
+                WHERE q.niveau_id = $level";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 }
