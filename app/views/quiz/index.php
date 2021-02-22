@@ -5,7 +5,7 @@
 <div class="container my-4 p-3">
 
     <?php if (isset($data["erreur"])) : ?>
-    <div class="alert alert-danger my-3" id="divAlert" role="alert"><?= $data["erreur"]; ?></div>
+        <div class="alert alert-danger my-3" id="divAlert" role="alert"><?= $data["erreur"]; ?></div>
     <?php endif; ?>
 
     <!-- TODO : Quiz aléatoire -->
@@ -19,7 +19,7 @@
             <select name="level" id="level-select" class="onChangeLevel">
                 <option value="0">-------</option>
                 <?php foreach ($data["niveaux"] as $niveau) : ?>
-                <option value="<?= $niveau->id_niveau ?>"><?= $niveau->level ?></option>
+                    <option value="<?= $niveau->id_niveau ?>"><?= $niveau->level ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
@@ -30,9 +30,9 @@
             <select name="questionNb" id="questionNb">
                 <!-- For loop to display specific number of questions -->
                 <?php for ($i = 1; $i <= $data["questionMax"]; $i++) : ?>
-                <?php if ($i === 1 or $i === 5 or $i === $data["questionMax"] or ($i % 10) === 0) : ?>
-                <option value="<?= $i ?>"><?= $i ?></option>
-                <?php endif; ?>
+                    <?php if ($i === 1 or $i === 5 or $i === $data["questionMax"] or ($i % 10) === 0) : ?>
+                        <option value="<?= $i ?>"><?= $i ?></option>
+                    <?php endif; ?>
                 <?php endfor; ?>
             </select>
         </div>

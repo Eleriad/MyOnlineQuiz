@@ -4,7 +4,7 @@ $(document).ready(function () {
     var level = $("#level-select").val();
 
     $.ajax({
-      url: "index.php",
+      url: "index",
       type: "post",
       data: {
         level: level,
@@ -12,7 +12,8 @@ $(document).ready(function () {
       success: function (res) {
         res = JSON.parse(res);
         finalRes = Object.entries(res);
-        generateCategories(finalRes);
+        deleteCategoriesButtons();
+        generateCategoriesButtons(finalRes);
       },
       error: function (status, error) {
         console.log("échec : " + status + error);
@@ -25,14 +26,11 @@ $(document).ready(function () {
   }, 3000);
 });
 
-function generateCategories(array) {
-  var categorieLabel;
-
-  if (categorieLabel !== undefined) {
-    categorieLabel.remove();
-  }
-
-  var categorieDiv = `<div class="my-3"><div class="btn-group-toggle" data-toggle="buttons" id="initialCat"></div></div>`;
+/**
+ * Function that generate a div with all categories (buttons) related to the choosen level
+ */
+function generateCategoriesButtons(array) {
+  var categorieDiv = `<div class="my-3" id="categorieButtonsDiv"><div class="btn-group-toggle" data-toggle="buttons" id="initialCat"></div></div>`;
 
   $("#levelDiv").after(categorieDiv);
 
@@ -40,13 +38,40 @@ function generateCategories(array) {
     let categorieId = parseInt(array[i][0]);
     let categorieName = array[i][1];
 
-    var categorieLabel = `<label class="btn btn-primary" for="${categorieId}"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="Categories[]" class="onChangeCategorie">${categorieName}</label>`;
+    var categorieLabel = `<label class="btn btn-primary mx-1" for="${categorieId}"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="Categories[]" onclick="checkCategorie(${categorieId})" class="onChangeCategorie">${categorieName}</label>`;
 
     $("#initialCat").append(categorieLabel);
   }
 }
 
-// TODO : supprimer la div existante à chaque fois qu'on relance la fonction
+/**
+ * Function that remove the previous div with categorie buttons before generating a new one
+ */
+function deleteCategoriesButtons() {
+  removeCatButtons = $("#categorieButtonsDiv");
+
+  if (removeCatButtons) {
+    removeCatButtons.remove();
+  }
+}
+
+function checkCategorie(id) {
+  var checkedCategorie = $("#" + id);
+  checkedCategorie.attr("checked", !checkedCategorie.attr("checked"));
+}
+
+// var categorieArray = [];
+// var checked = document.getElementsByClassName("onChangeCategorie");
+// console.log(checked);
+
+// $(".onChangeCategorie").on("change", function () {
+//   console.log("tata");
+//   if (this.checked) {
+//     console.log("toto");
+//   }
+// categorieArray.push($(this).val());
+// });
+// console.log(categorieArray);
 
 // Récupère la ou les valeurs de l'input
 // var categorieArray = [];

@@ -5,16 +5,12 @@ class QuizController extends Controller
     public function index()
     {
         if (isset($_POST) && isset($_POST["level"])) {
-            // var_dump($_POST["level"]);
-
             $level = $_POST["level"];
             $newCategories = $this->model("Quiz")->getCategoriesByLevel($level);
-            // var_dump($newCategories);
 
             $categories = [];
 
             foreach ($newCategories as $newCat) {
-                // var_dump($newCat["name"]);
                 $categories[$newCat["id_categorie"]] = $newCat["name"];
             }
 
