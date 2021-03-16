@@ -37,9 +37,16 @@ Pour la version suivante :
 
 A AJOUTER :
 
+- PREVOIR des photos pour les questions (si il y en a, on lui prévoit une place où s'afficher);
+- PREVOIR une place pour une photo dans les feedbacks ainsi qu'un lien pour en savoir plus !
+
 - "question x/y" avec barre de progression ;
 
 QUESTION D'AMELIORATION :
 
 - Ajouter une colonne "nombre de questions" dans la table catégories pour compter le nombre de questions associé à chaque catégorie ?
 - Si oui, il faut qu'à chaque ajout de question, cela incrémente ce nombre.
+
+CREDITS :
+
+Photos page d'accueil : Tombeau de Ramsès V/Ramsès VI (KV9), travail d'après une photo de aldboroughprimaryschool (cf. https://pixabay.com/fr/photos/tombeau-%C3%A9gypte-antique-brun-tombe-4300251/)

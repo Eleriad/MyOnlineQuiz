@@ -32,4 +32,4 @@
 <script src="https://kit.fontawesome.com/8303064131.js" crossorigin="anonymous"></script>
 
 <!-- CSS -->
-<link rel="stylesheet" href="/app/components/css/index.css">
+<link rel="stylesheet" href="/app/components/css/style.css">

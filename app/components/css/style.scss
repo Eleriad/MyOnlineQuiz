@@ -1,0 +1,182 @@
+@import "variables";
+@font-face {
+  font-family: "TitleFont";
+  src: url("/app/components/font/Filmcryptic.ttf") format("truetype");
+}
+
+@mixin btnHover {
+  color: $btnRegisterHover;
+  font-size: 1.1em;
+}
+
+// GENERAL
+
+body {
+  background-attachment: fixed;
+  background-image: url($bgPicture);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}
+
+// MAIN PAGE - CONNECTION
+
+.bodyContainer {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.connectPage {
+  display: flex;
+  flex-direction: row;
+  height: 80vh;
+  padding: 0 !important;
+  width: 80vw;
+  box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  border-top-left-radius: $colRadius;
+  border-bottom-left-radius: $colRadius;
+  border-top-right-radius: $colRadius;
+  border-bottom-right-radius: $colRadius;
+
+  .accountBtn {
+    padding: 10px 50px;
+    border: 1px solid red;
+    border-radius: 50px;
+  }
+}
+
+// Left Column
+.col1 {
+  align-items: center;
+  background-color: $Col1Bg;
+  background-image: url($Col1Picture);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: center;
+  border-top-left-radius: $colRadius;
+  border-bottom-left-radius: $colRadius;
+
+  .registerBtn {
+    border-color: $btnRegister;
+    border-width: 3px;
+    color: $btnRegister;
+    font-weight: bold;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: $btnRegisterHover;
+      margin-top: 10px;
+      @include btnHover();
+    }
+  }
+
+  .logo {
+    margin-bottom: 30px;
+    width: 25%;
+  }
+}
+
+// Right Column
+.col2 {
+  border-top-right-radius: $colRadius;
+  border-bottom-right-radius: $colRadius;
+  align-items: center;
+  background-color: $Col2Bg;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 !important;
+  vertical-align: center;
+
+  h1 {
+    margin-bottom: 30px;
+    color: white;
+    font-family: "TitleFont";
+    font-size: 4em;
+  }
+
+  .accountForm {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: center;
+    width: 100%;
+
+    .inputRow {
+      position: relative;
+      width: 100%;
+
+      i {
+        position: absolute;
+        right: 25px;
+        top: 23px;
+        color: white;
+        opacity: 0.5;
+        font-size: 1.5em;
+      }
+    }
+
+    .accountInput {
+      background-color: $accountInputBg;
+      border: 0;
+      border-bottom: $accountInputBorder;
+      border-top: $accountInputBorder;
+      color: white;
+      font-weight: bold;
+      height: 70px !important;
+      margin-bottom: 20px;
+      padding: 0 30px;
+      width: 100%;
+    }
+
+    .formButtons {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      vertical-align: center;
+
+      .forgottenPwd {
+        color: $btnRegister;
+        font-weight: bold;
+        margin-right: 20px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          @include btnHover();
+        }
+      }
+
+      .connexionBtn {
+        border-color: white;
+        background-color: transparent;
+        border-width: 3px;
+        color: white;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        opacity: 0.5;
+
+        &:hover {
+          font-size: 1.1em;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

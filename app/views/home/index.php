@@ -9,11 +9,18 @@
             <h1>Connexion</h1>
 
             <form class="accountForm" method="post">
-                <input class="accountInput" type="email" value="" placeholder="Votre email" name="email">
-                <input class="accountInput" type="password" value="" placeholder="Votre mot de passe" name="password">
+                <div class="inputRow">
+                    <input class="accountInput" type="email" value="" placeholder="Votre email" name="email">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="inputRow">
+                    <input class="accountInput" type="password" value="" placeholder="Votre mot de passe"
+                        name="password">
+                    <i class="fas fa-lock"></i>
+                </div>
                 <div class="formButtons">
                     <a href="/login/password" class="forgottenPwd">Mot de passe oublié ?</a>
-                    <input type="submit" name="login" value="Se connecter" class="accountBtn">
+                    <input type="submit" name="login" value="Se connecter" class="accountBtn connexionBtn">
                 </div>
             </form>
         </div>
