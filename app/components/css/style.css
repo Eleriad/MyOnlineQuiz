@@ -51,7 +51,7 @@ a:hover {
 
 .connectPage .accountBtn {
   padding: 10px 50px;
-  border: 1px solid red;
+  border: 1px solid;
   border-radius: 50px;
 }
 
@@ -217,5 +217,114 @@ a:hover {
 .col2 .accountForm .formButtons .connexionBtn:hover {
   font-size: 1.1em;
   opacity: 1;
+}
+
+.adminContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+}
+
+.adminContainer h1 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #9b805a;
+  font-family: "TitleFont";
+  font-size: 4em;
+  text-shadow: 1px 1px 2px #41200d;
+}
+
+.adminContainer .row {
+  width: 100%;
+  height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 30px 0px 100px 0px;
+}
+
+.adminContainer .col-3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.adminContainer .col-3 .card {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  padding: 10px 5px;
+  box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+}
+
+.adminContainer .col-3 .card i {
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: white;
+}
+
+.adminContainer .col-3 .card .card-body {
+  margin-top: 15px;
+}
+
+.adminContainer .col-3 .card .adminBtn {
+  border-color: white;
+  background-color: transparent;
+  border-width: 3px;
+  color: white;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+  padding: 10px 30px;
+  border: 1px solid;
+  border-radius: 50px;
+}
+
+.adminContainer .col-3 .card .adminBtn:hover {
+  font-size: 1.1em;
+  opacity: 1;
+}
+
+.adminContainer .col-3 .categoryCard {
+  background-color: #9b805a;
+}
+
+.adminContainer .col-3 .levelCard {
+  background-color: #8b6c42;
+}
+
+.adminContainer .col-3 .questionCard {
+  background-color: #856d4d;
+}
+
+.adminContainer .col-3 .usersCard {
+  background-color: #b67823;
 }
 /*# sourceMappingURL=style.css.map */
