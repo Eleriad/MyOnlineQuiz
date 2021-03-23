@@ -40,6 +40,6 @@
         </div>
     </div>
 
-    <a href="/quiz/index" class="btn btn-dark btn-lg"><span><i class="far fa-arrow-alt-circle-left mr-2"></i></span>
+    <a href="/quiz/index" class="returnBtn"><span><i class="far fa-arrow-alt-circle-left mr-2"></i></span>
         Retour</a>
 </div>

@@ -9,6 +9,44 @@
   font-size: 1.1em;
 }
 
+@mixin titles {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: $Col2Bg;
+  font-family: "TitleFont";
+  font-size: 4em;
+  text-shadow: 2px 2px 4px $Col1Bg;
+}
+
+@mixin generalBtn {
+  border-width: 3px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 10px 30px;
+  border-radius: 50px;
+  border: 1px solid transparent;
+
+  &:hover {
+    font-size: 1.2em;
+    color: white;
+    resize: both;
+  }
+}
+
+@mixin tableBtn {
+  border-width: 3px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 5px 15px;
+  border-radius: 50px;
+
+  &:hover {
+    font-size: 1.1em;
+    resize: both;
+  }
+}
+
 // GENERAL
 
 body {
@@ -21,9 +59,45 @@ body {
   padding: 0;
 }
 
+h1 {
+  @include titles();
+}
+
 a,
 a:hover {
   text-decoration: none;
+}
+
+.createBtn {
+  border-color: rgb(92, 155, 21);
+  background-color: rgb(92, 155, 21);
+  @include generalBtn();
+}
+
+.modifyBtn {
+  border-color: rgb(231, 204, 80);
+  background-color: rgb(231, 204, 80);
+  color: $Col1Bg;
+  @include tableBtn();
+  &:hover {
+    color: $Col1Bg;
+  }
+}
+
+.deleteBtn {
+  border-color: rgb(202, 106, 50);
+  background-color: rgb(202, 106, 50);
+  color: white;
+  @include tableBtn();
+  &:hover {
+    color: white;
+  }
+}
+
+.returnBtn {
+  border-color: $Col1Bg;
+  background-color: $Col1Bg;
+  @include generalBtn();
 }
 
 // MAIN PAGE - CONNECTION
@@ -189,12 +263,7 @@ a:hover {
   height: 100vh;
 
   h1 {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    color: $Col2Bg;
-    font-family: "TitleFont";
-    font-size: 4em;
-    text-shadow: 1px 1px 2px $Col1Bg;
+    @include titles();
   }
 
   .row {

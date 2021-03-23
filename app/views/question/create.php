@@ -1,21 +1,22 @@
 <div class="container">
-    <h1 class="text-center">Ajout d'une question</h1>
+    <h1 class="text-center">Ajouter une question</h1>
 
     <form action="" method="post">
         <div class="mb-3">
             <p>Catégorie(s) :</p>
             <?php foreach ($data['categories'] as $categories) : ?>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="categories[]" id="categories" value="<?= $categories->id_categorie ?>">
-                    <label for="categories" class="form-check-label"><?= $categories->name ?></label>
-                </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="categories[]" id="categories"
+                    value="<?= $categories->id_categorie ?>">
+                <label for="categories" class="form-check-label"><?= $categories->name ?></label>
+            </div>
             <?php endforeach ?>
         </div>
         <div class="form-group">
             <label for="selectNiveaux">niveau(x) :</label>
             <select name="niveaux" id="selectNiveaux">
                 <?php foreach ($data['niveaux'] as $niveaux) : ?>
-                    <option value="<?= $niveaux->id_niveau ?>"><?= $niveaux->level ?></option>
+                <option value="<?= $niveaux->id_niveau ?>"><?= $niveaux->level ?></option>
                 <?php endforeach ?>
             </select>
         </div>
@@ -44,8 +45,10 @@
             <input type="text" class="form-control" name="feedback" id="feedback">
         </div>
 
-        <input type="submit" name="addQuestion" class="btn btn-success" value="Créer"></input>
-        <a href="/question/index" class="btn btn-dark">Retour</a>
+        <button type="submit" name="addQuestion" class="createBtn"><span><i
+                    class="far fa-check-circle mr-2"></i></span>Valider</button>
+        <a href="/question/index" class="returnBtn"><span><i
+                    class="far fa-arrow-alt-circle-left mr-2"></i></span>Retour</a>
     </form>
 
 </div>

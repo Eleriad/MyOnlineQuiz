@@ -25,59 +25,58 @@
                     array_push($out, $categorie["name"]);
                 }
             ?>
-                <tr>
-                    <td>
-                        <?= implode(', ', $out) ?></br>
-                    </td>
-                    <td><?= $question->level ?></td>
-                    <td><?= $question->question ?></td>
-                    <td><?= $question->reponse ?></td>
-                    <td><?= $question->facile ?></td>
-                    <td><?= $question->normal ?></td>
-                    <td><?= $question->difficile ?></td>
-                    <td><?= $question->feedback ?></td>
-                    <td>
-                        <a href="/question/edit/<?= $question->id_question ?>" class="btn btn-warning btn-sm"><span><i class="fas fa-pencil-alt mr-2"></i></span>Modifier</a>
-                        <a href="/question/delete/<?= $question->id_question ?>" class="btn btn-danger btn-sm"><span><i class="far fa-trash-alt mr-2"></i></span>Supprimer</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    <?= implode(', ', $out) ?></br>
+                </td>
+                <td><?= $question->level ?></td>
+                <td><?= $question->question ?></td>
+                <td><?= $question->reponse ?></td>
+                <td><?= $question->facile ?></td>
+                <td><?= $question->normal ?></td>
+                <td><?= $question->difficile ?></td>
+                <td><?= $question->feedback ?></td>
+                <td>
+                    <a href="/question/edit/<?= $question->id_question ?>" class="modifyBtn"><span><i
+                                class="fas fa-pencil-alt mr-2"></i></span>Modifier</a>
+                    <a href="/question/delete/<?= $question->id_question ?>" class="deleteBtn"><span><i
+                                class="far fa-trash-alt mr-2"></i></span>Supprimer</a>
+                </td>
+            </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 </div>
 
 <div class="text-center">
-    <a href="/question/create" class="btn btn-success">Ajouter une nouvelle question</a>
+    <a href="/question/create" class="createBtn"><i class="fas fa-plus mr-2"></i>Nouvelle
+        question</a>
 
-    <a href="/admin/index" class="btn btn-dark">Retour</a>
+    <a href="/admin/index" class="returnBtn"><span><i class="far fa-arrow-alt-circle-left mr-2"></i></span>Retour</a>
 </div>
 
 <script>
-    $(document).ready(function() {
-        var table = $('.questionTable').DataTable({
-            // Sélection de la langue du texte des éléments du dataTable
-            language: {
-                url: "/app/components/bootstrap/dataTable/media/french.json"
-            },
-            // Active la pagination
-            paging: true,
-            // Permet le scroll horizontal
-            scrollX: true,
-            // Active la responsivité du dataTable
-            responsive: true,
-            // Définit le type d'affichage des numéros et des boutons en bas de dataTable
-            pagingType: 'numbers',
-            // Active l'affichage en-tête/pied-de-page fixe
-            fixedHeader: true,
-            // Délection de la colonne et du type d'affichage (ici première colonne, affichage descendant)
-            "order": [
-                [2, "asc"]
-            ],
-            // Définit les propositions pour le choix de séelction d'affichage du nombre de lignes du dataTable
-            lengthMenu: [
-                [10, 20, 50, -1],
-                [10, 20, 50, "Tout"],
-            ],
-        });
+$(document).ready(function() {
+    var table = $('.questionTable').DataTable({
+        language: {
+            url: "/app/components/bootstrap/dataTable/media/french.json"
+        },
+        paging: true,
+        scrollX: true,
+        responsive: true,
+        pagingType: 'numbers',
+        fixedHeader: true,
+        "order": [
+            [2, "asc"]
+        ],
+        lengthMenu: [
+            [10, 20, 50, -1],
+            [10, 20, 50, "Tout"],
+        ],
+        "columnDefs": [{
+            "width": "17%",
+            "targets": -1
+        }]
     });
+});
 </script>
