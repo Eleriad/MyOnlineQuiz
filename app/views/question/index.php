@@ -1,4 +1,6 @@
-<h1 class="text-center">Page d'accueil des questions</h1>
+<header>
+    <h1 class="text-center">Page d'accueil des questions</h1>
+</header>
 
 <div class="container-fluid p-4 mt-4">
     <table class="table questionTable w-100 mt">

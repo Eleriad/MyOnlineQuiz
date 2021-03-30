@@ -1,6 +1,6 @@
-<div class="container py-4 text-center">
-
-    <h1>Supprimer une catégorie</h1>
+    <header>
+        <h1>Supprimer une catégorie</h1>
+    </header>
 
     <form action="" id="form4" method="post">
         <div class="form-group">
@@ -15,4 +15,3 @@
             </div>
         </div>
     </form>
-</div>

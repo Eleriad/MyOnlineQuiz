@@ -5,9 +5,11 @@ foreach ($data[1] as $categories) {
 }
 ?>
 
-<div class="container">
+<header>
     <h1 class="text-center">Supprimer une question</h1>
+</header>
 
+<div class="container">
     <form action="" method="post">
         <div class="mb-3">
             <p>Catégorie(s) :</p>

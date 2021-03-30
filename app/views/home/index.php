@@ -1,7 +1,7 @@
 <div class="container-fluid bodyContainer">
     <div class="container connectPage">
         <div class="col col-6 col1">
-            <img src="/app/components/img/testLogo.png" class="logo">
+            <img src="/app/components/img/testLogo4.png" class="logo">
             <a href="/login/register" class="accountBtn registerBtn">Créer un compte</a>
         </div>
 

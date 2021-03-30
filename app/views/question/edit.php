@@ -1,17 +1,19 @@
-<div class="container">
+<header>
     <h1 class="text-center">Modifier une question</h1>
+</header>
 
-    <!-- Vérification du formulaire en JS -->
-    <div role="alert" id="errorMessage">
-    </div>
+<!-- Vérification du formulaire en JS -->
+<div role="alert" id="errorMessage">
+</div>
 
-    <?php if (isset($_GET['Message']) && $_GET['Message'] = "errCat") : ?>
-    <!-- Vérification du formulaire en PHP -->
-    <div class="alert alert-danger my-3" role="alert">
-        Aucune catégorie n'a été sélectionnée !
-    </div>
-    <?php endif; ?>
+<?php if (isset($_GET['Message']) && $_GET['Message'] = "errCat") : ?>
+<!-- Vérification du formulaire en PHP -->
+<div class="alert alert-danger my-3" role="alert">
+    Aucune catégorie n'a été sélectionnée !
+</div>
+<?php endif; ?>
 
+<div class="container">
     <form action="" method="post" id="editQuestionForm">
         <div class="mb-3">
             <p>Catégorie(s) :</p>
@@ -73,5 +75,4 @@
                     class="far fa-arrow-alt-circle-left mr-2"></i></span>Retour</a>
     </form>
 </div>
-
 <script src="/app/components/js/verifCheckboxes.js"></script>

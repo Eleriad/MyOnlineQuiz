@@ -1,5 +1,6 @@
-<div class="container text-center">
-    <h1>Ajouter une catégorie</h1>
+    <header>
+        <h1>Ajouter une catégorie</h1>
+    </header>
 
     <form action="" method="post">
         <div class="form-group">
@@ -13,5 +14,3 @@
         <a href="/categorie/index" class="returnBtn"><span><i
                     class="far fa-arrow-alt-circle-left mr-2"></i></span>Retour</a>
     </form>
-
-</div>

@@ -1,6 +1,8 @@
-<div class="container">
+<header>
     <h1 class="text-center">Ajouter une question</h1>
+</header>
 
+<div class="container">
     <form action="" method="post">
         <div class="mb-3">
             <p>Catégorie(s) :</p>

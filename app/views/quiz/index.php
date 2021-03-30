@@ -1,4 +1,6 @@
-<h1>C'est la page d'accueil du quiz</h1>
+<header>
+    <h1>C'est la page d'accueil du quiz</h1>
+</header>
 
 <a href="/admin/index" class="returnBtn"><i class="fas fa-crown mr-2"></i>Page Administrateur</a>
 
