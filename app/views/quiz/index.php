@@ -13,7 +13,7 @@
     <!-- TODO : Quiz aléatoire -->
 
     <!-- Formulaire de création du quiz -->
-    <form action="/quiz/quiz" method="post" id="quizForm">
+    <form action="" method="post" id="quizForm">
 
         <!-- Select pour choix du niveau -->
         <div class="my-3" id="levelDiv">

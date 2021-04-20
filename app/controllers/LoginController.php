@@ -16,7 +16,7 @@ class LoginController extends Controller
                         $user->email = $_POST["email"];
                         $user->password_hash = password_hash($_POST["password"], PASSWORD_BCRYPT);
                         $user->create();
-                        header('Location: /login/index');
+                        header('Location: /home/index');
                     } else {
                         $this->view('login/register', "Les mots de passe ne sont pas identiques !");
                     }

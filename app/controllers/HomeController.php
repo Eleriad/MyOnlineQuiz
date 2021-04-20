@@ -8,6 +8,7 @@ class HomeController extends Controller
             $user = $this->model('User')->findUserByMail($_POST["email"]);
 
             if ($user != null && password_verify($_POST["password"], $user->password_hash)) {
+                session_start();
                 $_SESSION["user_id"] = $user->id;
                 header('Location: /quiz/index');
             } else {

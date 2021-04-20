@@ -6,7 +6,7 @@ $(document).ready(function () {
     var checkButton = document.getElementsByClassName("onChangeCategorie");
 
     $.ajax({
-      url: "index",
+      url: "/ajax/getCategoriesByLevel",
       type: "post",
       data: {
         level: level,

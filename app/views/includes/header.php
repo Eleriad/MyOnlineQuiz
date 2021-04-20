@@ -6,3 +6,5 @@
 </head>
 
 <body>
+
+    <?php var_dump($_SESSION); ?>
