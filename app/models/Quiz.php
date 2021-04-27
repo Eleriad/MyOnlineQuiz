@@ -2,9 +2,27 @@
 
 class Quiz extends Database
 {
-    // public function getRandomQuestions($nb)
-    // {
-    // }
+    /**
+     * Function that select a specific number of random questions given a level and one or more categories
+     * @param [int] $level
+     * @param [int or array] $categories
+     * @param [int] $limit
+     * @return void
+     */
+    public function getRandomQuestions($level, $categories, $limit)
+    {
+        $sql = "SELECT question, feedback, reponse, facile, normal, difficile FROM questions AS q 
+                JOIN posseder AS p 
+                ON q.id_question = p.id_question 
+                WHERE niveau_id = $level 
+                AND id_categorie IN ($categories)
+                ORDER BY RAND() 
+                LIMIT $limit";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 
     public function countQuestionsByLevel($idCategorie, $idLevel)
     {
@@ -30,11 +48,6 @@ class Quiz extends Database
         $stmt->execute();
         $result = $stmt->fetch();
         return $result;
-    }
-
-    public function startQuiz($questionNb, $categories, $level)
-    {
-        // TODO : prévoir de récupérer un nombre défini ($questionNb) de questions avec comme spécificité 1 niveau ($level) et une ou plusieurs catégories ($categories)
     }
 
     public function getCategoriesByLevel($level)

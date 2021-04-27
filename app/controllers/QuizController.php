@@ -30,6 +30,37 @@ class QuizController extends Controller
 
     public function quiz()
     {
-        $this->view('quiz/quiz');
+        // checking the $_SESSION data
+        if (isset($_SESSION['level']) && isset($_SESSION['categories']) && isset($_SESSION['questionNb'])) {
+
+            $level = $_SESSION['level'];
+            $nb = $_SESSION['questionNb'];
+            $categoriesArray = $_SESSION['categories'];
+
+            $count = count($categoriesArray); // count the number of data in categoriesArray
+
+            // if there is only one categories selected
+            if ($count === 1) {
+                $categories = intval($categoriesArray[0]);
+            }
+            // if there is more than one categorie selected
+            else {
+                $categories = null;
+                foreach ($categoriesArray as $nbs) {
+                    $categories .= $nbs;
+                    $categories .= ",";
+                }
+                // Delete the last comma of the categories' list
+                $categories = substr($categories, 0, -1);
+            }
+
+            // Get the questions fot the quiz
+            $questions = $this->model('Quiz')->getRandomQuestions($level, $categories,  $nb);
+
+            // Display the quiz/quiz page with the questions for the quiz
+            $this->view('quiz/quiz', ["questions" => $questions]);
+        } else {
+            $this->view('quiz/quiz');
+        }
     }
 }
