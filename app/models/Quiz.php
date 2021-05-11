@@ -20,7 +20,7 @@ class Quiz extends Database
                 LIMIT $limit";
         $stmt = self::$_connection->prepare($sql);
         $stmt->execute();
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

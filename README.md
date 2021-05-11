@@ -46,6 +46,7 @@ QUESTION D'AMELIORATION :
 
 - Ajouter une colonne "nombre de questions" dans la table catégories pour compter le nombre de questions associé à chaque catégorie ?
 - Si oui, il faut qu'à chaque ajout de question, cela incrémente ce nombre.
+- Type de question : vrai-faux avec une colonne dans la table Questions (is_true_false et booléen pour valider)
 
 CREDITS :
 

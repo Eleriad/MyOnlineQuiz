@@ -39,11 +39,11 @@ class QuizController extends Controller
 
             $count = count($categoriesArray); // count the number of data in categoriesArray
 
-            // if there is only one categories selected
+            // if there only one categorie is selected
             if ($count === 1) {
                 $categories = intval($categoriesArray[0]);
             }
-            // if there is more than one categorie selected
+            // if more than one categorie are selected
             else {
                 $categories = null;
                 foreach ($categoriesArray as $nbs) {
@@ -57,8 +57,13 @@ class QuizController extends Controller
             // Get the questions fot the quiz
             $questions = $this->model('Quiz')->getRandomQuestions($level, $categories,  $nb);
 
+            // Définition de la variable de session
+            $_SESSION["currentQuestion"] = 0;
+
+            $questionLength = count($questions);
+
             // Display the quiz/quiz page with the questions for the quiz
-            $this->view('quiz/quiz', ["questions" => $questions]);
+            $this->view('quiz/quiz', ["questions" => $questions, "questionLength" => $questionLength]);
         } else {
             $this->view('quiz/quiz');
         }
