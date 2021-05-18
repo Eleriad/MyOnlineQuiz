@@ -64,4 +64,25 @@ class Quiz extends Database
         $result = $stmt->fetchAll();
         return $result;
     }
+
+    public function getLevelName($level)
+    {
+        $sql = "SELECT level FROM niveaux WHERE id_niveau = $level";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getCategorieName($idCategorie)
+    {
+        // Implode Categorie array to extract categorie IDs
+        $arrayCat =  implode(",", $idCategorie);
+
+        $sql = "SELECT name FROM `categories` WHERE id_categorie IN ($arrayCat)";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

@@ -62,8 +62,11 @@ class QuizController extends Controller
 
             $questionLength = count($questions);
 
+            $levelName = $this->model('Quiz')->getLevelName($level);
+            $categorieName = $this->model('Quiz')->getCategorieName($categoriesArray);
+
             // Display the quiz/quiz page with the questions for the quiz
-            $this->view('quiz/quiz', ["questions" => $questions, "questionLength" => $questionLength]);
+            $this->view('quiz/quiz', ["questions" => $questions, "questionLength" => $questionLength, "levelName" => $levelName, "categorieName" => $categorieName]);
         } else {
             $this->view('quiz/quiz');
         }
