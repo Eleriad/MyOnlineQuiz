@@ -503,10 +503,36 @@ div[class^="questionDiv"] {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 350px;
   height: 100px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  border: 1px solid #41200d;
+  background-color: #41200d;
+  color: white;
+  margin: 15px;
+  padding: 15px 10px;
+  border-radius: 10px;
+  box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+}
+
+.answer:hover {
+  cursor: pointer;
+}
+
+.answer input[type="radio"] {
+  opacity: 0;
+}
+
+.answer input[type="radio"]:hover {
+  cursor: pointer;
+}
+
+.answer label {
+  cursor: pointer;
 }
 
 .divider {
@@ -516,5 +542,9 @@ div[class^="questionDiv"] {
 .quizTitle {
   margin-bottom: 4rem;
   font-size: 1.2rem;
+}
+
+.answered {
+  background-color: green;
 }
 /*# sourceMappingURL=style.css.map */

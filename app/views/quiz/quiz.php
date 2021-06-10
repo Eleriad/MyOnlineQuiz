@@ -32,24 +32,24 @@ foreach ($data["questions"] as $question) :
             <div class="d-inline">
                 <div class="answer">
                     <input type="radio" id="answer1_<?= $currentQuestion ?>" name="radio_<?= $currentQuestion ?>"
-                        value="<?= $choix[0] ?>" class="mr-2">
+                        value="<?= $choix[0] ?>" class="answer1 mr-2">
                     <label for="answer1_<?= $currentQuestion ?>"><?= $choix[0] ?></label>
                 </div>
                 <div class="answer">
                     <input type="radio" id="answer2_<?= $currentQuestion ?>" name="radio_<?= $currentQuestion ?>"
-                        value="<?= $choix[1] ?>" class="mr-2">
+                        value="<?= $choix[1] ?>" class="answer2 mr-2">
                     <label for="answer2_<?= $currentQuestion ?>"><?= $choix[1] ?></label>
                 </div>
             </div>
             <div class="d-inline">
                 <div class="answer">
                     <input type="radio" id="answer3_<?= $currentQuestion ?>" name="radio_<?= $currentQuestion ?>"
-                        value="<?= $choix[2] ?>" class="mr-2">
+                        value="<?= $choix[2] ?>" class="answer3 mr-2">
                     <label for="answer3_<?= $currentQuestion ?>"><?= $choix[2] ?></label>
                 </div>
                 <div class="answer">
                     <input type="radio" id="answer4_<?= $currentQuestion ?>" name="radio_<?= $currentQuestion ?>"
-                        value="<?= $choix[3] ?>" class="mr-2">
+                        value="<?= $choix[3] ?>" class="answer4 mr-2">
                     <label for="answer4_<?= $currentQuestion ?>"><?= $choix[3] ?></label>
                 </div>
             </div>
@@ -61,6 +61,26 @@ foreach ($data["questions"] as $question) :
 
 <script>
 $(document).ready(function() {
-    // $(".questionDiv_2").hide();
+
+    $('input:radio').click(function() {
+        // console.log(this);
+        // console.log($(this).parent());
+        if ($(this).is(':checked')) {
+            self = $(this).parent('.answer');
+
+            console.log(self);
+            self.toggleClass('answered');
+
+            if ($('.answer1').parent().hasClass("answered")) {
+                $('.answer1').parent().removeClass("answered");
+            } else if ($('.answer2').parent().hasClass("answered")) {
+                $('.answer2').parent().removeClass("answered");
+            } else if ($('.answer3').parent().hasClass("answered")) {
+                $('.answer3').parent().removeClass("answered");
+            } else if ($('.answer4').parent().hasClass("answered")) {
+                $('.answer4').parent().removeClass("answered");
+            }
+        }
+    });
 });
 </script>

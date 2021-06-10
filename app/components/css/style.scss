@@ -396,8 +396,33 @@ div[class^="questionDiv"] {
 .answer {
   font-size: 1.2rem;
   display: flex;
+  width: 350px;
   height: 100px;
   align-items: center;
+  border: 1px solid $Col1Bg;
+  background-color: $Col1Bg;
+  color: white;
+  margin: 15px;
+  padding: 15px 10px;
+  border-radius: 10px;
+  box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  input[type="radio"] {
+    opacity: 0;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  label {
+    cursor: pointer;
+  }
 }
 
 .divider {
@@ -407,4 +432,8 @@ div[class^="questionDiv"] {
 .quizTitle {
   margin-bottom: 4rem;
   font-size: 1.2rem;
+}
+
+.answered {
+  background-color: green;
 }
