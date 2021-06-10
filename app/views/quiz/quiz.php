@@ -54,7 +54,7 @@ foreach ($data["questions"] as $question) :
                 </div>
             </div>
         </div>
-        <button class="mt-5 btnNext">Valider</button>
+        <button class="mt-5 btnNext disabled">Valider</button>
     </div>
 </div>
 <?php endforeach; ?>
@@ -63,23 +63,15 @@ foreach ($data["questions"] as $question) :
 $(document).ready(function() {
 
     $('input:radio').click(function() {
-        // console.log(this);
-        // console.log($(this).parent());
+
         if ($(this).is(':checked')) {
-            self = $(this).parent('.answer');
+            self = $(this).parent();
 
-            console.log(self);
-            self.toggleClass('answered');
+            selectedAnswer = $(".answersDiv").find("div.selectedAnswer");
+            selectedAnswer.removeClass('selectedAnswer');
+            $(".btnNext").removeClass("disabled");
 
-            if ($('.answer1').parent().hasClass("answered")) {
-                $('.answer1').parent().removeClass("answered");
-            } else if ($('.answer2').parent().hasClass("answered")) {
-                $('.answer2').parent().removeClass("answered");
-            } else if ($('.answer3').parent().hasClass("answered")) {
-                $('.answer3').parent().removeClass("answered");
-            } else if ($('.answer4').parent().hasClass("answered")) {
-                $('.answer4').parent().removeClass("answered");
-            }
+            self.toggleClass('selectedAnswer');
         }
     });
 });
