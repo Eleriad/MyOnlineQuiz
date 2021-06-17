@@ -430,8 +430,12 @@ div[class^="questionDiv"] {
 }
 
 .quizTitle {
-  margin-bottom: 4rem;
-  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+
+  .subTitle {
+    font-size: 1.2rem;
+  }
 }
 
 .selectedAnswer {

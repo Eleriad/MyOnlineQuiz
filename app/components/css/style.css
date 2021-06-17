@@ -540,7 +540,11 @@ div[class^="questionDiv"] {
 }
 
 .quizTitle {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.quizTitle .subTitle {
   font-size: 1.2rem;
 }
 
