@@ -26,11 +26,16 @@ foreach ($data["questions"] as $question) :
 <!-- Input hidden pour récupérer en JS le nombre maximum de questions -->
 <input type="hidden" name="maxQuestion" value="<?= $_SESSION["questionNb"] ?>">
 
-<form action="" method="POST">
+<form action="/quiz/results" method="POST">
     <div class="quizDiv">
 
-        <!-- Input hidde, pour récupérer en AJAX le numéro dela question en cours -->
+        <!-- Input hidden, pour récupérer en AJAX le numéro de la question en cours -->
         <input type="hidden" name="currentQuestion" value="<?= $currentQuestion ?>">
+
+        <!-- Input hidden pour récupérer un array de toutes les bonnes réponses en php -->
+        <?php foreach ($correctAnswers as $test) : ?>
+        <input type="hidden" name="result[]" value="<?= $test ?>">
+        <?php endforeach ?>
 
         <div class="questionDiv_<?= $currentQuestion ?>">
 
@@ -75,65 +80,19 @@ foreach ($data["questions"] as $question) :
                     </div>
                 </div>
             </div>
-            <button id="confirmBtn" class="mt-5 btnNext disabled"><?php
-                                                                        echo $questionInt == $_SESSION["questionNb"] ? "Fin du quizz" : "Valider";
-                                                                        ?></button>
+            <button
+                id="<?php
+                            echo $questionInt == $_SESSION["questionNb"] ? "endQuizBtn" : "confirmBtn_$currentQuestion"; ?>"
+                class="mt-5 btnNext disabled"><?php
+                                                                                                                                                            echo $questionInt == $_SESSION["questionNb"] ? "Fin du quizz" : "Question suivante";
+                                                                                                                                                            ?></button>
         </div>
     </div>
 </form>
 <?php
     $questionInt++;
 endforeach;
-// var_dump($correctAnswers);
 ?>
 
-<script>
-$(document).ready(function() {
 
-    $('input:radio').click(function() {
-
-        if ($(this).is(':checked')) {
-            self = $(this).parent();
-
-            selectedAnswer = $(".answersDiv").find("div.selectedAnswer");
-            selectedAnswer.removeClass('selectedAnswer');
-            $(".btnNext").removeClass("disabled");
-
-            self.toggleClass('selectedAnswer');
-        }
-
-    });
-
-
-    // TODO : on cache ici les questions qui ne sont pas celle en cours 
-    // $('.questionDiv_1').parent().css('display', 'none');
-    // $('.questionDiv_2').parent().css('display', 'none');
-    // $('.questionDiv_3').parent().css('display', 'none');
-    // $('.questionDiv_4').parent().css('display', 'none');
-    // $('.questionDiv_5').parent().css('display', 'none');
-
-
-    $('#confirmBtn').click(function(e) {
-        e.preventDefault();
-
-        console.log("bouton cliqué");
-    })
-
-    let maxQuestion = $('input[name="maxQuestion"]').val(); // récupération du nombre maximal de questions
-
-
-    // TODO : voir comment récupérer toutes les div sauf celle de la question en cours
-    // let questionNb = 1;
-    // displayCurrentQuestion(questionNb);
-
-    // function displayCurrentQuestion(nb) {
-    // $('div[class^="questionDiv"]').siblings().parent().css('display', 'none');
-    // $('.questionDiv_' + nb).show();
-
-    // }
-
-
-    // TODO : on click sur le bouton : cela permet d'enregistrer la réponse de l'utilisateur + cache la question précédente et affiche la question suivante 
-    // (sauf si dernière question, dans ce cas, on renvoie sur la page de feedback)
-});
-</script>
+<script src="/app/components/js/quizRun.js"></script>

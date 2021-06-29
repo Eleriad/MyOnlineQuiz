@@ -71,4 +71,10 @@ class QuizController extends Controller
             $this->view('quiz/quiz');
         }
     }
+
+    public function results()
+    {
+        var_dump($_POST);
+        $this->view('quiz/results');
+    }
 }
