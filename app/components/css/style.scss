@@ -476,3 +476,8 @@ div[class^="questionDiv"] {
   -moz-box-shadow: none;
   cursor: not-allowed;
 }
+
+.table td,
+.table th {
+  vertical-align: middle;
+}

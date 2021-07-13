@@ -1,7 +1,9 @@
 <div class="container-fluid bodyContainer">
     <div class="container connectPage">
         <div class="col col-6 col1">
-            <img src="/app/components/img/testLogo4.png" class="logo">
+            <img src="/app/components/img/Thot ombre 1.svg" class="logo"
+                onmouseover="this.src='/app/components/img/Thot Sépia.svg'"
+                onmouseout="this.src='/app/components/img/Thot ombre 1.svg'">
             <a href="/login/register" class="accountBtn registerBtn">Créer un compte</a>
         </div>
 

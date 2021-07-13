@@ -6,23 +6,25 @@
     <table class="table w-100 mt categorieTable">
         <thead>
             <tr>
+                <th>Pictos</th>
                 <th>Liste des catégories</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <?php
-            foreach ($data['categories'] as $categories) {
-                echo '
-                    <tr>
-                        <td>' . $categories->name . '</td>
-                        <td>
-                            <a href="/categorie/edit/' . $categories->id_categorie . '" class="modifyBtn"><span><i class="fas fa-pencil-alt mr-2"></i></span>Modifier</a>
-                            <a href="/categorie/delete/' . $categories->id_categorie . '" class="deleteBtn"><span><i class="far fa-trash-alt mr-2"></i></span>Supprimer</a>
-                        </td>
-                    </tr>';
-            }
-            ?>
+            <?php foreach ($data['categories'] as $categories) : ?>
+            <tr>
+                <td><img src="/app/components/img/categorie_picture/<?= $categories->categorie_picture ?>" width="50px"
+                        height="50px"></td>
+                <td><?= $categories->name ?></td>
+                <td>
+                    <a href=" /categorie/edit/<?= $categories->id_categorie ?>" class="modifyBtn"><span><i
+                                class="fas fa-pencil-alt mr-2"></i></span>Modifier</a>
+                    <a href="/categorie/delete/<?= $categories->id_categorie ?>" class="deleteBtn"><span><i
+                                class="far fa-trash-alt mr-2"></i></span>Supprimer</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>

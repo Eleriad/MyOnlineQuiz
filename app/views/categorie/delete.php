@@ -1,11 +1,15 @@
-    <header>
-        <h1>Supprimer une catégorie</h1>
-    </header>
-
-    <form action="" id="form4" method="post">
+<div class="container text-center mt-4">
+    <form action="" id="form4" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label>Nom de la catégorie : <input type="text" class="form-control" value="<?= $data->name ?>"
-                    disabled></label>
+            <label>Nom de la catégorie : <input type="text" name="categorieName" class="form-control"
+                    value="<?= $data->name ?>" disabled></label>
+
+            <div class="form-group">
+                <label for="categoriePicture"><img
+                        src="/app/components/img/categorie_picture/<?= $data->categorie_picture ?>" width="100px"
+                        height="100px"></label>
+                <input type="file" name="categoriePicture" disabled>
+            </div>
 
             <div class="text-center mt-3">
                 <button type="submit" name="deleteCategorie" class="createBtn"><span><i
@@ -15,3 +19,4 @@
             </div>
         </div>
     </form>
+</div>

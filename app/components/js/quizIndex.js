@@ -44,7 +44,7 @@ $(document).ready(function () {
       let categorieId = parseInt(array[i][0]);
       let categorieName = array[i][1];
 
-      var categorieLabel = `<label class="btn btn-primary mx-1" for="${categorieId}"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="categories[]" class="onChangeCategorie">${categorieName}</label>`;
+      var categorieLabel = `<label class="btn btn-info mx-1" for="${categorieId}"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="categories[]" class="onChangeCategorie">${categorieName}</label>`;
 
       $("#initialCat").append(categorieLabel);
     }
