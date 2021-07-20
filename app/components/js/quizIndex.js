@@ -39,12 +39,15 @@ $(document).ready(function () {
     var categorieDiv = `<div id="initialCat"></div>`;
 
     $("#levelDiv").after(categorieDiv);
+    console.log(array);
 
     for (var i = 0; i < array.length; i++) {
       let categorieId = parseInt(array[i][0]);
       let categorieName = array[i][1];
 
       var categorieLabel = `<label class="btn btn-info mx-1" for="${categorieId}"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="categories[]" class="onChangeCategorie">${categorieName}</label>`;
+
+      //var categorieLabel = `<label class="btn btn-info mx-1" for="${categorieId}"><img src="/app/components/img/categorie_picture/pierre.svg" width="50px" height="50px"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="categories[]" class="onChangeCategorie">${categorieName}</label>`;
 
       $("#initialCat").append(categorieLabel);
     }

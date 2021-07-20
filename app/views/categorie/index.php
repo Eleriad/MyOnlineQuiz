@@ -17,6 +17,7 @@
                 <td><img src="/app/components/img/categorie_picture/<?= $categories->categorie_picture ?>" width="50px"
                         height="50px"></td>
                 <td><?= $categories->name ?></td>
+
                 <td>
                     <a href=" /categorie/edit/<?= $categories->id_categorie ?>" class="modifyBtn"><span><i
                                 class="fas fa-pencil-alt mr-2"></i></span>Modifier</a>

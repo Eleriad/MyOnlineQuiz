@@ -8,8 +8,6 @@ class AjaxController extends Controller
             $level = $_POST["level"];
             $newCategories = $this->model("Quiz")->getCategoriesByLevel($level);
 
-            $categories = [];
-
             foreach ($newCategories as $newCat) {
                 $categories[$newCat["id_categorie"]] = $newCat["name"];
             }

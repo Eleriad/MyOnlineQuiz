@@ -4,29 +4,33 @@ $(document).ready(function () {
   let questionNb = 1; // nombre de départ des questions
   let maxQuestion = $('input[name="maxQuestion"]').val(); // récupération du nombre maximal de questions
 
-  for (i = questionNb; i < maxQuestion; i++) {
-    // When clicking on any radio button, add the selectedAnswer Class to parent div
-    $('[name="radio_' + i + '"]').click(function () {
-      if ($(this).is(":checked")) {
-        self = $(this).parent();
+  // for (i = questionNb; i < maxQuestion; i++) {
+  // When clicking on any radio button, add the selectedAnswer Class to parent div
+  $("[name^='radio_']").click(function () {
+    if ($(this).is(":checked")) {
+      self = $(this).parent();
 
-        selectedAnswer = $(".answersDiv").find("div.selectedAnswer");
-        selectedAnswer.removeClass("selectedAnswer");
-        $("#confirmBtn_" + i).removeClass("disabled");
-        // TODO : vérifier que cela n'enlève la classe disabled qu'au bouton de la question en cours ("#confirmBtn_" + i ne fonctionne pas et .BtnNext les disabled tous)
+      selectedAnswer = $(".answersDiv").find("div.selectedAnswer");
+      selectedAnswer.removeClass("selectedAnswer");
+      let button = $("[class^='questionDiv']").find("[id^='confirmBtn']");
+      button.removeClass("disabled");
+      console.log(button);
+      // console.log("#confirmBtn_" + i);
 
-        self.toggleClass("selectedAnswer");
-      }
-    });
+      // TODO : vérifier que cela n'enlève la classe disabled qu'au bouton de la question en cours ("#confirmBtn_" + i ne fonctionne pas et .BtnNext les disabled tous)
 
-    // When clicking on button that has confirmBtn's id, add the user answer to the userAnswer array
-    $("#confirmBtn_" + i).click(function (e) {
-      e.preventDefault();
-      let answer = $(".selectedAnswer :input").val();
-      userAnswer.push(answer);
-      console.log(userAnswer);
-    });
-  }
+      self.toggleClass("selectedAnswer");
+    }
+  });
+
+  // When clicking on button that has confirmBtn's id, add the user answer to the userAnswer array
+  // $("#confirmBtn_" + i).click(function (e) {
+  //   e.preventDefault();
+  //   let answer = $(".selectedAnswer :input").val();
+  //   userAnswer.push(answer);
+  //   console.log(userAnswer);
+  // });
+  // }
 });
 
 // TODO : voir comment récupérer toutes les div sauf celle de la question en cours

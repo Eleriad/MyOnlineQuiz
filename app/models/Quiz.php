@@ -52,7 +52,7 @@ class Quiz extends Database
 
     public function getCategoriesByLevel($level)
     {
-        $sql = "SELECT DISTINCT c.name, c.id_categorie 
+        $sql = "SELECT DISTINCT c.name, c.id_categorie, c.categorie_picture 
                 FROM categories AS c
                 JOIN posseder AS p
                 ON c.id_categorie = p.id_categorie

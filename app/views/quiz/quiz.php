@@ -12,7 +12,8 @@ foreach ($data["categorieName"] as $test) {
 
 $categorieName = rtrim($categorieName, ", ");
 $questionInt = 1;
-
+?>
+<?php
 $correctAnswers = [];
 foreach ($data["questions"] as $question) :
     $currentQuestion++;
@@ -23,9 +24,12 @@ foreach ($data["questions"] as $question) :
     $shuffle = shuffle($choix);
 ?>
 
+<!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item <?php //echo $questionInt = 1 ? "active" : "" 
+                                    ?>"> -->
 <!-- Input hidden pour récupérer en JS le nombre maximum de questions -->
 <input type="hidden" name="maxQuestion" value="<?= $_SESSION["questionNb"] ?>">
-
 <form action="/quiz/results" method="POST">
     <div class="quizDiv">
 
@@ -81,18 +85,29 @@ foreach ($data["questions"] as $question) :
                 </div>
             </div>
             <button
-                id="<?php
-                            echo $questionInt == $_SESSION["questionNb"] ? "endQuizBtn" : "confirmBtn_$currentQuestion"; ?>"
-                class="mt-5 btnNext disabled"><?php
-                                                                                                                                                            echo $questionInt == $_SESSION["questionNb"] ? "Fin du quizz" : "Question suivante";
-                                                                                                                                                            ?></button>
+                id="<?php echo $questionInt == $_SESSION["questionNb"] ? "endQuizBtn" : "confirmBtn_$currentQuestion"; ?>"
+                class="mt-5 btnNext disabled"><?php echo $questionInt == $_SESSION["questionNb"] ? "Fin du quizz" : "Question suivante"; ?></button>
         </div>
     </div>
 </form>
+<!-- </div> -->
 <?php
     $questionInt++;
 endforeach;
+// var_dump($correctAnswers);
 ?>
-
+<!-- <div class="carousel-item">
+            <p>toto</p>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div> -->
 
 <script src="/app/components/js/quizRun.js"></script>

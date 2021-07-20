@@ -56,8 +56,8 @@ class Controller
             $extArray = explode('.', $name);
             // gathering the last element of array (i.e. the extension) and putting it to lower for later comparison
             $extension = strtolower(end($extArray));
-            // creating an array with all authorize extesions
-            $authorizedExtensions = ['png', 'gif', 'svg'];
+            // creating an array with all authorize extensions
+            $authorizedExtensions = ['png', 'gif', 'svg', 'jpg', 'jpeg'];
 
             if (in_array($extension, $authorizedExtensions)) {
 
