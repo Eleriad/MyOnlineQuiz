@@ -129,6 +129,14 @@ header {
   width: 100vw;
 }
 
+.quizContainer {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  justify-content: center;
+}
+
 .connectPage {
   display: flex;
   flex-direction: row;
@@ -360,8 +368,8 @@ header {
 // Page QUIZ
 
 .quizDiv {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   align-items: center;
   display: flex;
   align-items: center;
@@ -369,7 +377,7 @@ header {
   flex-direction: column;
 }
 
-div[class^="questionDiv"] {
+div[id^="questionDiv"] {
   height: 70vh;
   width: 70vw;
   background-color: #9b805a !important;
@@ -446,7 +454,8 @@ div[class^="questionDiv"] {
   -moz-box-shadow: 6px 5px 3px 0px rgba(65, 32, 13, 0.75);
 }
 
-.btnNext {
+.btnNext.validate,
+.endQuizBtn {
   background-color: #554640;
   padding: 15px 70px;
   border: none;
@@ -464,7 +473,7 @@ div[class^="questionDiv"] {
   }
 }
 
-.btnNext.disabled {
+.btnNext {
   background-color: #55464063;
   padding: 15px 70px;
   border: none;
