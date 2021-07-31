@@ -11,6 +11,11 @@
                 </label>
             </div>
 
+            <div class="form-group d-flex flex-column">
+                <label for="description">Description de la catégorie :</label>
+                <textarea name="description" cols="30" rows="10"></textarea>
+            </div>
+
             <div class="form-group">
                 <label for="categoriePicture"></label>
                 <input type="file" name="categoriePicture">

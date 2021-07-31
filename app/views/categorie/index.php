@@ -8,6 +8,7 @@
             <tr>
                 <th>Pictos</th>
                 <th>Liste des catégories</th>
+                <th>Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -17,7 +18,7 @@
                 <td><img src="/app/components/img/categorie_picture/<?= $categories->categorie_picture ?>" width="50px"
                         height="50px"></td>
                 <td><?= $categories->name ?></td>
-
+                <td><?= $categories->description ?></td>
                 <td>
                     <a href=" /categorie/edit/<?= $categories->id_categorie ?>" class="modifyBtn"><span><i
                                 class="fas fa-pencil-alt mr-2"></i></span>Modifier</a>
@@ -49,17 +50,23 @@ $(document).ready(function() {
         pagingType: 'numbers',
         fixedHeader: true,
         "order": [
-            [2, "asc"]
+            [1, "asc"]
         ],
         lengthMenu: [
             [10, 20, 50, -1],
             [10, 20, 50, "Tout"],
         ],
         "columns": [{
-            "width": "90%"
-        }, {
-            "width": "10%"
-        }]
+                "width": "10%"
+            }, {
+                "width": "20%"
+            },
+            {
+                "width": "40%"
+            }, {
+                "width": "30%"
+            }
+        ]
     });
 });
 </script>

@@ -34,5 +34,11 @@
 <!-- FONTAWESOME -->
 <script src="https://kit.fontawesome.com/8303064131.js" crossorigin="anonymous"></script>
 
+<!-- ScrollMagic -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+
 <!-- CSS -->
 <link rel="stylesheet" href="/app/components/css/style.css">

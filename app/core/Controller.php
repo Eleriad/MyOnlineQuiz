@@ -85,3 +85,5 @@ class Controller
         }
     }
 }
+
+// TODO Prévoir une fonction qui va vérifier tout ce qui est envoyé et assainir les strings ou array envoyés par méthode POST

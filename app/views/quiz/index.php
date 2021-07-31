@@ -3,6 +3,7 @@
 </header>
 
 <a href="/admin/index" class="returnBtn"><i class="fas fa-crown mr-2"></i>Page Administrateur</a>
+<a href="/public/categories" class="returnBtn"><i class="far fa-list-alt mr-2"></i>Découvrir les catégories</a>
 
 <div class="container my-4 p-3">
 
