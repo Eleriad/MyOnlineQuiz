@@ -7,9 +7,15 @@
     $admBtn = '<a href="/admin/index" class="btn btn-sm headerBtn"><i class="fas fa-crown mr-2"></i>Page
     Administrateur</a>';
     ?>
+    <title><?= isset($data["title"]) ? $data["title"] : "titre à voir" ?></title>
+    <!-- TODO : titres à voir !!! -->
 </head>
 
 <body>
+    <?php
+    isset($data["title"]) ? $data["title"] = $data["title"] : $data["title"] = "titre à voir"; // TODO : ligne à supprimer une fois tous les titres mis en forme
+    if ($data["title"] != "Page de connexion") :
+    ?>
     <header>
         <div class="row text-left">
             <div class="col col-lg-auto">
@@ -24,6 +30,7 @@
             </div>
             <div class="col col-lg-auto"></div>
         </div>
-
-        <!-- <h1>C'est la page d'accueil du quiz</h1> -->
     </header>
+    <?php
+    endif;
+    ?>

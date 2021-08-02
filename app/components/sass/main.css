@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "TitleFont";
   src: url("/app/components/font/Filmcryptic.ttf") format("truetype");
@@ -173,8 +174,8 @@ header img {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 .quizContainer {
@@ -199,6 +200,7 @@ header img {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  margin-top: 70px;
   height: 80vh;
   padding: 0 !important;
   width: 80vw;
@@ -642,7 +644,7 @@ div[id^="questionDiv"] {
   vertical-align: middle;
 }
 
-/* CATAGORIES */
+/* CATÉGORIES */
 .box-timeline {
   width: 100%;
   height: 100%;
@@ -704,4 +706,9 @@ div[id^="questionDiv"] {
   font-size: 18px;
   margin: 15px 0 20px 0;
 }
-/*# sourceMappingURL=style.css.map */
+
+.cards img {
+  max-width: 70px;
+  max-height: 70px;
+}
+/*# sourceMappingURL=main.css.map */

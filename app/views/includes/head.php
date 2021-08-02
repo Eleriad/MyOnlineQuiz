@@ -5,9 +5,6 @@
 <!-- FAVICON -->
 <link rel="shortcut icon" type="image/x-icon" href="/app/components/img/faviconColor.ico" />
 
-<!-- TITRE -->
-<title>Titre à voir</title>
-
 <!-- JQUERY -->
 <script src="/app/components/jquery/jquery-3.5.1.min.js"></script>
 <script src="/app/components/jquery/jquery-ui.min.js"></script>
@@ -41,4 +38,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
 
 <!-- CSS -->
-<link rel="stylesheet" href="/app/components/css/style.css">
+<link rel="stylesheet" href="/app/components/sass/main.css">

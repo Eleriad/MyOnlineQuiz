@@ -1,52 +1,11 @@
-@import "variables";
+@import "partials/variables";
+@import "partials/mixins";
 @font-face {
   font-family: "TitleFont";
   src: url("/app/components/font/Filmcryptic.ttf") format("truetype");
 }
 
-@mixin btnHover {
-  color: $btnRegisterHover;
-  font-size: 1.1em;
-}
-
-@mixin titles {
-  color: $Col2Bg;
-  font-family: "TitleFont";
-  font-size: 4em;
-  text-shadow: 2px 2px 4px $Col1Bg;
-}
-
-@mixin generalBtn {
-  border-width: 3px;
-  color: white;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  padding: 10px 30px;
-  border-radius: 50px;
-  border: 1px solid transparent;
-
-  &:hover {
-    font-size: 1.2em;
-    color: white;
-    resize: both;
-  }
-}
-
-@mixin tableBtn {
-  border-width: 3px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  padding: 5px 15px;
-  border-radius: 50px;
-
-  &:hover {
-    font-size: 1.1em;
-    resize: both;
-  }
-}
-
 // GENERAL
-
 body,
 html,
 ::after {
@@ -151,12 +110,11 @@ header {
 }
 
 // MAIN PAGE - CONNECTION
-
 .bodyContainer {
   align-items: center;
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 .quizContainer {
@@ -170,6 +128,7 @@ header {
 .connectPage {
   display: flex;
   flex-direction: row;
+  margin-top: 70px;
   height: 80vh;
   padding: 0 !important;
   width: 80vw;
@@ -396,7 +355,6 @@ header {
 }
 
 // Page QUIZ
-
 .quizDiv {
   width: 100%;
   height: 100%;
@@ -521,8 +479,7 @@ div[id^="questionDiv"] {
   vertical-align: middle;
 }
 
-/* CATAGORIES */
-
+/* CATÉGORIES */
 .box-timeline {
   width: 100%;
   height: 100%;
@@ -573,5 +530,12 @@ div[id^="questionDiv"] {
     line-height: 25px;
     font-size: 18px;
     margin: 15px 0 20px 0;
+  }
+}
+
+.cards {
+  img {
+    max-width: 70px;
+    max-height: 70px;
   }
 }

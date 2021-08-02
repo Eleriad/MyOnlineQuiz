@@ -16,10 +16,10 @@ class HomeController extends Controller
                 $this->view('home/index', 'Erreur de connexion : combinaison indentifiant / mot de passe incorrecte !');
             }
         } else {
-            $this->view('home/index');
+            $this->view('home/index', ["title" => "Page de connexion"]);
         }
 
 
-        $this->view('home/index');
+        $this->view('home/index', ["title" => "Page de connexion"]);
     }
 }

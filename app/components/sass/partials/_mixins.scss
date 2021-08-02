@@ -1,0 +1,40 @@
+@mixin btnHover {
+  color: $btnRegisterHover;
+  font-size: 1.1em;
+}
+
+@mixin titles {
+  color: $Col2Bg;
+  font-family: "TitleFont";
+  font-size: 4em;
+  text-shadow: 2px 2px 4px $Col1Bg;
+}
+
+@mixin generalBtn {
+  border-width: 3px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 10px 30px;
+  border-radius: 50px;
+  border: 1px solid transparent;
+
+  &:hover {
+    font-size: 1.2em;
+    color: white;
+    resize: both;
+  }
+}
+
+@mixin tableBtn {
+  border-width: 3px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 5px 15px;
+  border-radius: 50px;
+
+  &:hover {
+    font-size: 1.1em;
+    resize: both;
+  }
+}
