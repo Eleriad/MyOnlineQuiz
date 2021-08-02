@@ -88,6 +88,34 @@ header {
     font-family: "TitleFont";
     font-size: 4em;
   }
+
+  .headerBtn {
+    border: 1px solid $Col1Bg;
+    border-width: 3px;
+    color: $Col1Bg;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 50px;
+    &:hover {
+      color: white;
+    }
+  }
+
+  .row {
+    width: 100%;
+  }
+
+  .col {
+    width: auto;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+  }
+
+  img {
+    max-width: 45px;
+    max-height: 45px;
+  }
 }
 
 .createBtn {

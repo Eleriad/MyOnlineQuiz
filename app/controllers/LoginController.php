@@ -30,9 +30,4 @@ class LoginController extends Controller
             $this->view('login/register');
         }
     }
-
-    public function password()
-    {
-        echo "mot de passe oublié ! Bien fait !!!";
-    }
 }

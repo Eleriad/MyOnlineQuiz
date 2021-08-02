@@ -56,6 +56,36 @@ header h1 {
   font-size: 4em;
 }
 
+header .headerBtn {
+  border: 1px solid #41200d;
+  border-width: 3px;
+  color: #41200d;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 10px 20px;
+  border-radius: 50px;
+}
+
+header .headerBtn:hover {
+  color: white;
+}
+
+header .row {
+  width: 100%;
+}
+
+header .col {
+  width: auto;
+  padding-left: 3px !important;
+  padding-right: 3px !important;
+}
+
+header img {
+  max-width: 45px;
+  max-height: 45px;
+}
+
 .createBtn {
   border-color: #5c9b15;
   background-color: #5c9b15;

@@ -1,6 +1,7 @@
 <h1 class="text-center">Voici la liste des catégories</h1>
 
-<a href="/quiz/index" class="returnBtn"><i class="fas fa-long-arrow-alt-left"></i></i>Retour à la page d'accueil</a>
+<a href="/quiz/index" class="returnBtn"><i class="fas fa-long-arrow-alt-left mr-2"></i></i>Retour à la page
+    d'accueil</a>
 
 <div class="box-timeline">
     <div class="ligne">

@@ -2,6 +2,11 @@
 
 class PublicController extends Controller
 {
+    public function index()
+    {
+        $this->view('public/index');
+    }
+
     public function categories()
     {
 

@@ -87,3 +87,4 @@ class Controller
 }
 
 // TODO Prévoir une fonction qui va vérifier tout ce qui est envoyé et assainir les strings ou array envoyés par méthode POST
+// TODO : définir une fonction générale qui préparera les messages d'erreur et de succès lors de la création, modification ou suppression d'un élément du quiz
