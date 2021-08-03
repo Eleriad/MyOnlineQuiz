@@ -74,7 +74,8 @@ class QuizController extends Controller
 
     public function results()
     {
-        var_dump($_POST);
-        $this->view('quiz/results');
+        $userAnswers = $_POST["userAnswers"][0];
+        $userAnswersArray = explode(",", $userAnswers);
+        $this->view('quiz/results', ["usersAnswerdArray" => $userAnswersArray]);
     }
 }

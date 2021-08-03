@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "TitleFont";
+  src: url("/app/components/font/Filmcryptic.ttf") format("truetype");
+}
+
+body,
+html,
+::after {
+  background-attachment: fixed;
+  background-image: url($bgPicture);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-fluid {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  text-align: center;
+}
+
+h1 {
+  @include titles();
+}
+
+a,
+a:hover {
+  text-decoration: none;
+}

@@ -1,0 +1,41 @@
+header {
+  width: 100%;
+  background-color: $leather;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+
+  h1 {
+    color: $white !important;
+    font-family: "TitleFont";
+    font-size: 4em;
+  }
+
+  .headerBtn {
+    border: 1px solid $deepOak;
+    border-width: 3px;
+    color: $deepOak;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 50px;
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .row {
+    width: 100%;
+  }
+
+  .col {
+    width: auto;
+    padding-left: 3px !important;
+    padding-right: 3px !important;
+  }
+
+  img {
+    max-width: 45px;
+    max-height: 45px;
+  }
+}

@@ -1,121 +1,42 @@
 @import "partials/variables";
 @import "partials/mixins";
-@font-face {
-  font-family: "TitleFont";
-  src: url("/app/components/font/Filmcryptic.ttf") format("truetype");
-}
-
-// GENERAL
-body,
-html,
-::after {
-  background-attachment: fixed;
-  background-image: url($bgPicture);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.container-fluid {
-  margin: 0 !important;
-  padding: 0 !important;
-  display: flex;
-  text-align: center;
-}
-
-h1 {
-  @include titles();
-}
-
-a,
-a:hover {
-  text-decoration: none;
-}
-
-header {
-  width: 100%;
-  background-color: #9b805a;
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
-
-  h1 {
-    color: white !important;
-    font-family: "TitleFont";
-    font-size: 4em;
-  }
-
-  .headerBtn {
-    border: 1px solid $Col1Bg;
-    border-width: 3px;
-    color: $Col1Bg;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    padding: 10px 20px;
-    border-radius: 50px;
-    &:hover {
-      color: white;
-    }
-  }
-
-  .row {
-    width: 100%;
-  }
-
-  .col {
-    width: auto;
-    padding-left: 3px !important;
-    padding-right: 3px !important;
-  }
-
-  img {
-    max-width: 45px;
-    max-height: 45px;
-  }
-}
+@import "partials/general";
+@import "partials/header";
+@import "partials/home";
 
 .createBtn {
-  border-color: rgb(92, 155, 21);
-  background-color: rgb(92, 155, 21);
+  border-color: $christi;
+  background-color: $christi;
   @include generalBtn();
 }
 
 .modifyBtn {
-  border-color: rgb(231, 204, 80);
-  background-color: rgb(231, 204, 80);
-  color: $Col1Bg;
+  border-color: $sunglow;
+  background-color: $sunglow;
+  color: $deepOak;
   @include tableBtn();
   &:hover {
-    color: $Col1Bg;
+    color: $deepOak;
   }
 }
 
 .deleteBtn {
-  border-color: rgb(202, 106, 50);
-  background-color: rgb(202, 106, 50);
-  color: white;
+  border-color: $tuscany;
+  background-color: $tuscany;
+  color: $white;
   @include tableBtn();
   &:hover {
-    color: white;
+    color: $white;
   }
 }
 
 .returnBtn {
-  border-color: $Col1Bg;
-  background-color: $Col1Bg;
+  border-color: $deepOak;
+  background-color: $deepOak;
   @include generalBtn();
 }
 
 // MAIN PAGE - CONNECTION
-.bodyContainer {
-  align-items: center;
-  display: flex;
-  height: 100%;
-  width: 100%;
-}
 
 .quizContainer {
   align-items: center;
@@ -123,153 +44,6 @@ header {
   height: 100vh;
   width: 100vw;
   justify-content: center;
-}
-
-.connectPage {
-  display: flex;
-  flex-direction: row;
-  margin-top: 70px;
-  height: 80vh;
-  padding: 0 !important;
-  width: 80vw;
-  box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
-  -webkit-box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
-  -moz-box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
-  border-top-left-radius: $colRadius;
-  border-bottom-left-radius: $colRadius;
-  border-top-right-radius: $colRadius;
-  border-bottom-right-radius: $colRadius;
-
-  .accountBtn {
-    padding: 10px 50px;
-    border: 1px solid;
-    border-radius: 50px;
-  }
-}
-
-// Left Column
-.col1 {
-  align-items: center;
-  background-color: $Col1Bg;
-  background-image: url($Col1Picture);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  vertical-align: center;
-  border-top-left-radius: $colRadius;
-  border-bottom-left-radius: $colRadius;
-
-  .registerBtn {
-    border-color: $btnRegister;
-    border-width: 3px;
-    color: $btnRegister;
-    font-weight: bold;
-    transition: all 0.3s ease;
-
-    &:hover {
-      border-color: $btnRegisterHover;
-      margin-top: 10px;
-      @include btnHover();
-    }
-  }
-
-  .logo {
-    margin-bottom: 30px;
-    width: 25%;
-  }
-}
-
-// Right Column
-.col2 {
-  border-top-right-radius: $colRadius;
-  border-bottom-right-radius: $colRadius;
-  align-items: center;
-  background-color: $Col2Bg;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 !important;
-  vertical-align: center;
-
-  h1 {
-    margin-bottom: 30px;
-    color: white;
-    font-family: "TitleFont";
-    font-size: 4em;
-  }
-
-  .accountForm {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    vertical-align: center;
-    width: 100%;
-
-    .inputRow {
-      position: relative;
-      width: 100%;
-
-      i {
-        position: absolute;
-        right: 25px;
-        top: 23px;
-        color: white;
-        opacity: 0.5;
-        font-size: 1.5em;
-      }
-    }
-
-    .accountInput {
-      background-color: $accountInputBg;
-      border: 0;
-      border-bottom: $accountInputBorder;
-      border-top: $accountInputBorder;
-      color: white;
-      font-weight: bold;
-      height: 70px !important;
-      margin-bottom: 20px;
-      padding: 0 30px;
-      width: 100%;
-    }
-
-    .formButtons {
-      align-items: center;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      vertical-align: center;
-
-      .forgottenPwd {
-        color: $btnRegister;
-        font-weight: bold;
-        margin-right: 20px;
-        transition: all 0.3s ease;
-
-        &:hover {
-          @include btnHover();
-        }
-      }
-
-      .connexionBtn {
-        border-color: white;
-        background-color: transparent;
-        border-width: 3px;
-        color: white;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        opacity: 0.5;
-
-        &:hover {
-          font-size: 1.1em;
-          opacity: 1;
-        }
-      }
-    }
-  }
 }
 
 // Administrator main page's design
@@ -310,7 +84,7 @@ header {
         margin-top: 20px;
         display: flex;
         justify-content: center;
-        color: white;
+        color: $white;
       }
 
       .card-body {
@@ -318,10 +92,10 @@ header {
       }
 
       .adminBtn {
-        border-color: white;
+        border-color: $white;
         background-color: transparent;
         border-width: 3px;
-        color: white;
+        color: $white;
         font-weight: bold;
         transition: all 0.3s ease;
         opacity: 0.5;
@@ -337,7 +111,7 @@ header {
     }
 
     .categoryCard {
-      background-color: $Col2Bg;
+      background-color: $leather;
     }
 
     .levelCard {
@@ -395,9 +169,9 @@ div[id^="questionDiv"] {
   width: 350px;
   height: 100px;
   align-items: center;
-  border: 1px solid $Col1Bg;
-  background-color: $Col1Bg;
-  color: white;
+  border: 1px solid $deepOak;
+  background-color: $deepOak;
+  color: $white;
   margin: 15px;
   padding: 15px 10px;
   border-radius: 10px;
@@ -436,7 +210,7 @@ div[id^="questionDiv"] {
 
 .selectedAnswer {
   border: none;
-  background-color: lighten($color: $Col1Bg, $amount: 20);
+  background-color: lighten($color: $deepOak, $amount: 20);
   box-shadow: 6px 5px 3px 0px rgba(65, 32, 13, 0.75);
   -webkit-box-shadow: 6px 5px 3px 0px rgba(65, 32, 13, 0.75);
   -moz-box-shadow: 6px 5px 3px 0px rgba(65, 32, 13, 0.75);
@@ -447,7 +221,7 @@ div[id^="questionDiv"] {
   background-color: #554640;
   padding: 15px 70px;
   border: none;
-  color: white;
+  color: $white;
   font-size: 1.5em;
   border-radius: 10px;
   box-shadow: 5px 6px 3px 1px rgba(0, 0, 0, 0.5);
@@ -491,7 +265,7 @@ div[id^="questionDiv"] {
 .ligne {
   width: 8px;
   margin: 0 auto;
-  background-color: $Col1Bg;
+  background-color: $deepOak;
 }
 
 .rond {
@@ -500,7 +274,7 @@ div[id^="questionDiv"] {
   border-radius: 50%;
   background: #233e6f;
   position: absolute;
-  border: 1px solid $Col1Bg;
+  border: 1px solid $deepOak;
   left: 50%;
   transform: translate(-50%);
   display: flex;
@@ -509,7 +283,7 @@ div[id^="questionDiv"] {
 }
 
 .box {
-  color: $Col1Bg;
+  color: $deepOak;
   width: 400px;
   min-height: 200px;
   padding: 20px;
@@ -534,8 +308,42 @@ div[id^="questionDiv"] {
 }
 
 .cards {
+  .card {
+    border-radius: $colRadius;
+    align-items: center;
+    background-color: $leather;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 !important;
+    vertical-align: center;
+    margin: 25px;
+
+    h5 {
+      font-weight: bold;
+    }
+  }
+
   img {
     max-width: 70px;
     max-height: 70px;
+    margin-top: 10px;
+  }
+
+  .btn {
+    border-color: $white;
+    background-color: transparent;
+    border-width: 3px;
+    color: $white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+
+    &:hover {
+      font-size: 1.1em;
+      opacity: 1;
+      color: $astronaut;
+      border-color: $astronaut;
+    }
   }
 }

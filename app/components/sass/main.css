@@ -87,6 +87,210 @@ header img {
   max-height: 45px;
 }
 
+.homeContainer {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.connectDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-top: 70px;
+  height: 80vh;
+  padding: 0 !important;
+  width: 80vw;
+  box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.connectDiv .accountBtn {
+  padding: 10px 50px;
+  border: 1px solid;
+  border-radius: 50px;
+}
+
+.leftCol {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #41200d;
+  background-image: url("/app/components/img/KvTomb.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: center;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.leftCol .registerBtn {
+  border-color: #fecc35;
+  border-width: 3px;
+  color: #fecc35;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.leftCol .registerBtn:hover {
+  border-color: #ef792d;
+  margin-top: 10px;
+  color: #ef792d;
+  font-size: 1.1em;
+}
+
+.leftCol .logo {
+  margin-bottom: 30px;
+  width: 25%;
+}
+
+.rightCol {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #9b805a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 !important;
+  vertical-align: center;
+}
+
+.rightCol h1 {
+  margin-bottom: 30px;
+  color: white;
+  font-family: "TitleFont";
+  font-size: 4em;
+}
+
+.rightCol .accountForm {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: center;
+  width: 100%;
+}
+
+.rightCol .accountForm .inputRow {
+  position: relative;
+  width: 100%;
+}
+
+.rightCol .accountForm .inputRow i {
+  position: absolute;
+  right: 25px;
+  top: 23px;
+  color: white;
+  opacity: 0.5;
+  font-size: 1.5em;
+}
+
+.rightCol .accountForm .accountInput {
+  background-color: #b99d76;
+  border: 0;
+  border-bottom: 1px solid #e0c7a4;
+  border-top: 1px solid #e0c7a4;
+  color: white;
+  font-weight: bold;
+  height: 70px !important;
+  margin-bottom: 20px;
+  padding: 0 30px;
+  width: 100%;
+}
+
+.rightCol .accountForm .formButtons {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: center;
+}
+
+.rightCol .accountForm .formButtons .forgottenPwd {
+  color: #fecc35;
+  font-weight: bold;
+  margin-right: 20px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.rightCol .accountForm .formButtons .forgottenPwd:hover {
+  color: #ef792d;
+  font-size: 1.1em;
+}
+
+.rightCol .accountForm .formButtons .connexionBtn {
+  border-color: white;
+  background-color: transparent;
+  border-width: 3px;
+  color: white;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+}
+
+.rightCol .accountForm .formButtons .connexionBtn:hover {
+  font-size: 1.1em;
+  opacity: 1;
+  color: #233e6f;
+  border-color: #233e6f;
+}
+
 .createBtn {
   border-color: #5c9b15;
   background-color: #5c9b15;
@@ -107,8 +311,8 @@ header img {
 }
 
 .modifyBtn {
-  border-color: #e7cc50;
-  background-color: #e7cc50;
+  border-color: #fecc35;
+  background-color: #fecc35;
   color: #41200d;
   border-width: 3px;
   font-weight: bold;
@@ -167,17 +371,6 @@ header img {
   resize: both;
 }
 
-.bodyContainer {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 100%;
-  width: 100%;
-}
-
 .quizContainer {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -190,197 +383,6 @@ header img {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-
-.connectPage {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  margin-top: 70px;
-  height: 80vh;
-  padding: 0 !important;
-  width: 80vw;
-  box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
-  -webkit-box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
-  -moz-box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-.connectPage .accountBtn {
-  padding: 10px 50px;
-  border: 1px solid;
-  border-radius: 50px;
-}
-
-.col1 {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #41200d;
-  background-image: url("/app/components/img/KvTomb.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  vertical-align: center;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-.col1 .registerBtn {
-  border-color: #fecc33;
-  border-width: 3px;
-  color: #fecc33;
-  font-weight: bold;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.col1 .registerBtn:hover {
-  border-color: #ff7a23;
-  margin-top: 10px;
-  color: #ff7a23;
-  font-size: 1.1em;
-}
-
-.col1 .logo {
-  margin-bottom: 30px;
-  width: 25%;
-}
-
-.col2 {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #9b805a;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 0 !important;
-  vertical-align: center;
-}
-
-.col2 h1 {
-  margin-bottom: 30px;
-  color: white;
-  font-family: "TitleFont";
-  font-size: 4em;
-}
-
-.col2 .accountForm {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  vertical-align: center;
-  width: 100%;
-}
-
-.col2 .accountForm .inputRow {
-  position: relative;
-  width: 100%;
-}
-
-.col2 .accountForm .inputRow i {
-  position: absolute;
-  right: 25px;
-  top: 23px;
-  color: white;
-  opacity: 0.5;
-  font-size: 1.5em;
-}
-
-.col2 .accountForm .accountInput {
-  background-color: #b99d76;
-  border: 0;
-  border-bottom: 1px solid #e0c7a4;
-  border-top: 1px solid #e0c7a4;
-  color: white;
-  font-weight: bold;
-  height: 70px !important;
-  margin-bottom: 20px;
-  padding: 0 30px;
-  width: 100%;
-}
-
-.col2 .accountForm .formButtons {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  vertical-align: center;
-}
-
-.col2 .accountForm .formButtons .forgottenPwd {
-  color: #fecc33;
-  font-weight: bold;
-  margin-right: 20px;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.col2 .accountForm .formButtons .forgottenPwd:hover {
-  color: #ff7a23;
-  font-size: 1.1em;
-}
-
-.col2 .accountForm .formButtons .connexionBtn {
-  border-color: white;
-  background-color: transparent;
-  border-width: 3px;
-  color: white;
-  font-weight: bold;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  opacity: 0.5;
-}
-
-.col2 .accountForm .formButtons .connexionBtn:hover {
-  font-size: 1.1em;
-  opacity: 1;
 }
 
 .adminContainer {
@@ -707,8 +709,52 @@ div[id^="questionDiv"] {
   margin: 15px 0 20px 0;
 }
 
+.cards .card {
+  border-radius: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #9b805a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 !important;
+  vertical-align: center;
+  margin: 25px;
+}
+
+.cards .card h5 {
+  font-weight: bold;
+}
+
 .cards img {
   max-width: 70px;
   max-height: 70px;
+  margin-top: 10px;
+}
+
+.cards .btn {
+  border-color: white;
+  background-color: transparent;
+  border-width: 3px;
+  color: white;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0.5;
+}
+
+.cards .btn:hover {
+  font-size: 1.1em;
+  opacity: 1;
+  color: #233e6f;
+  border-color: #233e6f;
 }
 /*# sourceMappingURL=main.css.map */

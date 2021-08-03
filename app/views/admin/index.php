@@ -1,7 +1,5 @@
 <div class="container-fluid adminContainer">
-    <header>
-        <h1>Bienvenue sur la page d'accueil Administrateur</h1>
-    </header>
+    <h1>Bienvenue sur la page d'accueil Administrateur</h1>
 
     <div class="row">
         <div class="col-3">

@@ -1,6 +1,4 @@
-<header>
-    <h1>Page d'accueil des catégories</h1>
-</header>
+<h1>Page d'accueil des catégories</h1>
 
 <div class="container py-4">
     <table class="table w-100 mt categorieTable">

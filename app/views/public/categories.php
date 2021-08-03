@@ -1,8 +1,5 @@
 <h1 class="text-center">Voici la liste des catégories</h1>
 
-<a href="/quiz/index" class="returnBtn"><i class="fas fa-long-arrow-alt-left mr-2"></i></i>Retour à la page
-    d'accueil</a>
-
 <div class="box-timeline">
     <div class="ligne">
         <?php
@@ -22,6 +19,5 @@
         endforeach; ?>
     </div>
 </div>
-
 
 <script src="/app/components/js/publicCategories.js"></script>

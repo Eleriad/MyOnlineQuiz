@@ -11,12 +11,16 @@
     $categorieName = rtrim($categorieName, ", ");
     $questionInt = 1;
     $correctAnswers = [];
+    $quizQuestions = [];
 
     foreach ($data["questions"] as $question) :
         $currentQuestion++;
         $correctAnswers[$currentQuestion] = $question["reponse"];
         $choix = array_slice($question, 2);
         $shuffle = shuffle($choix);
+        array_push($quizQuestions, $question);
+
+        $_SESSION["correctAnswers"] = $correctAnswers; // gathring all correct answers
     ?>
 
     <!-- Input hidden pour récupérer en JS le nombre maximum de questions -->
@@ -24,13 +28,12 @@
     <form action="/quiz/results" method="POST">
         <div class="quizDiv">
 
-            <!-- Input hidden, pour récupérer en AJAX le numéro de la question en cours -->
+            <!-- Input hidden pour récupérer en AJAX le numéro de la question en cours -->
             <input type="hidden" name="currentQuestion" value="<?= $currentQuestion ?>">
 
-            <!-- Input hidden pour récupérer un array de toutes les bonnes réponses en php -->
-            <?php foreach ($correctAnswers as $test) : ?>
-            <input type="hidden" name="result[]" value="<?= $test ?>">
-            <?php endforeach ?>
+            <!-- Input hidden pour récupérer la liste des réponses de l'utilisateur -->
+            <input type="hidden" id="userAnswers" name="userAnswers[]">
+
 
             <div id="questionDiv<?= $currentQuestion ?>" class="cont">
 
@@ -83,7 +86,13 @@
     <?php
         $questionInt++;
     endforeach;
+    $_SESSION["quizQuestions"] = $quizQuestions;
     ?>
 </div>
+
+<?php
+
+
+?>
 
 <script src="/app/components/js/quizRun.js"></script>

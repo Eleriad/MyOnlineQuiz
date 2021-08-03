@@ -1,9 +1,5 @@
 $(document).ready(function () {
   // VARIABLES
-  let userAnswer = []; // tableau qui va accueillir les réponses de l'utilisateur
-  let questionNb = 1; // nombre de départ des questions
-  let maxQuestion = $('input[name="maxQuestion"]').val(); // récupération du nombre maximal de questions
-  let count = $(".questionTitle").length;
   let button = $("[id^='questionDiv']").find(".btnNext"); // selection of the btnNext button
   button.attr("disabled", "disabled"); // adding the disabled attribute to the button in order to prevent people from validates
 
@@ -24,6 +20,7 @@ $(document).ready(function () {
     }
   });
 
+  var array = [];
   // Quand on clique sur le bouton pour passer à la question suivante
   $(document).on("click", ".btnNext", function (e) {
     e.preventDefault();
@@ -33,8 +30,19 @@ $(document).ready(function () {
     $("#questionDiv" + next).show(); // on affiche la suivante
     button.attr("disabled", "disabled"); // on remet le bouton de validation en disabled
     button.removeClass("validate"); // on enlève la classe "validate" qui active le bouton
+
+    let userAnswer = $("input:checked").map(function () {
+      return $(this).val();
+    });
+    userAnswer = userAnswer.get();
+    $('input[type="hidden"][name*="userAnswers"]').val(userAnswer);
+  });
+
+  $(document).on("click", ".endQuizBtn", function (e) {
+    let userAnswer = $("input:checked").map(function () {
+      return $(this).val();
+    });
+    userAnswer = userAnswer.get();
+    $('input[type="hidden"][name*="userAnswers"]').val(userAnswer);
   });
 });
-
-// TODO : on click sur le bouton : cela permet d'enregistrer la réponse de l'utilisateur + cache la question précédente et affiche la question suivante
-// (sauf si dernière question, dans ce cas, on renvoie sur la page de feedback)

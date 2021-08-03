@@ -1,18 +1,18 @@
 @mixin btnHover {
-  color: $btnRegisterHover;
+  color: $tango;
   font-size: 1.1em;
 }
 
 @mixin titles {
-  color: $Col2Bg;
+  color: $leather;
   font-family: "TitleFont";
   font-size: 4em;
-  text-shadow: 2px 2px 4px $Col1Bg;
+  text-shadow: 2px 2px 4px $deepOak;
 }
 
 @mixin generalBtn {
   border-width: 3px;
-  color: white;
+  color: $white;
   font-weight: bold;
   transition: all 0.3s ease;
   padding: 10px 30px;
@@ -21,7 +21,7 @@
 
   &:hover {
     font-size: 1.2em;
-    color: white;
+    color: $white;
     resize: both;
   }
 }

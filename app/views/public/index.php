@@ -28,30 +28,28 @@
     <div class="flex-column py-4">
         <h4 class="mb-4">Derniers quiz</h4>
         <div class="cards d-flex flex-row py-4 justify-content-center">
-            <div class="col col-lg-3 text-center">
-                <img class="card-img-top" src="/app/components/img/categorie_picture/films.svg">
+            <div class="col col-lg-3 text-center card">
+                <img class="card-img-top" src="/app/components/img/categorie_picture/proces.svg">
                 <div class="card-body">
-                    <h5 class="card-title">Quiz Films</h5>
+                    <h5 class="card-title">L'Égypte dans les films</h5>
                     <p class="card-text">Venez tester vos connaissances sur l'Égypte dans le cinéma !</p>
-                    <a href="#" class="btn btn-primary">Tester ce quiz</a>
+                    <a href="#" class="btn">Tester ce quiz</a>
                 </div>
             </div>
-            <div class="col col-lg-3 text-center">
-                <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="col col-lg-3 text-center card">
+                <img class="card-img-top" src="/app/components/img/categorie_picture/proces.svg">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">Les grands procès de l'Égypte ancienne</h5>
+                    <p class="card-text">Qui a volé quoi ? Venez le savoir en jouant à ce quiz !</p>
+                    <a href="#" class="btn">Tester ce quiz</a>
                 </div>
             </div>
-            <div class="col col-lg-3 text-center">
-                <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="col col-lg-3 text-center card">
+                <img class="card-img-top" src="/app/components/img/categorie_picture/proces.svg">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">Quiz test</h5>
+                    <p class="card-text">Un quiz sur les tests ? Bizarre...</p>
+                    <a href="#" class="btn">Tester ce quiz</a>
                 </div>
             </div>
         </div>

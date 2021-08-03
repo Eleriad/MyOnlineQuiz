@@ -11,9 +11,9 @@ class HomeController extends Controller
                 session_start();
                 $_SESSION["user_id"] = $user->id;
                 $_SESSION["role"] = $user->role;
-                header('Location: /quiz/index');
+                header('Location: /public/index');
             } else {
-                $this->view('home/index', 'Erreur de connexion : combinaison indentifiant / mot de passe incorrecte !');
+                $this->view('home/index', ['Erreur de connexion : combinaison indentifiant / mot de passe incorrecte !', "title" => "Page de connexion"]);
             }
         } else {
             $this->view('home/index', ["title" => "Page de connexion"]);
