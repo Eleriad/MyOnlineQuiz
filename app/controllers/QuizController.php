@@ -76,6 +76,31 @@ class QuizController extends Controller
     {
         $userAnswers = $_POST["userAnswers"][0];
         $userAnswersArray = explode(",", $userAnswers);
-        $this->view('quiz/results', ["usersAnswerdArray" => $userAnswersArray]);
+
+        $categoriesArray = $_SESSION['categories'];
+
+        $count = count($categoriesArray); // count the number of data in categoriesArray
+
+        // if there only one categorie is selected
+        if ($count === 1) {
+            $categories = intval($categoriesArray[0]);
+        }
+        // if more than one categorie are selected
+        else {
+            $categories = null;
+            foreach ($categoriesArray as $nbs) {
+                $categories .= $nbs;
+                $categories .= ",";
+            }
+            // Delete the last comma of the categories' list
+            $categories = substr($categories, 0, -1);
+        }
+
+        $categorieName = $this->model('Quiz')->getCategorieName($categoriesArray);
+
+        $level = $_SESSION['level'];
+        $levelName = $this->model('Quiz')->getLevelName($level);
+
+        $this->view('quiz/results', ["usersAnswersArray" => $userAnswersArray, "categorieName" => $categorieName, "levelName" => $levelName]);
     }
 }

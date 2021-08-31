@@ -14,13 +14,14 @@
     $quizQuestions = [];
 
     foreach ($data["questions"] as $question) :
-        $currentQuestion++;
         $correctAnswers[$currentQuestion] = $question["reponse"];
+        $_SESSION["correctAnswers"] = $correctAnswers; // gathring all correct answers
+
+        $currentQuestion++;
         $choix = array_slice($question, 2);
         $shuffle = shuffle($choix);
         array_push($quizQuestions, $question);
 
-        $_SESSION["correctAnswers"] = $correctAnswers; // gathring all correct answers
     ?>
 
     <!-- Input hidden pour récupérer en JS le nombre maximum de questions -->

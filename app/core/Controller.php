@@ -84,6 +84,17 @@ class Controller
             return 3;
         }
     }
+
+    /**
+     * Function that calculates the percentage of a given number.
+     * @param int $nb The number you want a percentage of.
+     * @param int $percent The percentage that you want to calculate.
+     * @return int The final result.
+     */
+    protected function getPercentage($nb, $percent)
+    {
+        return ($percent / 100) * $nb;
+    }
 }
 
 // TODO Prévoir une fonction qui va vérifier tout ce qui est envoyé et assainir les strings ou array envoyés par méthode POST

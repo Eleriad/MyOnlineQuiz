@@ -19,8 +19,10 @@ header {
     transition: all 0.3s ease;
     padding: 10px 20px;
     border-radius: 50px;
+
     &:hover {
       color: $white;
+      border: 2px solid $white;
     }
   }
 
