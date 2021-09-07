@@ -719,12 +719,61 @@ div[id^="questionDiv"] {
   cursor: not-allowed;
 }
 
-.correct {
-  background-color: green;
+.divFeedback {
+  min-width: 70%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 15px auto;
+  background-color: #e0c7a4;
+  border: 1px solid #ca6a32;
+  font-size: 1.2em;
+  padding: 5px;
+  font-family: "Titlefont";
+}
+
+.answerR {
+  font-size: 1.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 350px;
+  height: 100px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #41200d;
+  background-color: #41200d;
+  color: white;
+  margin: 15px;
+  padding: 15px 10px;
+  border-radius: 10px;
+  box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+}
+
+.answerR:hover {
+  cursor: default;
+}
+
+.answerR input[type="radio"] {
+  opacity: 0;
+}
+
+.answerR input[type="radio"]:hover {
+  cursor: default;
+}
+
+.answerR label {
+  cursor: default;
 }
 
 .incorrect {
-  background-color: red;
+  background-color: #6b2737;
+}
+
+.correct {
+  background-color: #5c9b15;
 }
 
 @font-face {
@@ -744,6 +793,7 @@ html,
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: Georgia, Arial, Verdana, Helvetica, sans-serif;
 }
 
 .container-fluid {

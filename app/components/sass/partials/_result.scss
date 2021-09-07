@@ -1,7 +1,36 @@
-.correct {
-  background-color: green;
+.divFeedback {
+  min-width: 70%;
+  justify-content: space-around;
+  margin: 15px auto;
+  background-color: $sapling;
+  border: 1px solid $tuscany;
+  font-size: 1.2em;
+  padding: 5px;
+  font-family: "Titlefont";
+}
+
+.answerR {
+  @include quizBtn();
+  &:hover {
+    cursor: default;
+  }
+
+  input[type="radio"] {
+    opacity: 0;
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  label {
+    cursor: default;
+  }
 }
 
 .incorrect {
-  background-color: red;
+  background-color: $wine;
+}
+
+.correct {
+  background-color: $christi;
 }

@@ -54,7 +54,7 @@ class CategorieController extends Controller
     {
         $categorie = $this->model('Categorie')->getCategorieById($idCategorie);
 
-        // TODO : vérifier si le nom de l'image correspondt à un nom déjà existant ou pas afin de ne pas redemander à chaque fois la même image...
+        // TODO : vérifier si le nom de l'image correspond à un nom déjà existant ou pas afin de ne pas redemander à chaque fois la même image...
 
         if (isset($_POST['updateCategorie'])) {
             $categorie->name = $_POST['categorieName'];

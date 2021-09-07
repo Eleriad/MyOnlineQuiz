@@ -3,31 +3,16 @@
 
     <?php
     $maxQuestions = $_SESSION["questionNb"];
-    $resultDiff = array_diff($data["usersAnswersArray"], $_SESSION["correctAnswers"]);
+    $resultDiff = array_diff_assoc($data["usersAnswersArray"], $_SESSION["correctAnswers"]);
     $score = $maxQuestions - count($resultDiff);
-
-    $third = $this->getPercentage($maxQuestions, 33);
-    $twoThird = $this->getPercentage($maxQuestions, 66);
     ?>
 
+    <!-- Affichage du résultat -->
     <div class="resultDiv">
-        <?php
-        switch ($score) {
-            case $score < $third:
-                echo "Encore un effort ! Votre score est de $score sur $maxQuestions";
-                break;
-            case $score > $third and $score < $twoThird:
-                echo "Vous y êtes presque ! Votre score est de $score sur $maxQuestions";
-                break;
-            case $score > $twoThird:
-                echo "Bravo ! Votre score est de $score sur $maxQuestions";
-                break;
-        }
-        ?>
-
+        <?php $this->displayResult($score, $maxQuestions); ?>
     </div>
-    <?php
 
+    <?php
     $categorieName = "";
     $quizQuestions = [];
     $currentQuestion = $_SESSION["currentQuestion"];
@@ -47,21 +32,8 @@
         $choix = array_slice($question, 2);
         $shuffle = shuffle($choix);
 
-        //     for ($i = 0; $i < count($choix); $i++) {
-        //         switch ($choix[$i]) {
-        //             case $choix[$i] === $correctAnswers["$currentQuestion"] and $choix[$i] != $userAnswers["$currentQuestion"]:
-        //                 $test = "correct";
-        //                 break;
-        //             case $choix[$i] === $userAnswers["$currentQuestion"] and $choix[$i] != $correctAnswers["$currentQuestion"]:
-        //                 $test = "incorrect";
-        //                 break;
-        //             case $choix[$i] === $correctAnswers["$currentQuestion"] and $choix[$i] === $userAnswers["$currentQuestion"]:
-        //                 $test = "correct";
-        //                 break;
-        //             default:
-        //                 $test = "";
-        //         }
-        //     }
+        $result = $this->checkAnswers($choix, $userAnswers["$currentQuestion"], $correctAnswers["$currentQuestion"]);
+
         array_push($quizQuestions, $question);
         $currentQuestion++;
     ?>
@@ -76,37 +48,43 @@
             </div>
             <div class="questionTitle">
                 <?= $question["question"] ?>
-                <hr class="divider">
             </div>
+            <hr class="divider">
             <div class="answersDiv">
                 <div class="d-inline">
-                    <div class="answer">
+                    <div class="answerR <?= $result[0] ?>">
                         <input type="radio" id="answer1_<?= $currentQuestion ?>" name="radio<?= $currentQuestion ?>"
                             value="<?= $choix[0] ?>" class="answer1 mr-2" disabled>
                         <label for="answer1_<?= $currentQuestion ?>"><?= $choix[0] ?></label>
                     </div>
-                    <div class="answer">
+                    <div class="answerR <?= $result[1] ?>">
                         <input type="radio" id="answer2_<?= $currentQuestion ?>" name="radio<?= $currentQuestion ?>"
                             value="<?= $choix[1] ?>" class="answer2 mr-2" disabled>
                         <label for="answer2_<?= $currentQuestion ?>"><?= $choix[1] ?></label>
                     </div>
                 </div>
                 <div class="d-inline">
-                    <div class="answer">
+                    <div class="answerR <?= $result[2] ?>">
                         <input type="radio" id="answer3_<?= $currentQuestion ?>" name="radio<?= $currentQuestion ?>"
                             value="<?= $choix[2] ?>" class="answer3 mr-2" disabled>
                         <label for="answer3_<?= $currentQuestion ?>"><?= $choix[2] ?></label>
                     </div>
-                    <div class="answer">
+                    <div class="answerR <?= $result[3] ?>">
                         <input type="radio" id="answer4_<?= $currentQuestion ?>" name="radio<?= $currentQuestion ?>"
                             value="<?= $choix[3] ?>" class="answer4 mr-2" disabled>
                         <label for="answer4_<?= $currentQuestion ?>"><?= $choix[3] ?></label>
                     </div>
                 </div>
             </div>
+            <div class="divFeedback">
+                <p><?= $question["feedback"] ?></p>
+            </div>
         </div>
     </div>
-
     <?php endforeach; ?>
 
+    <div class="buttons pb-5">
+        <a href="/quiz/index" class="btn btn-sm endQuizBtn">Choisir un autre quiz</a>
+        <a href="#" class="btn btn-sm endQuizBtn">Refaire le même quiz</a>
+    </div>
 </div>

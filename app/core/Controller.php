@@ -85,15 +85,50 @@ class Controller
         }
     }
 
-    /**
-     * Function that calculates the percentage of a given number.
-     * @param int $nb The number you want a percentage of.
-     * @param int $percent The percentage that you want to calculate.
-     * @return int The final result.
-     */
-    protected function getPercentage($nb, $percent)
+    protected function displayResult($score, $maxQuestions)
     {
-        return ($percent / 100) * $nb;
+        $third = 33 / 100 * $maxQuestions;
+        $twoThird = 66 / 100 * $maxQuestions;
+
+        switch ($score) {
+            case $score < $third and $score == 0:
+                echo "Vous ferez mieux la prochaine fois ! Votre score est de $score sur $maxQuestions";
+                break;
+            case $score > 0 and $score < $third:
+                echo "Encore un effort ! Votre score est de $score sur $maxQuestions";
+                break;
+            case $score > $third and $score < $twoThird:
+                echo "Vous y êtes presque ! Votre score est de $score sur $maxQuestions";
+                break;
+            case $score > $twoThird and $score < $maxQuestions:
+                echo "Bravo ! Votre score est de $score sur $maxQuestions";
+                break;
+            case $score = $maxQuestions:
+                echo "Excellent, vous avez parfaitement répondu à ce quizz ! Votre score est de $score sur $maxQuestions. Testez vos connaissances sur une autre thématique... et augmentez la difficulté !";
+                break;
+        }
+    }
+
+    protected function checkAnswers($choix, $userAnswer, $correctAnswer)
+    {
+        $result = array();
+        for ($i = 0; $i < 4; $i++) {
+            switch ($choix[$i]) {
+                case  $choix[$i] == $userAnswer and $choix[$i] != $correctAnswer:
+                    $result[$i] = "incorrect";
+                    break;
+                case  $choix[$i] != $userAnswer and $choix[$i] == $correctAnswer:
+                    $result[$i] = "correct";
+                    break;
+                case  $choix[$i] == $userAnswer and $choix[$i] == $correctAnswer:
+                    $result[$i] = "correct";
+                    break;
+                default:
+                    $result[$i] = "";
+                    break;
+            }
+        }
+        return $result;
     }
 }
 
