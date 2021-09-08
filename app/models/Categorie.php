@@ -94,4 +94,14 @@ class Categorie extends Database
         $result = $stmt->fetch();
         return $result;
     }
+
+    public function getThreeLastCategories()
+    {
+        $sql = "SELECT * FROM categories ORDER BY id_categorie DESC LIMIT 3";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Categorie');
+        $result = $stmt->fetchAll();
+        return $result;
+    }
 }

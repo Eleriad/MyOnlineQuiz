@@ -1,57 +1,51 @@
 <div class="bodyContainer flex-column p-4">
-    <div class="py-4">
+    <div class="pt-4 pb-2">
         <h4>Présentation</h4>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, sapiente. Accusamus doloremque, quo optio
-            maiores hic quis, porro rerum explicabo consectetur architecto illo nulla debitis fugit facere sunt,
-            deleniti
-            error.
-            Quibusdam vero consequatur, neque odio eligendi velit soluta earum sequi incidunt voluptates optio,
-            repudiandae
-            unde quas architecto perferendis libero temporibus placeat provident impedit, eum modi voluptate tenetur
-            blanditiis? Nisi, rem.
-            Vitae, suscipit vel possimus qui odit fuga eius ducimus adipisci laborum similique, quibusdam corporis
-            dolorem?
-            Blanditiis iusto, animi fugiat, debitis culpa distinctio beatae modi ipsam quos iste assumenda, reiciendis
-            natus!
-            Consectetur facere cumque repellat quos optio quae animi saepe molestiae possimus error dolorum omnis quia
-            nihil
-            mollitia porro nobis, esse consequatur! Architecto laborum commodi ipsam, perspiciatis nemo totam veritatis
-            non!
-            Tempore, numquam deleniti? Necessitatibus odio placeat quod repellendus modi magni officiis delectus?
-            Ducimus
-            laborum inventore ratione voluptatum, et esse iure ex repellendus. Corporis molestiae odio laudantium nobis
-            et
-            nam. Reiciendis?
+        <div>
+            <p>J'ai imaginé ce quiz lorsque j'étais étudiant. Passioné de quiz et curieux de tout, cette méthode me
+                permettait de réviser tout en m'amusant. Originellement, j'avais créé des "cartes" de questions sur le
+                modèle d'un célèbre jeu de quiz où il faut compléter un célèbre fromage français. Durant mes années
+                universitaires, j'ai laissé un peu de côté ce jeu, m'inmpliquant dans mes études jusqu'à l'obtentio nde
+                mon
+                doctorat. </p>
+            <p>
+                Désormais titulaire à la fois d'un doctorat en égyptologie et d'un diplôme de Concepteur Développeur
+                d'Applications, j'ai pris plaisir à mettre à jour ce jeu, devenu quiz. Il se veut être une méthode
+                ludique
+                de découverte de l'Égypte ancienne. Finalisé en 2021, il est possible que certaines coquilles se soient
+                glissées parmi les questions et que je n'ai pas eu le temps de mettre à jour les connaissances en
+                fonction
+                des dernières découvertes... Je m'en excuse par avance ! Surtout, si vous voyez une erreur, n'hésitez
+                pas à
+                m'envoyer un mail à <a>cette adresse</a> afin que je puisse la corriger au plus vite !
+            </p>
+            <p>
+                J'espère que vous apprécierez ce jeu et irez aussi loin que possible (le mode "Pharaonique" est là pour
+                les plus téméraires !). Puissiez-vous prendre autant de plaisir à y jouer que j'en ai eu à a concevoir !
+                Bon jeu à toutes et à tous !
+            </p>
         </div>
     </div>
 
     <div class="flex-column py-4">
         <h4 class="mb-4">Derniers quiz</h4>
-        <div class="cards d-flex flex-row py-4 justify-content-center">
+        <p>De nouvelles questions sont régulièrement ajoutées dans la base et de nouvelles thématiques créées : voici
+            les dernières en date !</p>
+
+        <div class="cards d-flex flex-row pb-4 justify-content-center">
+
+            <?php foreach ($data["thématiques"] as $thematique) : ?>
             <div class="col col-lg-3 text-center card">
-                <img class="card-img-top" src="/app/components/img/categorie_picture/proces.svg">
+                <img class="card-img-top"
+                    src="/app/components/img/categorie_picture/<?= $thematique->categorie_picture ?>">
                 <div class="card-body">
-                    <h5 class="card-title">L'Égypte dans les films</h5>
-                    <p class="card-text">Venez tester vos connaissances sur l'Égypte dans le cinéma !</p>
+                    <h5 class="card-title"><?= $thematique->name ?></h5>
+                    <p class="card-text"><?= $thematique->description ?></p>
                     <a href="#" class="btn">Tester ce quiz</a>
                 </div>
             </div>
-            <div class="col col-lg-3 text-center card">
-                <img class="card-img-top" src="/app/components/img/categorie_picture/proces.svg">
-                <div class="card-body">
-                    <h5 class="card-title">Les grands procès de l'Égypte ancienne</h5>
-                    <p class="card-text">Qui a volé quoi ? Venez le savoir en jouant à ce quiz !</p>
-                    <a href="#" class="btn">Tester ce quiz</a>
-                </div>
-            </div>
-            <div class="col col-lg-3 text-center card">
-                <img class="card-img-top" src="/app/components/img/categorie_picture/proces.svg">
-                <div class="card-body">
-                    <h5 class="card-title">Quiz test</h5>
-                    <p class="card-text">Un quiz sur les tests ? Bizarre...</p>
-                    <a href="#" class="btn">Tester ce quiz</a>
-                </div>
-            </div>
+            <?php endforeach; ?>
+
         </div>
     </div>
 </div>

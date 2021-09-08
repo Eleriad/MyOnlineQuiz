@@ -62,7 +62,7 @@ class CategorieController extends Controller
             $categorie->update();
             header('Location: /categorie/index');
         } else {
-            $this->view('categorie/edit', $categorie);
+            $this->view('categorie/edit', ["title" => "Page de connexion", "catégorie" => $categorie]);
         }
     }
 

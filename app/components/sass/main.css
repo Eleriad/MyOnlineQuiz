@@ -444,69 +444,7 @@ header img {
   border-color: #233e6f;
 }
 
-/* CATÉGORIES */
-.box-timeline {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  padding: 80px 0 300px 0;
-  margin-bottom: 100px;
-}
-
-.ligne {
-  width: 8px;
-  margin: 0 auto;
-  background-color: #41200d;
-}
-
-.rond {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: #233e6f;
-  position: absolute;
-  border: 1px solid #41200d;
-  left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.box {
-  color: #41200d;
-  width: 400px;
-  min-height: 200px;
-  padding: 20px;
-  border-radius: 3px;
-  height: auto;
-  background: #e0c7a4;
-  -webkit-box-shadow: 0 15px 20px rgba(65, 32, 13, 0.5);
-          box-shadow: 0 15px 20px rgba(65, 32, 13, 0.5);
-  position: absolute;
-  left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-}
-
-.box h4 {
-  color: #233e6f;
-  font-weight: bold;
-}
-
-.box p {
-  line-height: 25px;
-  font-size: 18px;
-  margin: 15px 0 20px 0;
-}
-
+/* INDEX */
 .cards .card {
   border-radius: 10px;
   -webkit-box-align: center;
@@ -554,6 +492,74 @@ header img {
   opacity: 1;
   color: #233e6f;
   border-color: #233e6f;
+}
+
+/* CATÉGORIES */
+.box-timeline {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 80px 0 300px 0;
+  margin-bottom: 100px;
+}
+
+.ligne {
+  width: 8px;
+  margin: 0 auto;
+  background-color: #41200d;
+}
+
+.rond {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #e0c7a4;
+  position: absolute;
+  border: 1px solid #41200d;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.rond img {
+  width: 60px;
+  height: 60px;
+}
+
+.box {
+  color: #41200d;
+  width: 400px;
+  min-height: 200px;
+  padding: 20px;
+  border-radius: 3px;
+  height: auto;
+  background: #e0c7a4;
+  -webkit-box-shadow: 0 15px 20px rgba(65, 32, 13, 0.5);
+          box-shadow: 0 15px 20px rgba(65, 32, 13, 0.5);
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+}
+
+.box h4 {
+  color: #233e6f;
+  font-weight: bold;
+}
+
+.box p {
+  line-height: 25px;
+  font-size: 18px;
+  margin: 15px 0 20px 0;
 }
 
 .quizContainer {

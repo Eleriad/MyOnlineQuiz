@@ -2,9 +2,15 @@
 
 class PublicController extends Controller
 {
+    /**
+     * Function that displays the public/index view with the last three categories in DB
+     * @return void
+     */
     public function index()
     {
-        $this->view('public/index');
+        $thematiques = $this->model('Categorie')->getThreeLastCategories();
+
+        $this->view('public/index', ["title" => "Accueil", "thématiques" => $thematiques]);
     }
 
     public function categories()
@@ -12,6 +18,6 @@ class PublicController extends Controller
 
         $categories = $this->model('Categorie')->getOrderedCategories();
 
-        $this->view('public/categories', ["categories" => $categories]);
+        $this->view('public/categories', ["title" => "Thématiques du quiz", "categories" => $categories]);
     }
 }
