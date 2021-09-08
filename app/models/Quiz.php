@@ -85,4 +85,21 @@ class Quiz extends Database
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    public function getQuestionsNb($idCategorie, $level)
+    {
+        // Implode Categorie array to extract categorie IDs
+        $arrayCat =  implode(",", $idCategorie);
+        $level = intval($level);
+
+        $sql = "SELECT count(*)as nb FROM `questions` as q
+                JOIN posseder as p
+                ON q.id_question = p.id_question 
+                WHERE q.niveau_id = $level
+                AND p.id_categorie IN($arrayCat)";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

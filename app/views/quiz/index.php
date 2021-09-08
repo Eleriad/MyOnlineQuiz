@@ -24,12 +24,7 @@
         <div class="my-3">
             <label for="questionNb" id="questionLabel">Choisissez un nombre de questions :</label>
             <select name="questionNb" id="questionNb">
-                <!-- For loop to display specific number of questions -->
-                <?php for ($i = 1; $i <= $data["questionMax"]; $i++) : ?>
-                <?php if ($i === 1 or $i === 5 or $i === $data["questionMax"] or ($i % 10) === 0) : ?>
-                <option value="<?= $i ?>"><?= $i ?></option>
-                <?php endif; ?>
-                <?php endfor; ?>
+                <option value="0">---</option>
             </select>
         </div>
 
@@ -39,10 +34,3 @@
 </div>
 
 <script src="/app/components/js/quizIndex.js"></script>
-
-<!-- TODO : 
-page index = accueil <=> choix
-page quiz = là où tu fais le quiz
-page de résultats = score ; feedback
-Afficher les 3 derniers quizz créés = table posséder, voir les 3 derniers ID ajoutés et récupérer la catégorie et/ou le niveau dans les tables correspondantes
-Afficher la possibilité de quizz aléatoire -->

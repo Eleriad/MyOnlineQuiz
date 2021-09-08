@@ -45,9 +45,9 @@ $(document).ready(function () {
       let categorieId = parseInt(array[i][0]);
       let categorieName = array[i][1];
 
-      var categorieLabel = `<label class="btn btn-info mx-1" for="${categorieId}"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="categories[]" class="onChangeCategorie">${categorieName}</label>`;
+      // var categorieLabel = `<label class="btn btn-info mx-1" for="${categorieId}"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="categories[]" class="onChangeCategorie">${categorieName}</label>`;
 
-      //var categorieLabel = `<label class="btn btn-info mx-1" for="${categorieId}"><img src="/app/components/img/categorie_picture/pierre.svg" width="50px" height="50px"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="categories[]" class="onChangeCategorie">${categorieName}</label>`;
+      var categorieLabel = `<label class="btn btn-info mx-1" for="${categorieId}"><img src="/app/components/img/categorie_picture/pierre.svg" width="30px" height="30px"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="categories[]" class="onChangeCategorie">${categorieName}</label>`;
 
       $("#initialCat").append(categorieLabel);
     }
@@ -91,10 +91,59 @@ $(document).ready(function () {
             categorieArray.splice(valueIndex, 1);
           }
         }
-        console.log(categorieArray);
+        // console.log(categorieArray);
+        getMaxQuestions(categorieArray);
         return categorieArray;
         // TODO : utiliser le tableau des catégories pour faire un appel AJAX et récupérer le nombre maximal de questions à afficher ensuite
       });
+    }
+  }
+
+  function getMaxQuestions(data) {
+    // récupération du niveau du quiz
+    var level = $("#level-select").val();
+
+    // requête AJAX
+    $.ajax({
+      url: "/ajax/getMaxQuestions",
+      type: "post",
+      data: {
+        data: data,
+        level: level,
+      },
+      success: function (res) {
+        // On parse le résultat et on récupère le nombre de questions
+        finalRes = $.parseJSON(res);
+        var nb = finalRes[0]["nb"];
+
+        // On supprimer les options déjà existantes et on affiche les nouvelles
+        deleteQuestionNbs();
+        createQuestionNbs(nb);
+      },
+      error: function (status, error) {
+        console.log("échec : " + status + error);
+      },
+      done: function () {},
+    });
+  }
+
+  function createQuestionNbs(nb) {
+    // TODO : voir si on peut afficher uniquement les multiples de 5 et le dernier nombre par exemple ?
+    for (i = 1; i <= nb; i++) {
+      $("#questionNb").append(
+        $("<option>", {
+          value: i,
+          text: i,
+        })
+      );
+    }
+  }
+
+  function deleteQuestionNbs() {
+    questionNbs = $("#questionNb option");
+
+    if (questionNbs) {
+      questionNbs.remove();
     }
   }
 });

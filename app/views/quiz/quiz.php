@@ -15,7 +15,7 @@
 
     foreach ($data["questions"] as $question) :
         $correctAnswers[$currentQuestion] = $question["reponse"];
-        $_SESSION["correctAnswers"] = $correctAnswers; // gathring all correct answers
+        $_SESSION["correctAnswers"] = $correctAnswers; // gathering all correct answers
 
         $currentQuestion++;
         $choix = array_slice($question, 2);
