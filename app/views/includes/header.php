@@ -8,13 +8,12 @@
     Administrateur</a>';
     ?>
     <title><?= isset($data["title"]) ? $data["title"] : "titre à voir" ?></title>
-    <!-- TODO : titres à voir !!! -->
 </head>
 
 <body>
     <?php
     isset($data["title"]) ? $data["title"] = $data["title"] : $data["title"] = "titre à voir"; // TODO : ligne à supprimer une fois tous les titres mis en forme
-    if ($data["title"] != "Page de connexion") :
+    if ($data["title"] != "Page de connexion" && $data["title"] != "Page d'inscription") :
     ?>
     <header>
         <div class="row text-left">
@@ -28,7 +27,10 @@
                     les catégories</a>
                 <a href="/quiz/index" class="btn btn-sm headerBtn"><i class="fas fa-question mr-2"></i>Quiz</a>
             </div>
-            <div class="col col-lg-auto"></div>
+            <div class="col text-right">
+                <a href="/home/disconnect" class="btn btn-sm headerBtnOut"><i class="fas fa-sign-out-alt mr-2"></i>Se
+                    déconnecter</a>
+            </div>
         </div>
     </header>
     <?php

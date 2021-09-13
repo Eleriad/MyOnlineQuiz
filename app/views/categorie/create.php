@@ -2,6 +2,8 @@
         <h1>Ajouter une catégorie</h1>
     </header>
 
+    <div><?= isset($data["error"]) ? $data["error"] : "" ?></div>
+
     <div class="container text-center mt-4">
 
         <form action="" method="post" enctype="multipart/form-data">

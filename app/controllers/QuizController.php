@@ -102,5 +102,6 @@ class QuizController extends Controller
         $levelName = $this->model('Quiz')->getLevelName($level);
 
         $this->view('quiz/results', ["usersAnswersArray" => $userAnswersArray, "categorieName" => $categorieName, "levelName" => $levelName]);
+        //TODO : annuler les variables de session si on clique sur refaire un quiz ou refaire le même quiz !
     }
 }

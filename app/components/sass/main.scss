@@ -3,6 +3,7 @@
 @import "partials/admin";
 @import "partials/header";
 @import "partials/home";
+@import "partials/login";
 @import "partials/public";
 @import "partials/quiz";
 @import "partials/result";
@@ -40,4 +41,8 @@ h1 {
 a,
 a:hover {
   text-decoration: none;
+}
+
+#msgDiv {
+  margin: 15px 5px;
 }

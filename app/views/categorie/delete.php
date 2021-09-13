@@ -2,19 +2,21 @@
     <form action="" id="form4" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label>Nom de la catégorie :
-                <input type="text" name="categorieName" class="form-control" value="<?= $data->name ?>" disabled>
+                <input type="text" name="categorieName" class="form-control" value="<?= $data["catégorie"]->name ?>"
+                    disabled>
             </label>
 
 
             <div class="form-group d-flex flex-column">
                 <label for="description">Description de la catégorie :</label>
-                <textarea name="description" cols="30" rows="10" disabled><?= $data->description ?></textarea>
+                <textarea name="description" cols="30" rows="10"
+                    disabled><?= $data["catégorie"]->description ?></textarea>
             </div>
 
             <div class="form-group">
                 <label for="categoriePicture"><img
-                        src="/app/components/img/categorie_picture/<?= $data->categorie_picture ?>" width="100px"
-                        height="100px"></label>
+                        src="/app/components/img/categorie_picture/<?= $data["catégorie"]->categorie_picture ?>"
+                        width="100px" height="100px"></label>
                 <input type="file" name="categoriePicture" disabled>
             </div>
 

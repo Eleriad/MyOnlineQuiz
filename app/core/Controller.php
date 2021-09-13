@@ -2,6 +2,7 @@
 
 class Controller
 {
+    /******* MODELS AND VIEWS *******/
     /**
      * Function that returns a model
      * @return object
@@ -34,6 +35,40 @@ class Controller
         }
     }
 
+    /******* GENERAL *******/
+    /**
+     * Function that prepares the displaying of a message depending on his type
+     * @param $type : error or success
+     * @param $text : set the text of the message in a $_SESSION variable
+     * @return void
+     */
+    public static function setMsg($type, $text)
+    {
+        if ($type == "error") {
+            $_SESSION['errorMsg'] = $text;
+        } elseif ($type == "success") {
+            $_SESSION['successMsg'] = $text;
+        }
+    }
+
+    /**
+     * Function that displays an alert div in case of error or success message 
+     * @return void
+     */
+    public static function displayMsg()
+    {
+        if (isset($_SESSION['errorMsg'])) {
+            echo '<div id="msgDiv" class="alert alert-danger" role="alert">' . $_SESSION['errorMsg'] . '</div>';
+            unset($_SESSION['errorMsg']);
+        } elseif (isset($_SESSION['successMsg'])) {
+            echo '<div id="msgDiv" class="alert alert-success" role="alert">' . $_SESSION['successMsg'] . '</div>';
+            unset($_SESSION['successMsg']);
+        }
+    }
+
+    //TODO : revoir les div d'alerte afin de les personnaliser !
+
+    /******* PICTURES *******/
     protected function characterReplace($data)
     {
         // TODO : revoir toutes les majuscules !!!
@@ -51,7 +86,10 @@ class Controller
         $error = $data["error"];
         $size = $data["size"];
 
-        if ($error == 0) {
+        if ($error != 0) {
+            $result = $this->errorMessage($error);
+            return $result;
+        } else {
             // Exploding the name to distinguish name and extension
             $extArray = explode('.', $name);
             // gathering the last element of array (i.e. the extension) and putting it to lower for later comparison
@@ -80,11 +118,37 @@ class Controller
             } else {
                 return 2;
             }
-        } else {
-            return 3;
         }
     }
 
+    protected function errorMessage($error)
+    {
+        switch ($error) {
+            case $error == 1:
+                echo "Image de taille trop importante !";
+                break;
+            case $error == 2:
+                echo "L'image ne possède pas la bonne extension ! Veuillez sélectionner une image au format .png, .gif ou .svg uniquement !";
+                break;
+            case $error == 3:
+                echo "L'image n'a été que partiellement téléchargée, merci de réessayer !";
+                break;
+            case $error == 4:
+                echo "Vous avez oublié l'image, merci de réessayer !";
+                break;
+            case $error == 6:
+                echo "Un dossier temporaire est manquant, merci de réessayer !";
+                break;
+            case $error == 7:
+                echo "Échec de l'écrire du fichier sur le disque, merci de réessayer !";
+                break;
+            case $error == 8:
+                echo "Une extension de PHP a arrêté l'envoi de fichier !";
+                break;
+        }
+    }
+
+    /******* QUIZ *******/
     protected function displayResult($score, $maxQuestions)
     {
         $third = 33 / 100 * $maxQuestions;
@@ -130,7 +194,59 @@ class Controller
         }
         return $result;
     }
+
+    /******* PAGES *******/
+    /**
+     * Function that 1st check if the present page is already existing in DB and return 1 if yes and 0 if not.
+     * Then, if the former check answers 0, it creates a new page in DB     *
+     * @param int $pageId <=> the id of the page
+     * @param string $title <=> The title of the page
+     * @return int the ID of the page or 1 if a new page has been added in the DB
+     */
+    protected function checkPage($pageId, $title)
+    {
+        $pageCount = $this->model('Page')->countPage($pageId);
+        $pageCount == 0 ? $this->model('Page')->create($pageId, $title, 0) : $pageCount = $pageId;
+        return $pageCount;
+    }
+
+    protected function isUniqueView($userIp, $pageId)
+    {
+        $check = $this->model('PageView')->checkUniqueIp($userIp, $pageId);
+        $check == 0 ? $check = true : $check = false;
+        return $check;
+    }
+
+    protected function addView($uniqueIp, $visitorIp, $pageId)
+    {
+        if ($uniqueIp === true) {
+            $pageView = $this->model('PageView')->create($visitorIp, $pageId);
+
+            if ($pageView == 1) {
+                //     // At this point unique visitor record is created successfully. Now update total_views of specific page.
+                $update = $this->model('Page')->update($pageId);
+
+                // En cas d'erreur
+                if ($update == 0) {
+                    "Erreur lors de la mise à jour de la BDD !";
+                }
+                // Si tout marche bien, on renvoie la valeur d'update (qui vaut 1)
+                else {
+                    return $update;
+                }
+            } else {
+                "Erreur dans la création de la page !";
+            }
+        }
+    }
+
+    protected function checkNewView($pageId)
+    {
+        $visitorIp = $_SERVER['REMOTE_ADDR'];
+        $isUniqueIp = $this->isUniqueView($visitorIp, $pageId);
+        $addView = $this->addView($isUniqueIp, $visitorIp, $pageId);
+        return $addView;
+    }
 }
 
 // TODO Prévoir une fonction qui va vérifier tout ce qui est envoyé et assainir les strings ou array envoyés par méthode POST
-// TODO : définir une fonction générale qui préparera les messages d'erreur et de succès lors de la création, modification ou suppression d'un élément du quiz

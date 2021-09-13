@@ -1,3 +1,8 @@
+<?php
+// var_dump($data);
+// var_dump($_SESSION);
+?>
+
 <div class="bodyContainer flex-column p-4">
     <div class="pt-4 pb-2">
         <h4>Présentation</h4>

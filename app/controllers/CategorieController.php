@@ -17,19 +17,10 @@ class CategorieController extends Controller
             $picture = $this->checkPictureValidity($_FILES["categoriePicture"], 2000000);
 
             if (is_int($picture)) {
-                switch ($picture) {
-                    case 1:
-                        $result = "Image de taille trop importante !";
-                        break;
-                    case 2:
-                        $result = "L'image ne possède pas la bonne extension ! Veuillez sélectionner une image au format .png, .gif ou .svg uniquement !";
-                        break;
-                    case 3:
-                        $result = "Vous avez oublié l'image, merci de réessayer !";
-                        break;
-                }
-                // TODO : créer le setMessage !!! 
-                $this->view('categorie/create');
+                $error = $this->errorMessage($picture);
+
+                // TODO : créer le setMessage avec le $error et supprimer l'existant !!! 
+                $this->view('categorie/create', ["error" => $error]);
             } else {
                 //Déplacement de l'image dans le dossier components/img/categorie_picture
                 move_uploaded_file($tmpName, "./app/components/img/categorie_picture/$picture");
@@ -37,7 +28,7 @@ class CategorieController extends Controller
                 // Création de la catégorie
                 $newCategory = $this->model('Categorie');
 
-                $newCategory->name = $_POST["newCategory"];
+                $newCategory->name = $_POST["newCategory"]; // TODO : faire une vérification si le nom existe déjà dans la BDD !!! 
                 $newCategory->categoriePicture = $picture;
                 $newCategory->description =  $_POST["description"];;
                 $newCategory->create();
@@ -57,6 +48,14 @@ class CategorieController extends Controller
         // TODO : vérifier si le nom de l'image correspond à un nom déjà existant ou pas afin de ne pas redemander à chaque fois la même image...
 
         if (isset($_POST['updateCategorie'])) {
+
+            $picture = $_FILES["categoriePicture"];
+            var_dump($_POST);
+            var_dump($picture["error"]);
+            if ($picture["error"] == 4) {
+            }
+            die;
+
             $categorie->name = $_POST['categorieName'];
             $categorie->description = $_POST['description'];
             $categorie->update();
@@ -77,7 +76,7 @@ class CategorieController extends Controller
 
             header('Location: /categorie/index');
         } else {
-            $this->view('categorie/delete', $categorie);
+            $this->view('categorie/delete', ["title" => "Page de connexion", "catégorie" => $categorie]);
         }
     }
 }

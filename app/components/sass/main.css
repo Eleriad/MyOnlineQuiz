@@ -209,7 +209,8 @@ header h1 {
   font-size: 4em;
 }
 
-header .headerBtn {
+header .headerBtn,
+header .headerBtnOut {
   border: 1px solid #41200d;
   border-width: 3px;
   color: #41200d;
@@ -220,9 +221,14 @@ header .headerBtn {
   border-radius: 50px;
 }
 
-header .headerBtn:hover {
+header .headerBtn:hover,
+header .headerBtnOut:hover {
   color: white;
   border: 2px solid white;
+}
+
+header .headerBtnOut:hover {
+  background-color: #6b2737;
 }
 
 header .row {
@@ -442,6 +448,81 @@ header img {
   opacity: 1;
   color: #233e6f;
   border-color: #233e6f;
+}
+
+.registerContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+.registerContainer .formDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.registerForm {
+  width: 500px;
+  height: auto;
+  padding: 50px 10px;
+  border-radius: 10px;
+  background-color: #9b805a;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  vertical-align: center;
+  box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 7px 7px 4px 0px rgba(65, 32, 13, 0.75);
+}
+
+.registerForm h4 {
+  margin-bottom: 20px;
+}
+
+.registerForm .registerBtn {
+  background-color: #9b805a;
+  border: 1px solid #41200d;
+  border-width: 3px;
+  color: #41200d;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 10px 20px;
+  border-radius: 50px;
+  opacity: 0.5;
+}
+
+.registerForm .registerBtn:hover {
+  color: #233e6f;
+  background-color: white;
+  border: 3px solid #233e6f;
+  font-size: 1.1em;
+  opacity: 1;
 }
 
 /* INDEX */
@@ -821,5 +902,9 @@ h1 {
 a,
 a:hover {
   text-decoration: none;
+}
+
+#msgDiv {
+  margin: 15px 5px;
 }
 /*# sourceMappingURL=main.css.map */

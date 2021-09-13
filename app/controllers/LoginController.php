@@ -4,6 +4,12 @@ class LoginController extends Controller
 {
     public function register()
     {
+        // PAGE AND VIEWS
+        $pageId = 2;
+        $title = "Page d'inscription";
+        $this->checkPage($pageId, $title);
+        $this->checkNewView($pageId);
+
         if (isset($_POST["register"])) {
             $user = $this->model('User');
             $verifyUserName = $user->findUserByName($_POST["username"]);
@@ -16,18 +22,22 @@ class LoginController extends Controller
                         $user->email = $_POST["email"];
                         $user->password_hash = password_hash($_POST["password"], PASSWORD_BCRYPT);
                         $user->create();
+                        $this->setMsg("success", "L'utilisateur a bien été créé ! Vous pouvez vous connecter pour découvrir notre jeu de quiz !");
                         header('Location: /home/index');
                     } else {
-                        $this->view('login/register', "Les mots de passe ne sont pas identiques !");
+                        $this->setMsg("error", "Les mots de passe ne sont pas identiques !");
+                        $this->view('login/register');
                     }
                 } else {
-                    $this->view('login/register', "Cet email est déjà utilisé !");
+                    $this->setMsg("error", "Cet email est déjà utilisé !");
+                    $this->view('login/register');
                 }
             } else {
-                $this->view('login/register', "Cet identifiant est déjà utilisé !");
+                $this->setMsg("error", "Cet identifiant est déjà utilisé !");
+                $this->view('login/register');
             }
         } else {
-            $this->view('login/register');
+            $this->view('login/register', ["title" => $title]);
         }
     }
 }

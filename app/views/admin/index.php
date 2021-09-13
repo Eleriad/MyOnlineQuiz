@@ -39,6 +39,8 @@
         </div>
     </div>
 
+    <a href="/admin/views" class="returnBtn"><span><i class="far fa-arrow-alt-circle-left mr-2"></i></span>
+        VOir les vues du site</a>
     <a href="/quiz/index" class="returnBtn"><span><i class="far fa-arrow-alt-circle-left mr-2"></i></span>
         Retour</a>
 </div>
