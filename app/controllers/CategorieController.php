@@ -2,39 +2,54 @@
 
 class CategorieController extends Controller
 {
+    /**
+     * Function that displays all categories
+     * @return void
+     */
     public function index()
     {
         $categories = $this->model('Categorie')->getCategories();
-
         $this->view('categorie/index', ["categories" => $categories]);
     }
 
+    /**
+     * Function that allows an administrator to create a new category by giving a name, a description and a picture
+     * @return void
+     */
     public function create()
     {
         if (isset($_POST["addCategory"])) {
             $tmpName = $_FILES["categoriePicture"]["tmp_name"];
 
+            // CHECK PICTURE'S VALIDITY
             $picture = $this->checkPictureValidity($_FILES["categoriePicture"], 2000000);
 
             if (is_int($picture)) {
                 $error = $this->errorMessage($picture);
-
-                // TODO : créer le setMessage avec le $error et supprimer l'existant !!! 
+                $this->setMsg("error", $error);
                 $this->view('categorie/create', ["error" => $error]);
             } else {
-                //Déplacement de l'image dans le dossier components/img/categorie_picture
-                move_uploaded_file($tmpName, "./app/components/img/categorie_picture/$picture");
+                // CHECKING CATEGORY
+                $checkCategorie = $this->model('Categorie')->getCategoryByName($_POST["newCategory"]);
 
-                // Création de la catégorie
-                $newCategory = $this->model('Categorie');
+                if ($checkCategorie == false) {
+                    // PICTURE MOVING
+                    move_uploaded_file($tmpName, "./app/components/img/categorie_picture/$picture");
 
-                $newCategory->name = $_POST["newCategory"]; // TODO : faire une vérification si le nom existe déjà dans la BDD !!! 
-                $newCategory->categoriePicture = $picture;
-                $newCategory->description =  $_POST["description"];;
-                $newCategory->create();
+                    // CATEGORY CREATION
+                    $newCategory = $this->model('Categorie');
 
-                // Renvoi sur la page d'index
-                header('Location: /categorie/index');
+                    $newCategory->name = $_POST["newCategory"];
+                    $newCategory->categoriePicture = $picture;
+                    $newCategory->description =  $_POST["description"];;
+                    $newCategory->create();
+
+                    // REDIRECTION
+                    header('Location: /categorie/index');
+                } else {
+                    $this->setMsg("error", "Cette catégories existe déjà dans la Base de Données !");
+                    $this->view('categorie/create');
+                }
             }
         } else {
             $this->view('categorie/create');
@@ -49,12 +64,12 @@ class CategorieController extends Controller
 
         if (isset($_POST['updateCategorie'])) {
 
-            $picture = $_FILES["categoriePicture"];
-            var_dump($_POST);
-            var_dump($picture["error"]);
-            if ($picture["error"] == 4) {
-            }
-            die;
+            // $picture = $_FILES["categoriePicture"];
+            // var_dump($_POST);
+            // var_dump($picture["error"]);
+            // if ($picture["error"] == 4) {
+            // }
+            // die;
 
             $categorie->name = $_POST['categorieName'];
             $categorie->description = $_POST['description'];

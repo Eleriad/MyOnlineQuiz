@@ -7,6 +7,10 @@ class AdminController extends Controller
         $this->view('admin/index');
     }
 
+    /**
+     * Function that give all information about website pages' views
+     * @return void
+     */
     public function views()
     {
         $totalViews = $this->model('Page')->getAllWebsiteViews();

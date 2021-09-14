@@ -191,6 +191,16 @@
   vertical-align: middle;
 }
 
+.btnDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
 header {
   width: 100%;
   background-color: #9b805a;
@@ -906,5 +916,9 @@ a:hover {
 
 #msgDiv {
   margin: 15px 5px;
+}
+
+.sessionMsgDiv {
+  width: 700px;
 }
 /*# sourceMappingURL=main.css.map */

@@ -2,6 +2,10 @@
 
 class AjaxController extends Controller
 {
+    /**
+     * Function that get all categories given a specific level
+     * @return void
+     */
     public function getCategoriesByLevel()
     {
         if (isset($_POST) && isset($_POST["level"])) {
@@ -18,6 +22,10 @@ class AjaxController extends Controller
         }
     }
 
+    /**
+     * Function that get the maximum number of questions in order to display it on the quiz/index view
+     * @return void
+     */
     public function getMaxQuestions()
     {
         $maxNb = $this->model("Quiz")->getQuestionsNb($_POST["data"], $_POST["level"]);

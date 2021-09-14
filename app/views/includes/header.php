@@ -12,6 +12,8 @@
 
 <body>
     <?php
+    var_dump($_SESSION);
+    // TODO : vérifier pourquoi la session saute à intervalle régulier... (notamment quand on va sur une page pour supprimer des données)
     isset($data["title"]) ? $data["title"] = $data["title"] : $data["title"] = "titre à voir"; // TODO : ligne à supprimer une fois tous les titres mis en forme
     if ($data["title"] != "Page de connexion" && $data["title"] != "Page d'inscription") :
     ?>
@@ -28,7 +30,7 @@
                 <a href="/quiz/index" class="btn btn-sm headerBtn"><i class="fas fa-question mr-2"></i>Quiz</a>
             </div>
             <div class="col text-right">
-                <a href="/home/disconnect" class="btn btn-sm headerBtnOut"><i class="fas fa-sign-out-alt mr-2"></i>Se
+                <a href="/home/index" class="btn btn-sm headerBtnOut"><i class="fas fa-sign-out-alt mr-2"></i>Se
                     déconnecter</a>
             </div>
         </div>

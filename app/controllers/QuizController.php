@@ -5,7 +5,7 @@ class QuizController extends Controller
     public function index()
     {
         $niveaux = $this->model('Niveau')->getNiveauxByID();
-        $categories = $this->model('Categorie')->getCategoriesByName();
+        $categories = $this->model('Categorie')->getAllCategoriesByName();
         $questionMax = $this->model('Quiz')->getMaxQuestion();
         $questionMax = intval($questionMax[0]);
 

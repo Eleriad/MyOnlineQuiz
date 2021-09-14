@@ -42,7 +42,7 @@ class Controller
      * @param $text : set the text of the message in a $_SESSION variable
      * @return void
      */
-    public static function setMsg($type, $text)
+    protected function setMsg($type, $text)
     {
         if ($type == "error") {
             $_SESSION['errorMsg'] = $text;
@@ -55,7 +55,7 @@ class Controller
      * Function that displays an alert div in case of error or success message 
      * @return void
      */
-    public static function displayMsg()
+    protected function displayMsg()
     {
         if (isset($_SESSION['errorMsg'])) {
             echo '<div id="msgDiv" class="alert alert-danger" role="alert">' . $_SESSION['errorMsg'] . '</div>';
@@ -66,7 +66,34 @@ class Controller
         }
     }
 
-    //TODO : revoir les div d'alerte afin de les personnaliser !
+    /**
+     * Function that destroy the session and all his variables
+     * Then, delete all cookies
+     * @return void
+     */
+    protected function disconnect()
+    {
+        // Détruit toutes les variables de session
+        $_SESSION = array();
+
+        // Si vous voulez détruire complètement la session, effacez également le cookie de session.
+        // Note : cela détruira la session et pas seulement les données de session !
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
+        }
+
+        // Finalement, on détruit la session.
+        session_destroy();
+    }
 
     /******* PICTURES *******/
     protected function characterReplace($data)
@@ -125,25 +152,25 @@ class Controller
     {
         switch ($error) {
             case $error == 1:
-                echo "Image de taille trop importante !";
+                return "Image de taille trop importante !";
                 break;
             case $error == 2:
-                echo "L'image ne possède pas la bonne extension ! Veuillez sélectionner une image au format .png, .gif ou .svg uniquement !";
+                return "L'image ne possède pas la bonne extension ! Veuillez sélectionner une image au format .png, .gif ou .svg uniquement !";
                 break;
             case $error == 3:
-                echo "L'image n'a été que partiellement téléchargée, merci de réessayer !";
+                return "L'image n'a été que partiellement téléchargée, merci de réessayer !";
                 break;
             case $error == 4:
-                echo "Vous avez oublié l'image, merci de réessayer !";
+                return "Vous avez oublié l'image, merci de réessayer !";
                 break;
             case $error == 6:
-                echo "Un dossier temporaire est manquant, merci de réessayer !";
+                return "Un dossier temporaire est manquant, merci de réessayer !";
                 break;
             case $error == 7:
-                echo "Échec de l'écrire du fichier sur le disque, merci de réessayer !";
+                return "Échec de l'écrire du fichier sur le disque, merci de réessayer !";
                 break;
             case $error == 8:
-                echo "Une extension de PHP a arrêté l'envoi de fichier !";
+                return "Une extension de PHP a arrêté l'envoi de fichier !";
                 break;
         }
     }

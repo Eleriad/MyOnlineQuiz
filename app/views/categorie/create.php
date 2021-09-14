@@ -2,9 +2,9 @@
         <h1>Ajouter une catégorie</h1>
     </header>
 
-    <div><?= isset($data["error"]) ? $data["error"] : "" ?></div>
+    <div class="adminContainer mt-4">
 
-    <div class="container text-center mt-4">
+        <div id="msgDiv" class="sessionMsgDiv"><?php $this->displayMsg(); ?></div>
 
         <form action="" method="post" enctype="multipart/form-data">
             <div class="form-group">

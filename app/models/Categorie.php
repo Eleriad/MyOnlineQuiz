@@ -39,7 +39,7 @@ class Categorie extends Database
         return $result;
     }
 
-    public function getCategoriesByName()
+    public function getAllCategoriesByName()
     {
         $sql = "SELECT * FROM categories ORDER BY name";
         $stmt = self::$_connection->prepare($sql);
@@ -102,6 +102,22 @@ class Categorie extends Database
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Categorie');
         $result = $stmt->fetchAll();
+        return $result;
+    }
+
+    /**
+     * Function that searchs in DB if any Category exists, given one name
+     * @param string $name <=> the name of the searched Category
+     * @return void
+     */
+    public function getCategoryByName($name)
+    {
+        $sql = "SELECT name FROM categories WHERE name = '$name'";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $stmt->bindParam('name', $name, PDO::PARAM_STR);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Categorie');
+        $result = $stmt->fetch();
         return $result;
     }
 }
