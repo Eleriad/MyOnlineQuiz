@@ -85,6 +85,8 @@
 
     <div class="buttons pb-5">
         <a href="/quiz/index" class="btn btn-sm endQuizBtn">Choisir un autre quiz</a>
-        <a href="#" class="btn btn-sm endQuizBtn">Refaire le même quiz</a>
+        <a href="quiz/quiz" class="btn btn-sm endQuizBtn" id="tooltipQuiz" data-toggle="tooltip" data-placement="top"
+            title="Ce quiz aura la/les même(s) thématique(s), le même niveau et le même nombre de questions">Refaire le
+            même quiz</a>
     </div>
 </div>

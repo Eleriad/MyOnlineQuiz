@@ -1,6 +1,6 @@
 $(document).ready(function () {
   //TOOLTIPS
-  $("#tooltip").tooltip();
+  $("[id^=tooltip]").tooltip();
 
   // MESSAGE DIV
   setTimeout(function () {

@@ -18,8 +18,6 @@ $(document).ready(function () {
         generateCategoriesButtons(finalRes);
 
         getArrayCategories(checkButton);
-
-        // console.log(getArrayCategories(checkButton));
       },
       error: function (status, error) {
         console.log("échec : " + status + error);
@@ -91,10 +89,8 @@ $(document).ready(function () {
             categorieArray.splice(valueIndex, 1);
           }
         }
-        // console.log(categorieArray);
         getMaxQuestions(categorieArray);
         return categorieArray;
-        // TODO : utiliser le tableau des catégories pour faire un appel AJAX et récupérer le nombre maximal de questions à afficher ensuite
       });
     }
   }
@@ -128,14 +124,29 @@ $(document).ready(function () {
   }
 
   function createQuestionNbs(nb) {
-    // TODO : voir si on peut afficher uniquement les multiples de 5 et le dernier nombre par exemple ?
     for (i = 1; i <= nb; i++) {
-      $("#questionNb").append(
-        $("<option>", {
-          value: i,
-          text: i,
-        })
-      );
+      if (i == 1) {
+        $("#questionNb").append(
+          $("<option>", {
+            value: i,
+            text: i,
+          })
+        );
+      } else if (i % 5 == 0) {
+        $("#questionNb").append(
+          $("<option>", {
+            value: i,
+            text: i,
+          })
+        );
+      } else if (i == nb) {
+        $("#questionNb").append(
+          $("<option>", {
+            value: i,
+            text: i,
+          })
+        );
+      }
     }
   }
 

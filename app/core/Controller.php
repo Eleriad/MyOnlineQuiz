@@ -1,6 +1,6 @@
 <?php
 
-class Controller
+abstract class Controller
 {
     /******* MODELS AND VIEWS *******/
     /**
@@ -66,6 +66,7 @@ class Controller
         }
     }
 
+    /******* SESSION *******/
     /**
      * Function that destroy the session and all his variables
      * Then, delete all cookies

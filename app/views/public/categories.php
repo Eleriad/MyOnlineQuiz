@@ -12,8 +12,8 @@
         <div class="box b<?= $nb ?>" data-anim="<?= $nb ?>">
             <h4><?= $categorie->name ?></h4>
             <p><?= $categorie->description ?></p>
-            <span><i class="fas fa-info-circle" id="tooltip" data-toggle="tooltip" data-placement="bottom"
-                    title="<?= $categorie->info ?>"></i></span>
+            <span><i class="fas fa-info-circle" id="tooltip<?= $nb ?>" data-toggle="tooltip" data-placement="bottom"
+                    title="<?= $categorie->infos ?>"></i></span>
         </div>
 
         <?php

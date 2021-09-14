@@ -8,7 +8,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // TODO : vérifier si on supprime tout ou pas...
         // DESTROYING SESSION IF EXISTS
         $this->disconnect();
 

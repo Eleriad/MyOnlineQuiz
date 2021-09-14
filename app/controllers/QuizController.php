@@ -9,6 +9,14 @@ class QuizController extends Controller
         $questionMax = $this->model('Quiz')->getMaxQuestion();
         $questionMax = intval($questionMax[0]);
 
+        // SET SESSION VARIABLE
+        isset($_SESSION["categories"]) ? $_SESSION["categories"] = "" : null;
+        isset($_SESSION["questionNb"]) ? $_SESSION["questionNb"] = "" : null;
+        isset($_SESSION["currentQuestion"]) ? $_SESSION["currentQuestion"] = "" : null;
+        isset($_SESSION["correctAnswers"]) ? $_SESSION["correctAnswers"] = "" : null;
+        isset($_SESSION["quizQuestions"]) ? $_SESSION["quizQuestions"] = "" : null;
+        isset($_SESSION["level"]) ? $_SESSION["level"] = "" : null;
+
         if (isset($_POST) && !empty($_POST)) {
             // Si on a un POST mais pas de catégorie sélectionnée
             if (!isset($_POST["categories"]) or $_POST["level"] === "0") {

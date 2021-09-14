@@ -21,7 +21,6 @@
         $choix = array_slice($question, 2);
         $shuffle = shuffle($choix);
         array_push($quizQuestions, $question);
-
     ?>
 
     <!-- Input hidden pour récupérer en JS le nombre maximum de questions -->

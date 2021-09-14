@@ -5,6 +5,7 @@ class User extends Database
     public $username;
     public $email;
     public $password_hash;
+    public $role;
 
     public function create()
     {
@@ -38,6 +39,16 @@ class User extends Database
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
         $result = $stmt->fetch();
+        return $result;
+    }
+
+    public function getAllUsers()
+    {
+        $sql = "SELECT * FROM users";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
+        $result = $stmt->fetchAll();
         return $result;
     }
 }
