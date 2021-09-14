@@ -5,14 +5,16 @@ class Categorie extends Database
     public $name;
     public $categoriePicture;
     public $description;
+    public $infos;
 
     public function create()
     {
-        $sql = "INSERT INTO categories(name, categorie_picture, description) VALUE(:name, :categorie_picture, :description)";
+        $sql = "INSERT INTO categories(name, categorie_picture, description, infos) VALUE(:name, :categorie_picture, :description, :infos)";
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam('name', $this->name, PDO::PARAM_STR);
         $stmt->bindParam('categorie_picture', $this->categoriePicture, PDO::PARAM_STR);
         $stmt->bindParam('description', $this->description, PDO::PARAM_STR);
+        $stmt->bindParam('infos', $this->infos, PDO::PARAM_STR);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Categorie');
         $result = $stmt->rowCount();
@@ -51,11 +53,12 @@ class Categorie extends Database
 
     public function update()
     {
-        $sql = "UPDATE categories SET name  = :name, categorie_picture = :categorie_picture, description  = :description WHERE id_categorie = :id_categorie";
+        $sql = "UPDATE categories SET name  = :name, categorie_picture = :categorie_picture, description  = :description, infos = :infos WHERE id_categorie = :id_categorie";
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam('name', $this->name, PDO::PARAM_STR);
         $stmt->bindParam('categorie_picture', $this->categorie_picture, PDO::PARAM_STR);
         $stmt->bindParam('description', $this->description, PDO::PARAM_STR);
+        $stmt->bindParam('infos', $this->infos, PDO::PARAM_STR);
         $stmt->bindParam('id_categorie', $this->id_categorie, PDO::PARAM_INT);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Categorie');

@@ -1,12 +1,13 @@
-<h1>Page d'accueil des catégories</h1>
+<div class="adminContainer">
+    <h1>Page d'accueil des catégories</h1>
 
-<div class="container py-4">
-    <table class="table w-100 mt categorieTable">
+    <table class="table categorieTable">
         <thead>
             <tr>
                 <th>Pictos</th>
                 <th>Liste des catégories</th>
                 <th>Description</th>
+                <th>Info</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -17,6 +18,7 @@
                         height="50px"></td>
                 <td><?= $categories->name ?></td>
                 <td><?= $categories->description ?></td>
+                <td><?= $categories->infos ?></td>
                 <td>
                     <a href=" /categorie/edit/<?= $categories->id_categorie ?>" class="modifyBtn"><span><i
                                 class="fas fa-pencil-alt mr-2"></i></span>Modifier</a>
@@ -55,16 +57,16 @@ $(document).ready(function() {
             [10, 20, 50, "Tout"],
         ],
         "columns": [{
-                "width": "10%"
-            }, {
-                "width": "20%"
-            },
-            {
-                "width": "40%"
-            }, {
-                "width": "30%"
-            }
-        ]
+            "width": "10%"
+        }, {
+            "width": "15%"
+        }, {
+            "width": "30%"
+        }, {
+            "width": "25%"
+        }, {
+            "width": "20%"
+        }]
     });
 });
 </script>

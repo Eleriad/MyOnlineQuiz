@@ -14,6 +14,11 @@
                 <textarea name="description" cols="30" rows="10"><?= $data["catégorie"]->description ?></textarea>
             </div>
 
+            <div class="form-group d-flex flex-column">
+                <label for="infos">Informations pour le Tooltip :</label>
+                <textarea name="infos" cols="30" rows="10"><?= $data["catégorie"]->infos ?></textarea>
+            </div>
+
             <div class="form-group">
                 <label for="categoriePicture"><img
                         src="/app/components/img/categorie_picture/<?= $data["catégorie"]->categorie_picture ?>"

@@ -41,7 +41,8 @@ class CategorieController extends Controller
 
                     $newCategory->name = $_POST["newCategory"];
                     $newCategory->categoriePicture = $picture;
-                    $newCategory->description =  $_POST["description"];;
+                    $newCategory->description =  $_POST["description"];
+                    $newCategory->infos =  $_POST["infos"];
                     $newCategory->create();
 
                     // REDIRECTION
@@ -73,6 +74,7 @@ class CategorieController extends Controller
 
             $categorie->name = $_POST['categorieName'];
             $categorie->description = $_POST['description'];
+            $categorie->infos = $_POST['infos'];
             $categorie->update();
             header('Location: /categorie/index');
         } else {
