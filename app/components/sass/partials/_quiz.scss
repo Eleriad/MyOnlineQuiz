@@ -111,3 +111,34 @@ div[id^="questionDiv"] {
   -moz-box-shadow: none;
   cursor: not-allowed;
 }
+
+#initialCat {
+  position: absolute;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.catLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $sapling;
+  color: black;
+  padding-left: 0px !important;
+
+  &:hover {
+    background-color: #9b805a;
+    color: $white;
+  }
+
+  &.checkedButton {
+    background-color: #9b805a;
+    // color: $white;
+  }
+
+  input {
+    opacity: 0;
+    left: 50px;
+  }
+}

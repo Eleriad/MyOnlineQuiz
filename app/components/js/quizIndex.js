@@ -18,6 +18,17 @@ $(document).ready(function () {
         generateCategoriesButtons(finalRes);
 
         getArrayCategories(checkButton);
+
+        // On vérifie si la div s'est bien ajoutée et on modifie le margin de la div d'en dessous en fonction du nombre de catégories affichées
+        var categories = $("#initialCat");
+        var divHeight = categories.height() + 30;
+        var questionSelect = $("#questionNbSelect");
+        !categories
+          ? ""
+          : questionSelect.attr(
+              "style",
+              "margin-top: " + divHeight + "px !important"
+            );
       },
       error: function (status, error) {
         console.log("échec : " + status + error);
@@ -37,15 +48,11 @@ $(document).ready(function () {
     var categorieDiv = `<div id="initialCat"></div>`;
 
     $("#levelDiv").after(categorieDiv);
-    console.log(array);
 
     for (var i = 0; i < array.length; i++) {
-      let categorieId = parseInt(array[i][0]);
-      let categorieName = array[i][1];
+      let data = array[i][1];
 
-      // var categorieLabel = `<label class="btn btn-info mx-1" for="${categorieId}"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="categories[]" class="onChangeCategorie">${categorieName}</label>`;
-
-      var categorieLabel = `<label class="btn btn-info mx-1" for="${categorieId}"><img src="/app/components/img/categorie_picture/pierre.svg" width="30px" height="30px"><input type="checkbox" id="${categorieId}" value="${categorieId}" name="categories[]" class="onChangeCategorie">${categorieName}</label>`;
+      var categorieLabel = `<label class="btn mx-1 catLabel" for="${data[0]}"><img src="/app/components/img/categorie_picture/${data[2]}" width="30px" height="30px"><input type="checkbox" id="${data[0]}" value="${data[0]}" name="categories[]" class="onChangeCategorie">${data[1]}</label>`;
 
       $("#initialCat").append(categorieLabel);
     }
@@ -75,6 +82,10 @@ $(document).ready(function () {
       checkButton[i].addEventListener("click", function () {
         // On récupère sa valeur
         var value = checkButton[i].value;
+
+        // On modifie le background du label parent
+        var label = this.parentNode;
+        label.classList.toggle("checkedButton");
 
         // Si le bouton est coché
         if (checkButton[i].checked) {

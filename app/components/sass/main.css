@@ -820,6 +820,48 @@ div[id^="questionDiv"] {
   cursor: not-allowed;
 }
 
+#initialCat {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: left;
+      -ms-flex-pack: left;
+          justify-content: left;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.catLabel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #e0c7a4;
+  color: black;
+  padding-left: 0px !important;
+}
+
+.catLabel:hover {
+  background-color: #9b805a;
+  color: white;
+}
+
+.catLabel.checkedButton {
+  background-color: #9b805a;
+}
+
+.catLabel input {
+  opacity: 0;
+  left: 50px;
+}
+
 .divFeedback {
   min-width: 70%;
   -ms-flex-pack: distribute;

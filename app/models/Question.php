@@ -10,6 +10,7 @@ class Question extends Database
     public $normal;
     public $difficile;
 
+    /******* CRUD table questions *******/
     public function create()
     {
         $sql = "INSERT INTO questions(niveau_id, question, feedback, reponse, facile, normal, difficile) 
@@ -46,16 +47,19 @@ class Question extends Database
         return $result;
     }
 
-    public function checkCategorieByQuestionId($idQuestion)
+    public function delete($idQuestion)
     {
-        $sql = "SELECT id_categorie FROM posseder WHERE id_question = :id_question";
+        $sql = "DELETE q.*, p.* FROM questions AS q 
+        JOIN posseder AS p ON q.id_question = p.id_question 
+        WHERE q.id_question = $idQuestion";
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
-        $result = $stmt->fetchAll();
+        $result = $stmt->rowCount();
         return $result;
     }
+
+    /******* CRUD table posseder *******/
 
     public function createCategorieToQuestion($idQuestion, $idCategorie)
     {
@@ -89,6 +93,30 @@ class Question extends Database
         return $result;
     }
 
+    /******* SPECIFIC table posseder *******/
+    public function checkCategorieByQuestionId($idQuestion)
+    {
+        $sql = "SELECT id_categorie FROM posseder WHERE id_question = :id_question";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
+    public function assignCategorieToQuestion($idQuestion, $idCategorie)
+    {
+        $sql = "INSERT INTO posseder (id_question, id_categorie) VALUE(:id_question, :id_categorie)";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
+        $stmt->bindParam('id_categorie', $idCategorie, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        return $result;
+    }
+
+    /******* GETTER *******/
     public function getCategoryNameByQuestionId($idQuestion)
     {
         $sql = "SELECT `name` FROM posseder AS p
@@ -108,17 +136,6 @@ class Question extends Database
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
         $result = $stmt->fetchAll();
-        return $result;
-    }
-
-    public function assignCategorieToQuestion($idQuestion, $idCategorie)
-    {
-        $sql = "INSERT INTO posseder (id_question, id_categorie) VALUE(:id_question, :id_categorie)";
-        $stmt = self::$_connection->prepare($sql);
-        $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
-        $stmt->bindParam('id_categorie', $idCategorie, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->rowCount();
         return $result;
     }
 
@@ -160,18 +177,6 @@ class Question extends Database
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
         $result = $stmt->fetch();
-        return $result;
-    }
-
-    public function delete($idQuestion)
-    {
-        $sql = "DELETE q.*, p.* FROM questions AS q 
-        JOIN posseder AS p ON q.id_question = p.id_question 
-        WHERE q.id_question = $idQuestion";
-        $stmt = self::$_connection->prepare($sql);
-        $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
-        $stmt->execute();
-        $result = $stmt->rowCount();
         return $result;
     }
 }

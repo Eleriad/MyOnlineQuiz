@@ -2,6 +2,7 @@
 
 class Quiz extends Database
 {
+    /******* GETTER *******/
     /**
      * Function that select a specific number of random questions given a level and one or more categories
      * @param [int] $level
@@ -21,23 +22,6 @@ class Quiz extends Database
         $stmt = self::$_connection->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
-
-    public function countQuestionsByLevel($idCategorie, $idLevel)
-    {
-        // Implode Categorie array to extract categorie IDs
-        $arrayCat =  implode(",", $idCategorie);
-
-        //SQL request
-        $sql = "SELECT DISTINCT COUNT(p.id_question) 
-                FROM posseder AS p
-                JOIN questions AS q
-                ON p.id_question = q.id_question
-                WHERE p.id_categorie IN ($arrayCat) AND q.niveau_id = $idLevel";
-        $stmt = self::$_connection->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch();
         return $result;
     }
 
@@ -100,6 +84,24 @@ class Quiz extends Database
         $stmt = self::$_connection->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    /******* COUNT *******/
+    public function countQuestionsByLevel($idCategorie, $idLevel)
+    {
+        // Implode Categorie array to extract categorie IDs
+        $arrayCat =  implode(",", $idCategorie);
+
+        //SQL request
+        $sql = "SELECT DISTINCT COUNT(p.id_question) 
+                FROM posseder AS p
+                JOIN questions AS q
+                ON p.id_question = q.id_question
+                WHERE p.id_categorie IN ($arrayCat) AND q.niveau_id = $idLevel";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch();
         return $result;
     }
 }

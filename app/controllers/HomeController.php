@@ -9,7 +9,9 @@ class HomeController extends Controller
     public function index()
     {
         // DESTROYING SESSION IF EXISTS
-        $this->disconnect();
+        if (isset($_SESSION)) {
+            $this->disconnect();
+        }
 
         // PAGE AND VIEWS
         $pageId = 1;

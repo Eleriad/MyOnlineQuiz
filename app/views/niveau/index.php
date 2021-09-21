@@ -1,9 +1,9 @@
-    <header>
+    <div class="text-center">
         <h1>Page d'accueil des Niveaux</h1>
-    </header>
+    </div>
 
     <div class="container py-4">
-        <table class="table w-100 mt levelTable">
+        <table class="table w-100 levelTable">
             <thead>
                 <tr>
                     <th>Liste des Niveaux</th>

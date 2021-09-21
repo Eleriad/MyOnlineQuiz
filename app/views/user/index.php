@@ -9,11 +9,12 @@
     - bannir un utilisateur (bloque son ip pendant x temps)
     */
 ?>
-
-<div class="adminContainer">
+<div class="text-center">
     <h1>Page d'accueil de gestion des utilisateurs</h1>
+</div>
 
-    <table class="table usersTable">
+<div class="container-fluid p-4 mt-4">
+    <table class="table w-100 userTable">
         <thead>
             <tr>
                 <th>id</th>
@@ -47,36 +48,3 @@
 
     <a href="/admin/index" class="returnBtn"><span><i class="far fa-arrow-alt-circle-left mr-2"></i></span>Retour</a>
 </div>
-
-<script>
-$(document).ready(function() {
-    var table = $('.usersTable').DataTable({
-        language: {
-            url: "/app/components/bootstrap/dataTable/media/french.json"
-        },
-        paging: true,
-        scrollX: true,
-        responsive: true,
-        pagingType: 'numbers',
-        fixedHeader: true,
-        "order": [
-            [1, "asc"]
-        ],
-        lengthMenu: [
-            [10, 20, 50, -1],
-            [10, 20, 50, "Tout"],
-        ],
-        "columns": [{
-            "width": "10%"
-        }, {
-            "width": "20%"
-        }, {
-            "width": "20%"
-        }, {
-            "width": "10%"
-        }, {
-            "width": "max-content"
-        }]
-    });
-});
-</script>

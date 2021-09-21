@@ -28,7 +28,7 @@ class LoginController extends Controller
                     if ($_POST["password"] == $_POST["checkPassword"]) {
                         // CREATTING NEW USER
                         $user->username = $_POST["username"];
-                        $user->email = $_POST["email"];
+                        $user->email = $_POST["email"]; // TODO : vérifier si l'email est au bon format avec une regex
                         $user->password_hash = password_hash($_POST["password"], PASSWORD_BCRYPT);
                         $user->create();
                         // SUCCESS MESSAGE

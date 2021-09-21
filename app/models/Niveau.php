@@ -4,6 +4,7 @@ class Niveau extends Database
 {
     public $level;
 
+    /******* CRUD *******/
     public function create()
     {
         $sql = "INSERT INTO niveaux (level) VALUE (:level)";
@@ -12,26 +13,6 @@ class Niveau extends Database
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Niveau');
         $result = $stmt->rowCount();
-        return $result;
-    }
-
-    public function getNiveaux()
-    {
-        $sql = "SELECT * FROM niveaux";
-        $stmt = self::$_connection->prepare($sql);
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Niveau');
-        $result = $stmt->fetchAll();
-        return $result;
-    }
-
-    public function getNiveauxByID()
-    {
-        $sql = "SELECT * FROM niveaux ORDER BY id_niveau";
-        $stmt = self::$_connection->prepare($sql);
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Niveau');
-        $result = $stmt->fetchAll();
         return $result;
     }
 
@@ -57,6 +38,17 @@ class Niveau extends Database
         return $result;
     }
 
+    /******* GETTER *******/
+    public function getNiveaux()
+    {
+        $sql = "SELECT * FROM niveaux";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Niveau');
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
     public function getNiveauById($idNiveau)
     {
         $sql = "SELECT * FROM niveaux WHERE id_niveau = $idNiveau";
@@ -65,6 +57,16 @@ class Niveau extends Database
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Niveau');
         $result = $stmt->fetch();
+        return $result;
+    }
+
+    public function getAllNiveauxById()
+    {
+        $sql = "SELECT * FROM niveaux ORDER BY id_niveau";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Niveau');
+        $result = $stmt->fetchAll();
         return $result;
     }
 }

@@ -21,7 +21,7 @@
         </div>
 
         <!-- Nombre de questions -->
-        <div class="my-3">
+        <div class="my-3" id="questionNbSelect">
             <label for="questionNb" id="questionLabel">Choisissez un nombre de questions :</label>
             <select name="questionNb" id="questionNb">
                 <option value="0">---</option>

@@ -3,7 +3,7 @@
 </header>
 
 <div class="container-fluid p-4 mt-4">
-    <table class="table questionTable w-100 mt">
+    <table class="table questionTable w-100">
         <thead>
             <tr>
                 <th>Catégories</th>

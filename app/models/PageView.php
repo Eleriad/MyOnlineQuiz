@@ -5,6 +5,7 @@ class PageView extends Database
     public $visitorIp;
     public $pageId;
 
+    /******* CRUD *******/
     /**
      * Function that create a new unique visitor in DB
      * @param string $visitorIp <=> visitor's IP adress
@@ -23,6 +24,7 @@ class PageView extends Database
         return $result;
     }
 
+    /******* CHECK *******/
     /**
      * Function that check if a visitor is unique or not
      * @param string $visitorIp <=> visitor's IP adress

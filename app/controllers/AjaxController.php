@@ -12,12 +12,11 @@ class AjaxController extends Controller
             $level = $_POST["level"];
             $newCategories = $this->model("Quiz")->getCategoriesByLevel($level);
 
+            $nb = 1;
             foreach ($newCategories as $newCat) {
-                $categories[$newCat["id_categorie"]] = $newCat["name"];
-                // TODO : voir comment récupérer l'image !!!
-                // $categories[$newCat["test"]] = $newCat["categorie_picture"];
+                $categories[$nb] =  [$newCat["id_categorie"], $newCat["name"], $newCat["categorie_picture"]];
+                $nb++;
             }
-
             echo json_encode($categories);
         }
     }
