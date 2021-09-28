@@ -108,11 +108,29 @@ abstract class Controller
 
     protected function checkPictureValidity($data, $size)
     {
+        // CHECKING which $_FILES is set
+        isset($_FILES["categoriePicture"]) ? $_FILES["categoriePicture"] = $_FILES["categoriePicture"] : $_FILES["categoriePicture"] = null;
+        isset($_FILES["questionPicture"]) ? $_FILES["questionPicture"] = $_FILES["questionPicture"] : $_FILES["questionPicture"] = null;
+        isset($_FILES["feedbackPicture"]) ? $_FILES["feedbackPicture"] = $_FILES["feedbackPicture"] : $_FILES["feedbackPicture"] = null;
+
+        // SETTING VARIABLES
         $name = $data["name"];
         $type = $data["type"];
         $tmpName = $data["tmp_name"];
         $error = $data["error"];
         $size = $data["size"];
+
+        // SETTING $post
+        if ($data == $_FILES["categoriePicture"]) {
+            $post = $_POST["newCategory"];
+        } else if ($data == $_FILES["questionPicture"]) {
+            $post = $_FILES["questionPicture"]["name"];
+        } else if ($data == $_FILES["feedbackPicture"]) {
+            $post = $_FILES["feedbackPicture"]["name"];
+        }
+
+        // Au cas où on aurait une image dont le nom contient déjà une extension, on l'enlève
+        $post = explode('.', $post);
 
         if ($error != 0) {
             $result = $this->errorMessage($error);
@@ -132,8 +150,8 @@ abstract class Controller
 
                 if ($size <= $maxSize) {
                     // using category name to create the categorie picture's name 
-                    $pictureName = mb_detect_encoding($_POST["newCategory"], mb_detect_order(), true);
-                    $pictureName = iconv("UTF-8", "UTF-8//TRANSLIT//IGNORE", $_POST["newCategory"]);
+                    $pictureName = mb_detect_encoding($post[0], mb_detect_order(), true);
+                    $pictureName = iconv("UTF-8", "UTF-8//TRANSLIT//IGNORE", $post[0]);
                     $pictureName = mb_strtolower($pictureName);
                     $pictureName = $this->characterReplace($pictureName);
 

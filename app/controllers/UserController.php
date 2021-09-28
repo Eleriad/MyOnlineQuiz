@@ -16,7 +16,7 @@ class UserController extends Controller
 
             $user->username = $_POST['username'];
             $user->email = $_POST['email']; // TODO : vérifier si l'email est au bon format avec une regex
-            $user->password_hash = password_hash($_POST["password"], PASSWORD_BCRYPT);
+            $user->passwordHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
             $user->role = $_POST['role'];
 
             $user->create();
@@ -36,7 +36,7 @@ class UserController extends Controller
 
             $editUser->username = $_POST['username'];
             $editUser->email = $_POST['email']; // TODO : vérifier si l'email est au bon format avec une regex
-            $_POST["password"] = "" ? $editUser->password_hash = $editUser->password_hash : $editUser->password_hash = password_hash($_POST["password"], PASSWORD_BCRYPT);
+            $_POST["password"] = "" ? $editUser->passwordHash = $editUser->passwordHash : $editUser->passwordHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
             $editUser->role = $_POST['role'];
 
             $editUser->update();

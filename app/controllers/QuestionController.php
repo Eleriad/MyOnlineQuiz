@@ -17,27 +17,57 @@ class QuestionController extends Controller
     {
         $niveaux = $this->model('Niveau')->getNiveaux();
         $categories = $this->model('Categorie')->getCategories();
+        $question = $this->model('Question');
 
         if (isset($_POST["addQuestion"])) {
 
-            $question = $this->model('Question');
+            if (!isset($_FILES["questionPicture"])) {
+                $question->questionPicture = null;
+            } else if (!isset($_FILES["feedbackPicture"])) {
+                $question->feedbackPicture = null;
+            } else {
 
-            $question->niveau_id = $_POST['niveaux'];
-            $question->question = $_POST['question'];
-            $question->feedback = $_POST['feedback'];
-            $question->reponse = $_POST['reponse'];
-            $question->facile = $_POST['facile'];
-            $question->normal = $_POST['normal'];
-            $question->difficile = $_POST['difficile'];
-            $question->create();
+                $tmpQuestionName = $_FILES["questionPicture"]["tmp_name"];
+                $tmpFeedbackName = $_FILES["feedbackPicture"]["tmp_name"];
 
-            $lastId = $this->model('Question')->getLastId();
+                $questionPicture = $this->checkPictureValidity($_FILES["questionPicture"], 2000000);
+                $feedbackPicture = $this->checkPictureValidity($_FILES["feedbackPicture"], 2000000);
 
-            foreach ($_POST['categories'] as $categorie) {
-                $this->model('Question')->assignCategorieToQuestion($lastId, $categorie);
+                if (is_int($questionPicture)) {
+                    $error = $this->errorMessage($questionPicture);
+                    $this->setMsg("error", $error);
+                    $this->view('categorie/create', ["error" => $error]);
+                } else if (is_int($feedbackPicture)) {
+                    $error = $this->errorMessage($feedbackPicture);
+                    $this->setMsg("error", $error);
+                    $this->view('categorie/create', ["error" => $error]);
+                } else {
+
+                    // PICTURE MOVING
+                    move_uploaded_file($tmpQuestionName, "./app/components/img/question_pictures/$questionPicture");
+                    move_uploaded_file($tmpFeedbackName, "./app/components/img/feedback_pictures/$feedbackPicture");
+
+                    $question->niveauId = $_POST['niveaux'];
+                    $question->question = $_POST['question'];
+                    $question->questionPicture = $questionPicture;
+                    $question->feedback = $_POST['feedback'];
+                    $question->feedbackPicture = $feedbackPicture;
+                    $question->reponse = $_POST['reponse'];
+                    $question->facile = $_POST['facile'];
+                    $question->normal = $_POST['normal'];
+                    $question->difficile = $_POST['difficile'];
+                    $question->create();
+
+                    $lastId = $this->model('Question')->getLastId();
+
+                    foreach ($_POST['categories'] as $categorie) {
+                        $this->model('Question')->assignCategorieToQuestion($lastId, $categorie);
+                    }
+
+                    // LOCATION
+                    header('Location: /question/index');
+                }
             }
-
-            header('Location: /question/index');
         } else {
             $this->view('question/create', ["niveaux" => $niveaux, "categories" => $categories]);
         }
@@ -55,7 +85,7 @@ class QuestionController extends Controller
             if ($_POST['categories'] != null) {
                 $editedQuestion = $this->model('Question');
 
-                $editedQuestion->niveau_id = $_POST['niveaux'];
+                $editedQuestion->niveauId = $_POST['niveaux'];
                 $editedQuestion->question = $_POST['question'];
                 $editedQuestion->feedback = $_POST['feedback'];
                 $editedQuestion->reponse = $_POST['reponse'];

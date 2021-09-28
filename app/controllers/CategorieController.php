@@ -19,6 +19,7 @@ class CategorieController extends Controller
     public function create()
     {
         if (isset($_POST["addCategory"])) {
+
             $tmpName = $_FILES["categoriePicture"]["tmp_name"];
 
             // CHECK PICTURE'S VALIDITY
@@ -34,7 +35,7 @@ class CategorieController extends Controller
 
                 if ($checkCategorie == false) {
                     // PICTURE MOVING
-                    move_uploaded_file($tmpName, "./app/components/img/categorie_picture/$picture");
+                    move_uploaded_file($tmpName, "./app/components/img/categorie_pictures/$picture");
 
                     // CATEGORY CREATION
                     $newCategory = $this->model('Categorie');
@@ -62,7 +63,9 @@ class CategorieController extends Controller
     {
         $categorie = $this->model('Categorie')->getCategorieById($idCategorie);
 
+        // TODO : faire comme pour le mot de passe : on garde la même image si la case reste vide et on modifie si besoin
         // TODO : vérifier si le nom de l'image correspond à un nom déjà existant ou pas afin de ne pas redemander à chaque fois la même image...
+        // TODO : vérifier pour remplacer l'image par une autre tout en conservant le même nom !
 
         if (isset($_POST['updateCategorie'])) {
 

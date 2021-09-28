@@ -9,15 +9,17 @@
                 <th>Catégories</th>
                 <th>Niveau</th>
                 <th>Question</th>
+                <th>Photo de la question</th>
                 <th>Bonne réponse</th>
                 <th>Réponse facile</th>
                 <th>Réponse normale</th>
                 <th>Réponse difficile</th>
                 <th>Feedback</th>
+                <th>Photo du feedback</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="tableQuestionBody">
             <!-- 1st foreach to display datas -->
             <?php foreach ($data['questions'] as $question) :
                 $out = array();
@@ -33,11 +35,15 @@
                 </td>
                 <td><?= $question->level ?></td>
                 <td><?= $question->question ?></td>
+                <td> <?= $question->question_picture == null ? "/" : "<img src='/app/components/img/question_pictures/$question->question_picture' width='50px'
+                        height='50px'>" ?></td>
                 <td><?= $question->reponse ?></td>
                 <td><?= $question->facile ?></td>
                 <td><?= $question->normal ?></td>
                 <td><?= $question->difficile ?></td>
                 <td><?= $question->feedback ?></td>
+                <td> <?= $question->feedback_picture == null ? "/" : "<img src='/app/components/img/feedback_pictures/$question->feedback_picture' width='50px'
+                        height='50px'>" ?></td>
                 <td>
                     <a href="/question/edit/<?= $question->id_question ?>" class="modifyBtn"><span><i
                                 class="fas fa-pencil-alt mr-2"></i></span>Modifier</a>

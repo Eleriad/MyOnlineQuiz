@@ -4,7 +4,7 @@ class User extends Database
 {
     public $username;
     public $email;
-    public $password_hash;
+    public $passwordHash;
     public $role;
 
     /******* CRUD *******/
@@ -17,7 +17,7 @@ class User extends Database
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam(':username', $this->username, PDO::PARAM_STR);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':password_hash', $this->password_hash);
+        $stmt->bindParam(':password_hash', $this->passwordHash);
         $stmt->bindParam(':role', $this->role);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
@@ -31,7 +31,7 @@ class User extends Database
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam('username', $this->username, PDO::PARAM_STR);
         $stmt->bindParam('email', $this->email, PDO::PARAM_STR);
-        $stmt->bindParam('password_hash', $this->password_hash, PDO::PARAM_STR);
+        $stmt->bindParam('password_hash', $this->passwordHash, PDO::PARAM_STR);
         $stmt->bindParam('role', $this->role, PDO::PARAM_STR);
         $stmt->bindParam('id', $this->id, PDO::PARAM_INT);
         $stmt->execute();

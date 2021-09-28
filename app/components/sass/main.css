@@ -205,6 +205,10 @@
   margin: 5px 25px;
 }
 
+.tableQuestionBody {
+  font-size: small;
+}
+
 header {
   width: 100%;
   background-color: #9b805a;
