@@ -13,7 +13,7 @@
 <body>
     <?php
     var_dump($_SESSION);
-    // TODO : vérifier pourquoi la session saute à intervalle régulier... (notamment quand on va sur une page pour supprimer des données)
+
     isset($data["title"]) ? $data["title"] = $data["title"] : $data["title"] = "titre à voir"; // TODO : ligne à supprimer une fois tous les titres mis en forme
     if ($data["title"] != "Page de connexion" && $data["title"] != "Page d'inscription") :
     ?>
@@ -24,7 +24,9 @@
                 <a href="/public/index" class="btn btn-sm headerBtn"><i class="fas fa-home mr-2"></i>Accueil</a>
             </div>
             <div class="col col-lg-auto">
-                <?php echo $_SESSION["role"] === "admin" ? $admBtn : "" ?>
+                <?php echo isset($_SESSION["role"]) && $_SESSION["role"] === "admin" ? $admBtn : ""
+                    // TODO : vérifier pourquoi la session saute à intervalle régulier ! 
+                    ?>
                 <a href="/public/categories" class="btn btn-sm headerBtn"><i class="far fa-list-alt mr-2"></i>Découvrir
                     les catégories</a>
                 <a href="/quiz/index" class="btn btn-sm headerBtn"><i class="fas fa-question mr-2"></i>Quiz</a>

@@ -2,6 +2,9 @@
     <h1>Création d'un nouvel utilisateur</h1>
 </div>
 <div class="container text-center">
+    <?php
+    $this->displayMsg();
+    ?>
     <form action="" method="post">
         <div class="form-group">
             <label for="username">Identifiant :

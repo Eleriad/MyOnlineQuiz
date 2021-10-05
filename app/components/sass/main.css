@@ -209,6 +209,16 @@
   font-size: small;
 }
 
+.userContainer {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.userTable {
+  width: 80% !important;
+}
+
 header {
   width: 100%;
   background-color: #9b805a;

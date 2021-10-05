@@ -2,6 +2,10 @@
 
 class QuestionController extends Controller
 {
+    /**
+     * Function that displays all questions in the question/index view
+     * @return void
+     */
     public function index()
     {
         $questions = $this->model('Question')->getAllQuestions();
@@ -10,7 +14,7 @@ class QuestionController extends Controller
             $question->categories = $this->model('Question')->getCategoryNameByQuestionId($question->id_question);
         }
 
-        $this->view('question/index', ["questions" => $questions]);
+        $this->view('question/index', ["title" => "Tableau des Questions", "questions" => $questions]);
     }
 
     public function create()
@@ -116,6 +120,11 @@ class QuestionController extends Controller
         }
     }
 
+    /**
+     * Function that display all data for a specific question and allows admin to delete the question
+     * @param int $idQuestion : the id of the question to delete
+     * @return void
+     */
     public function delete($idQuestion)
     {
         $deleteQuestion = $this->model('Question')->getQuestionById($idQuestion);

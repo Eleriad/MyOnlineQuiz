@@ -28,7 +28,6 @@
 
     <div class="text-center">
         <a href="/niveau/create" class="createBtn"><i class="fas fa-plus mr-2"></i>Nouveau niveau</a></a>
-
         <a href="/admin/index" class="returnBtn"><span><i
                     class="far fa-arrow-alt-circle-left mr-2"></i></span>Retour</a>
     </div>

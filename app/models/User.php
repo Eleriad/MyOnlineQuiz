@@ -84,6 +84,16 @@ class User extends Database
         return $result;
     }
 
+    public function checkIfUsernameExists($username)
+    {
+        $sql = "SELECT * FROM users WHERE username = :username";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        return $result;
+    }
+
     public function findUserByMail($email)
     {
         $sql = "SELECT * FROM users WHERE email = :email";
@@ -92,6 +102,16 @@ class User extends Database
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
         $result = $stmt->fetch();
+        return $result;
+    }
+
+    public function checkIfEmailExists($email)
+    {
+        $sql = "SELECT * FROM users WHERE email = :email";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $result = $stmt->rowCount();
         return $result;
     }
 }

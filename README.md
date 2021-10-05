@@ -35,10 +35,6 @@ Pour la version suivante :
 
 - Sur la page d'index de quiz : prévoir un bouton "sélectionner toutes les catégories" ;
 
-<!-- <label class="btn btn-primary">
-                <input type="checkbox"><?= //$categorie->name ?>
-                </label> -->
-
 A AJOUTER :
 
 - PREVOIR des photos pour les questions (si il y en a, on lui prévoit une place où s'afficher);

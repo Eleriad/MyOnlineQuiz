@@ -14,14 +14,30 @@ class UserController extends Controller
 
             $user = $this->model('User');
 
-            $user->username = $_POST['username'];
-            $user->email = $_POST['email']; // TODO : vérifier si l'email est au bon format avec une regex
-            $user->passwordHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
-            $user->role = $_POST['role'];
+            $checkUser = $this->model('User')->checkIfUsernameExists($_POST['username']);
 
-            $user->create();
+            if ($checkUser == 0) {
+                $checkEmail = $this->model('User')->checkIfEmailExists($_POST['email']);
 
-            header('Location: /user/index');
+                if ($checkEmail == 0) {
+                    $user->username = $_POST['username'];
+                    $user->email = $_POST['email']; // TODO : vérifier si l'email est au bon format avec une regex
+                    $user->passwordHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
+                    $_POST['role'] == "0" ? $user->role = "user" : $user->role = $_POST['role'];
+
+                    $user->create();
+
+                    $this->setMsg("success", "Nouvel utilisateur créé !");
+
+                    header('Location: /user/index');
+                } else if ($checkEmail == 1) {
+                    $this->setMsg("error", "Cet email est déjà utilisé par un autre utilisateur !");
+                    $this->view('user/create');
+                }
+            } else if ($checkUser == 1) {
+                $this->setMsg("error", "Ce nom d'utilisateur existe déjà !");
+                $this->view('user/create');
+            }
         } else {
             $this->view('user/create');
         }
@@ -34,14 +50,30 @@ class UserController extends Controller
 
         if (isset($_POST["editUser"])) {
 
-            $editUser->username = $_POST['username'];
-            $editUser->email = $_POST['email']; // TODO : vérifier si l'email est au bon format avec une regex
-            $_POST["password"] = "" ? $editUser->passwordHash = $editUser->passwordHash : $editUser->passwordHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
-            $editUser->role = $_POST['role'];
+            $checkUser = $this->model('User')->checkIfUsernameExists($_POST['username']);
 
-            $editUser->update();
+            if ($checkUser == 0) {
+                $checkEmail = $this->model('User')->checkIfEmailExists($_POST['email']);
 
-            header('Location: /user/index');
+                if ($checkEmail == 0) {
+                    $editUser->username = $_POST['username'];
+                    $editUser->email = $_POST['email']; // TODO : vérifier si l'email est au bon format avec une regex
+                    $_POST["password"] = "" ? $editUser->passwordHash = $editUser->passwordHash : $editUser->passwordHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
+                    $editUser->role = $_POST['role'];
+
+                    $editUser->update();
+
+                    $this->setMsg("success", "Utilisateur modifié avec succès !");
+
+                    header('Location: /user/index');
+                } else if ($checkEmail == 1) {
+                    $this->setMsg("error", "Cet email est déjà utilisé par un autre utilisateur !");
+                    $this->view('user/edit');
+                }
+            } else if ($checkUser == 1) {
+                $this->setMsg("error", "Ce nom d'utilisateur existe déjà !");
+                $this->view('user/edit');
+            }
         } else {
             $this->view('user/edit', ["editUser" => $editUser]);
         }

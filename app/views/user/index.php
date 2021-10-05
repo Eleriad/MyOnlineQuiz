@@ -1,9 +1,5 @@
 <?php
 /* // TODO :
-    - afficher tous les utilisateurs <=> vérifier pourquoi la table ne prend pas toute la place...
-    - créer un utilisateur
-    - modifier un utilisateur
-    - supprimer un utilisateur
     (- obtenir les thématiques des quiz et les niveaux) - plus tard
     - obtenir les dates de connexion (pour voir son activité)
     - bannir un utilisateur (bloque son ip pendant x temps)
@@ -13,8 +9,11 @@
     <h1>Page d'accueil de gestion des utilisateurs</h1>
 </div>
 
-<div class="container-fluid p-4 mt-4">
-    <table class="table w-100 userTable">
+<?php
+$this->displayMsg();
+?>
+<div class="container-fluid userContainer p-4 mt-4">
+    <table class="table userTable">
         <thead>
             <tr>
                 <th>id</th>
