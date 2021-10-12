@@ -1,0 +1,53 @@
+.registerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  .formDiv {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+  }
+}
+
+.registerForm {
+  width: 500px;
+  height: auto;
+  padding: 50px 10px;
+  border-radius: $colRadius;
+  background-color: $leather;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: center;
+  box-shadow: 7px 7px 4px 0px $deepOakRbga;
+  -webkit-box-shadow: 7px 7px 4px 0px $deepOakRbga;
+  -moz-box-shadow: 7px 7px 4px 0px $deepOakRbga;
+
+  h4 {
+    margin-bottom: 20px;
+  }
+
+  .registerBtn {
+    background-color: $leather;
+    border: 1px solid $deepOak;
+    border-width: 3px;
+    color: $deepOak;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 50px;
+    opacity: 0.5;
+
+    &:hover {
+      color: $astronaut;
+      background-color: $white;
+      border: 3px solid $astronaut;
+      font-size: 1.1em;
+      opacity: 1;
+    }
+  }
+}

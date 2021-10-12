@@ -1,0 +1,57 @@
+@mixin btnHover {
+  color: $tango;
+  font-size: 1.1em;
+}
+
+@mixin titles {
+  color: $leather;
+  font-family: "TitleFont";
+  font-size: 4em;
+  text-shadow: 2px 2px 4px $deepOak;
+}
+
+@mixin generalBtn {
+  border-width: 3px;
+  color: $white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 10px 30px;
+  border-radius: 50px;
+  border: 1px solid transparent;
+
+  &:hover {
+    font-size: 1.2em;
+    color: $white;
+    resize: both;
+  }
+}
+
+@mixin tableBtn {
+  border-width: 3px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 5px 15px;
+  border-radius: 50px;
+
+  &:hover {
+    font-size: 1.1em;
+    resize: both;
+  }
+}
+
+@mixin quizBtn {
+  font-size: 1.2rem;
+  display: flex;
+  width: 350px;
+  height: 100px;
+  align-items: center;
+  border: 1px solid $deepOak;
+  background-color: $deepOak;
+  color: $white;
+  margin: 15px;
+  padding: 15px 10px;
+  border-radius: 10px;
+  box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+}

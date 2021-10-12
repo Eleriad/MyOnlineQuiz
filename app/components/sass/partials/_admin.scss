@@ -1,0 +1,139 @@
+// Administrator main page's design
+.adminContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  h1 {
+    @include titles();
+  }
+
+  .row {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 30px 0px 100px 0px;
+  }
+
+  .col-3 {
+    display: flex;
+    justify-content: center;
+
+    .card {
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+      border-top-right-radius: 25px;
+      border-bottom-right-radius: 25px;
+      padding: 10px 5px;
+      box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+      -webkit-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+      -moz-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+
+      i {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        color: $white;
+      }
+
+      .card-body {
+        margin-top: 15px;
+      }
+
+      .adminBtn {
+        border-color: $white;
+        background-color: transparent;
+        border-width: 3px;
+        color: $white;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        opacity: 0.5;
+        padding: 10px 30px;
+        border: 1px solid;
+        border-radius: 50px;
+
+        &:hover {
+          font-size: 1.1em;
+          opacity: 1;
+        }
+      }
+    }
+
+    .categoryCard {
+      background-color: $leather;
+    }
+
+    .levelCard {
+      background-color: #8b6c42;
+    }
+
+    .questionCard {
+      background-color: #856d4d;
+    }
+
+    .usersCard {
+      background-color: #b67823;
+    }
+  }
+}
+
+.createBtn {
+  border-color: $christi;
+  background-color: $christi;
+  @include generalBtn();
+}
+
+.modifyBtn {
+  border-color: $sunglow;
+  background-color: $sunglow;
+  color: $deepOak;
+  @include tableBtn();
+  &:hover {
+    color: $deepOak;
+  }
+}
+
+.deleteBtn {
+  border-color: $tuscany;
+  background-color: $tuscany;
+  color: $white;
+  @include tableBtn();
+  &:hover {
+    color: $white;
+  }
+}
+
+.returnBtn {
+  border-color: $deepOak;
+  background-color: $deepOak;
+  @include generalBtn();
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.btnDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+#DataTables_Table_0_wrapper {
+  margin: 5px 25px;
+}
+
+.tableQuestionBody {
+  font-size: small;
+}
+
+.userContainer {
+  justify-content: center;
+}
+
+.userTable {
+  width: 80% !important;
+}

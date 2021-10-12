@@ -1,0 +1,157 @@
+// Home container
+.homeContainer {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+// Main div for registering or connecting
+.connectDiv {
+  display: flex;
+  flex-direction: row;
+  margin-top: 70px;
+  height: 80vh;
+  padding: 0 !important;
+  width: 80vw;
+  box-shadow: 7px 7px 4px 0px $deepOakRbga;
+  -webkit-box-shadow: 7px 7px 4px 0px $deepOakRbga;
+  -moz-box-shadow: 7px 7px 4px 0px $deepOakRbga;
+  border-top-left-radius: $colRadius;
+  border-bottom-left-radius: $colRadius;
+  border-top-right-radius: $colRadius;
+  border-bottom-right-radius: $colRadius;
+
+  .accountBtn {
+    padding: 10px 50px;
+    border: 1px solid;
+    border-radius: 50px;
+  }
+}
+
+// Left Column
+.leftCol {
+  align-items: center;
+  background-color: $deepOak;
+  background-image: url($homePicture);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  vertical-align: center;
+  border-top-left-radius: $colRadius;
+  border-bottom-left-radius: $colRadius;
+
+  .registerBtn {
+    border-color: $sunglow;
+    border-width: 3px;
+    color: $sunglow;
+    font-weight: bold;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: $tango;
+      margin-top: 10px;
+      @include btnHover();
+    }
+  }
+
+  .logo {
+    margin-bottom: 30px;
+    width: 25%;
+  }
+}
+
+// Right Column
+.rightCol {
+  border-top-right-radius: $colRadius;
+  border-bottom-right-radius: $colRadius;
+  align-items: center;
+  background-color: $leather;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 !important;
+  vertical-align: center;
+
+  h1 {
+    margin-bottom: 30px;
+    color: $white;
+    font-family: "TitleFont";
+    font-size: 4em;
+  }
+
+  .accountForm {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: center;
+    width: 100%;
+
+    .inputRow {
+      position: relative;
+      width: 100%;
+
+      i {
+        position: absolute;
+        right: 25px;
+        top: 23px;
+        color: $white;
+        opacity: 0.5;
+        font-size: 1.5em;
+      }
+    }
+
+    .accountInput {
+      background-color: $mongoose;
+      border: 0;
+      border-bottom: 1px solid $sapling;
+      border-top: 1px solid $sapling;
+      color: $white;
+      font-weight: bold;
+      height: 70px !important;
+      margin-bottom: 20px;
+      padding: 0 30px;
+      width: 100%;
+    }
+
+    .formButtons {
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      vertical-align: center;
+
+      .forgottenPwd {
+        color: $sunglow;
+        font-weight: bold;
+        margin-right: 20px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          @include btnHover();
+        }
+      }
+
+      .connexionBtn {
+        border-color: $white;
+        background-color: transparent;
+        border-width: 3px;
+        color: $white;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        opacity: 0.5;
+
+        &:hover {
+          font-size: 1.1em;
+          opacity: 1;
+          color: $astronaut;
+          border-color: $astronaut;
+        }
+      }
+    }
+  }
+}
