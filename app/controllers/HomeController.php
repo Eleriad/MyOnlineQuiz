@@ -8,11 +8,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // DESTROYING SESSION IF EXISTS
-        if (isset($_SESSION)) {
-            header('Location: /public/index');
-        }
-
         // PAGE AND VIEWS
         $pageId = 1;
         $title = "Page de connexion";
@@ -38,6 +33,18 @@ class HomeController extends Controller
         } else {
             $this->view('home/index', ["title" => $title]);
         }
-        $this->view('home/index', ["title" => $title]);
+
+        // CHECKING IF SESSION EXISTS
+        if (isset($_SESSION) && isset($_SESSION["user_id"])) {
+            header('Location: /public/index');
+        } else {
+            $this->view('home/index', ["title" => $title]);
+        }
+    }
+
+    public function disconnection()
+    {
+        $this->disconnect();
+        header('Location: /home/index');
     }
 }
