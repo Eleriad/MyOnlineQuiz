@@ -10,7 +10,7 @@ class HomeController extends Controller
     {
         // DESTROYING SESSION IF EXISTS
         if (isset($_SESSION)) {
-            $this->disconnect();
+            header('Location: /public/index');
         }
 
         // PAGE AND VIEWS
