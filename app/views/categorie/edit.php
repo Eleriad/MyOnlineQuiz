@@ -3,7 +3,7 @@
 </header>
 
 <div class="container text-center mt-4">
-    <form action="" id="form4" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label>Nom de la catégorie :
                 <input type="text" name="categorieName" class="form-control" value="<?= $data["catégorie"]->name ?>">
@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label for="categoriePicture"><img
-                        src="/app/components/img/categorie_picture/<?= $data["catégorie"]->categorie_picture ?>"
+                        src="/app/components/img/categorie_pictures/<?= $data["catégorie"]->categorie_picture ?>"
                         width="100px" height="100px"></label>
                 <input type="file" name="categoriePicture">
             </div>

@@ -1,6 +1,10 @@
 <div class="adminContainer">
     <h1>Page d'accueil des catégories</h1>
 
+    <?php
+    $this->displayMsg();
+    ?>
+
     <table class="table categorieTable">
         <thead>
             <tr>
@@ -14,7 +18,7 @@
         <tbody>
             <?php foreach ($data['categories'] as $categories) : ?>
             <tr>
-                <td><img src="/app/components/img/categorie_picture/<?= $categories->categorie_picture ?>" width="50px"
+                <td><img src="/app/components/img/categorie_pictures/<?= $categories->categorie_picture ?>" width="50px"
                         height="50px"></td>
                 <td><?= $categories->name ?></td>
                 <td><?= $categories->description ?></td>

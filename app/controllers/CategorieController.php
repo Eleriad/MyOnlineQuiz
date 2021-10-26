@@ -26,11 +26,17 @@ class CategorieController extends Controller
             $picture = $this->checkPictureValidity($_FILES["categoriePicture"], 2000000);
 
             if (is_int($picture)) {
-                $error = $this->errorMessage($picture);
+                if ($picture == 1) {
+                    $error = $this->errorMessage(1);
+                } else if ($picture = 2) {
+                    $error = $this->errorMessage(2);
+                } else if ($picture = 3) {
+                    $error = $this->errorMessage($_FILES["categoriePicture"]["error"]);
+                }
                 $this->setMsg("error", $error);
-                $this->view('categorie/create', ["error" => $error]);
+                $this->view('categorie/create');
             } else {
-                // CHECKING CATEGORY
+                // CHECKING IF CATEGORY ALREADY EXISTS IN BD
                 $checkCategorie = $this->model('Categorie')->getCategoryByName($_POST["newCategory"]);
 
                 if ($checkCategorie == false) {
@@ -50,7 +56,7 @@ class CategorieController extends Controller
                     // REDIRECTION
                     header('Location: /categorie/index');
                 } else {
-                    $this->setMsg("error", "Cette catégories existe déjà dans la Base de Données !");
+                    $this->setMsg("error", "Cette catégorie existe déjà dans la base de données !");
                     $this->view('categorie/create');
                 }
             }
@@ -63,11 +69,13 @@ class CategorieController extends Controller
     {
         $categorie = $this->model('Categorie')->getCategorieById($idCategorie);
 
-        // TODO : faire comme pour le mot de passe : on garde la même image si la case reste vide et on modifie si besoin
-        // TODO : vérifier si le nom de l'image correspond à un nom déjà existant ou pas afin de ne pas redemander à chaque fois la même image...
+        // TODO : Si on a une erreur dans le $_FILEs (par ex. 4, pas d'image) : on conserve l'image en cours
         // TODO : vérifier pour remplacer l'image par une autre tout en conservant le même nom !
 
         if (isset($_POST['updateCategorie'])) {
+            var_dump($_POST);
+            var_dump($_FILES);
+            die;
 
             // $picture = $_FILES["categoriePicture"];
             // var_dump($_POST);
@@ -91,10 +99,11 @@ class CategorieController extends Controller
         $categorie = $this->model('Categorie')->getCategorieById($idCategorie);
 
         if (isset($_POST['deleteCategorie'])) {
+            $cwd = getcwd(); // CHECK : vérifier le chemin une fois en production !!!
+            $cwd = str_replace("\\", "/", $cwd);
+            $unlink = unlink($cwd . '/app/components/img/categorie_pictures/' . $categorie->categorie_picture);
             $categorie->delete();
-
-            // TODO : aller supprimer la photo correspondanete dans le dossier components/img/categorie_picture
-
+            $this->setMsg("success", "L'image et la catégorie ont bien été supprimées !");
             header('Location: /categorie/index');
         } else {
             $this->view('categorie/delete', ["title" => "Page de connexion", "catégorie" => $categorie]);

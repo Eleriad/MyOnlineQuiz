@@ -12,10 +12,7 @@
 
 <body>
     <?php
-    var_dump($_SESSION);
-    print_r($_SESSION);
-
-    isset($data["title"]) ? $data["title"] = $data["title"] : $data["title"] = "titre à voir"; // TODO : ligne à supprimer une fois tous les titres mis en forme
+    isset($data["title"]) ? $data["title"] = $data["title"] : $data["title"] = "titre à voir";
     if ($data["title"] != "Page de connexion" && $data["title"] != "Page d'inscription") :
     ?>
     <header>
@@ -26,7 +23,6 @@
             </div>
             <div class="col col-lg-auto">
                 <?php echo isset($_SESSION["role"]) && $_SESSION["role"] === "admin" ? $admBtn : ""
-                    // TODO : vérifier pourquoi la session saute à intervalle régulier ! 
                     ?>
                 <a href="/public/categories" class="btn btn-sm headerBtn"><i class="far fa-list-alt mr-2"></i>Découvrir
                     les catégories</a>

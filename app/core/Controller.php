@@ -106,7 +106,7 @@ abstract class Controller
         return str_replace($search, $replace, $data);
     }
 
-    protected function checkPictureValidity($data, $size)
+    protected function checkPictureValidity($data, $sizeMax)
     {
         // CHECKING which $_FILES is set
         isset($_FILES["categoriePicture"]) ? $_FILES["categoriePicture"] = $_FILES["categoriePicture"] : $_FILES["categoriePicture"] = null;
@@ -133,7 +133,7 @@ abstract class Controller
         $post = explode('.', $post);
 
         if ($error != 0) {
-            $result = $this->errorMessage($error);
+            $result = 3;
             return $result;
         } else {
             // Exploding the name to distinguish name and extension
@@ -146,7 +146,7 @@ abstract class Controller
             if (in_array($extension, $authorizedExtensions)) {
 
                 // Maximum size for a category picture limited to 2 Mo
-                $maxSize = $size;
+                $maxSize = $sizeMax;
 
                 if ($size <= $maxSize) {
                     // using category name to create the categorie picture's name 
@@ -295,4 +295,4 @@ abstract class Controller
     }
 }
 
-// TODO Prévoir une fonction qui va vérifier tout ce qui est envoyé et assainir les strings ou array envoyés par méthode POST
+// TODO Prévoir une fonction qui va vérifier tout ce qui est envoyé et assainir les strings ou array envoyés par méthode POST ; cf. function IGestPro ou Biblio
