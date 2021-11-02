@@ -26,13 +26,7 @@ class CategorieController extends Controller
             $picture = $this->checkPictureValidity($_FILES["categoriePicture"], 2000000);
 
             if (is_int($picture)) {
-                if ($picture == 1) {
-                    $error = $this->errorMessage(1);
-                } else if ($picture = 2) {
-                    $error = $this->errorMessage(2);
-                } else if ($picture = 3) {
-                    $error = $this->errorMessage($_FILES["categoriePicture"]["error"]);
-                }
+                $error = $this->checkErrorMsg($picture, $_FILES["categoriePicture"]["error"]);
                 $this->setMsg("error", $error);
                 $this->view('categorie/create');
             } else {
@@ -69,39 +63,48 @@ class CategorieController extends Controller
     {
         $categorie = $this->model('Categorie')->getCategorieById($idCategorie);
 
-        // TODO : Si on a une erreur dans le $_FILEs (par ex. 4, pas d'image) : on conserve l'image en cours
-        // TODO : vérifier pour remplacer l'image par une autre tout en conservant le même nom !
-
         if (isset($_POST['updateCategorie'])) {
-            var_dump($_POST);
-            var_dump($_FILES);
-            die;
+            if (empty($_FILES) || $_FILES["editCategoriePicture"]["error"] == 4) {
+                $categorie->categorie_picture = $categorie->categorie_picture;
+            } else {
+                $tmpName = $_FILES["editCategoriePicture"]["tmp_name"];
 
-            // $picture = $_FILES["categoriePicture"];
-            // var_dump($_POST);
-            // var_dump($picture["error"]);
-            // if ($picture["error"] == 4) {
-            // }
-            // die;
+                // CHECK PICTURE'S VALIDITY
+                $picture = $this->checkPictureValidity($_FILES["editCategoriePicture"], 2000000);
 
+                if (is_int($picture)) {
+                    $error = $this->checkErrorMsg($picture, $_FILES["editCategoriePicture"]["error"]);
+                    $this->setMsg("error", $error);
+                    $this->view('categorie/edit');
+                } else {
+                    // DELETING FORMER PICTURE
+                    $this->unlinkPicture($categorie->categorie_picture);
+                    // PICTURE MOVING
+                    move_uploaded_file($tmpName, "./app/components/img/categorie_pictures/$picture");
+                }
+            }
+            $picture != null ? $categorie->categorie_picture = $picture : $categorie->categorie_picture = $categorie->categorie_picture;
             $categorie->name = $_POST['categorieName'];
             $categorie->description = $_POST['description'];
             $categorie->infos = $_POST['infos'];
             $categorie->update();
+            $this->setMsg("success", "L'image et/ou la catégorie ont bien été modifiées !");
             header('Location: /categorie/index');
         } else {
             $this->view('categorie/edit', ["title" => "Page de connexion", "catégorie" => $categorie]);
         }
     }
 
+    /**
+     * Function that check if delete button is pressed and, if so, unlink the linked picture and delete the category
+     * @param int $idCategorie <=> id of the category to delete
+     */
     public function delete($idCategorie)
     {
         $categorie = $this->model('Categorie')->getCategorieById($idCategorie);
 
         if (isset($_POST['deleteCategorie'])) {
-            $cwd = getcwd(); // CHECK : vérifier le chemin une fois en production !!!
-            $cwd = str_replace("\\", "/", $cwd);
-            $unlink = unlink($cwd . '/app/components/img/categorie_pictures/' . $categorie->categorie_picture);
+            $this->unlinkPicture($categorie->categorie_picture);
             $categorie->delete();
             $this->setMsg("success", "L'image et la catégorie ont bien été supprimées !");
             header('Location: /categorie/index');

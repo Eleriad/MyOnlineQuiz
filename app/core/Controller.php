@@ -123,6 +123,8 @@ abstract class Controller
         // SETTING $post
         if ($data == $_FILES["categoriePicture"]) {
             $post = $_POST["newCategory"];
+        } else if ($data == $_FILES["editCategoriePicture"]) {
+            $post = $_POST["categorieName"];
         } else if ($data == $_FILES["questionPicture"]) {
             $post = $_FILES["questionPicture"]["name"];
         } else if ($data == $_FILES["feedbackPicture"]) {
@@ -167,6 +169,18 @@ abstract class Controller
         }
     }
 
+    protected function checkErrorMsg($picture, $fileError)
+    {
+        if ($picture == 1) {
+            $error = $this->errorMessage(1);
+        } else if ($picture = 2) {
+            $error = $this->errorMessage(2);
+        } else if ($picture = 3) {
+            $error = $this->errorMessage($fileError);
+        }
+        return $error;
+    }
+
     protected function errorMessage($error)
     {
         switch ($error) {
@@ -192,6 +206,13 @@ abstract class Controller
                 return "Une extension de PHP a arrêté l'envoi de fichier !";
                 break;
         }
+    }
+
+    protected function unlinkPicture($path)
+    {
+        $cwd = getcwd(); // TODO : vérifier le chemin une fois en production !!!
+        $cwd = str_replace("\\", "/", $cwd);
+        $unlink = unlink($cwd . '/app/components/img/categorie_pictures/' . $path);
     }
 
     /******* QUIZ *******/

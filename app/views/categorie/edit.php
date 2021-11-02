@@ -1,3 +1,8 @@
+<?php
+var_dump($data);
+$this->displayMsg();
+?>
+
 <header>
     <h1>Modifier une catégorie</h1>
 </header>
@@ -19,11 +24,15 @@
                 <textarea name="infos" cols="30" rows="10"><?= $data["catégorie"]->infos ?></textarea>
             </div>
 
-            <div class="form-group">
-                <label for="categoriePicture"><img
-                        src="/app/components/img/categorie_pictures/<?= $data["catégorie"]->categorie_picture ?>"
-                        width="100px" height="100px"></label>
-                <input type="file" name="categoriePicture">
+            <div>
+                <p> Vous souhaitez modifier l'image de cette catégorie ? <a class="btn brn-small btn-info "
+                        id="changePicture">Cliquez ici !</a>
+                </p>
+            </div>
+
+            <div class="form-group" id="pictureDiv">
+                <label for="editCategoriePicture"></label>
+                <input type="file" id="editCategoriePicture" name="editCategoriePicture">
             </div>
 
             <div class="text-center mt-3">
@@ -35,3 +44,16 @@
         </div>
     </form>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#pictureDiv').hide();
+    $("#categoriePicture").prop('disabled', true);
+
+    $(document).on("click", "#changePicture", function(e) {
+        $("#pictureDiv").toggle("hide");
+        $("#categoriePicture").is(':disabled') == true ? $("#categoriePicture").prop('disabled',
+            false) : $("#categoriePicture").prop('disabled', true);
+    });
+});
+</script>
