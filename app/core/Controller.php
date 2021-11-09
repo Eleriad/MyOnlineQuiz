@@ -99,9 +99,8 @@ abstract class Controller
     /******* PICTURES *******/
     protected function characterReplace($data)
     {
-        // TODO : revoir toutes les majuscules !!!
-        $search  = array('à', 'ä', 'â', 'é', 'É', 'è', 'ê', 'ë', 'î', 'ï', 'ô', 'ö', 'ù', 'û', 'ü', ' '); // checked characters
-        $replace = array('a', 'a', 'a', 'e', 'e', 'e', 'e', 'e', 'i', 'i', 'o', 'o', 'u', 'u', 'u', '_'); // replacement's characters
+        $search  = array('à', 'À', 'á', 'Á', 'ä', 'Ä', 'â', 'Â', 'é', 'É', 'è', 'È', 'ê', 'Ê', 'ë', 'Ë', 'î', 'Î', 'ï', 'Ï', 'ô', 'Ô', 'ö', 'Ö', 'ù', 'Ù', 'û', 'Û', 'ü', 'Ü', ' '); // checked characters
+        $replace = array('a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'u', 'u', '_'); // replacement's characters
 
         return str_replace($search, $replace, $data);
     }

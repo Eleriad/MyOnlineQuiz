@@ -162,17 +162,6 @@ class Question extends Database
         return $result;
     }
 
-    public function getCategorieName($idCategorie)
-    {
-        $sql = "SELECT name FROM categories WHERE id_categorie = $idCategorie";
-        $stmt = self::$_connection->prepare($sql);
-        $stmt->bindParam('id_categorie', $idCategorie, PDO::PARAM_INT);
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
-        $result = $stmt->fetch();
-        return $result;
-    }
-
     public function getQuestionById($idQuestion)
     {
         $sql = "SELECT * FROM questions AS q 
