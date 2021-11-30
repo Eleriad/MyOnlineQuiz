@@ -5,12 +5,13 @@
             <p>J'ai imaginé ce quiz lorsque j'étais étudiant. Passionné de quiz et curieux de tout, cette méthode me
                 permettait de réviser tout en m'amusant. Originellement, j'avais créé des "cartes" de questions sur le
                 modèle d'un jeu de quiz très connu où il faut compléter un célèbre fromage français. Durant mes années
-                universitaires, j'ai laissé un peu de côté ce jeu, m'inmpliquant dans mes études jusqu'à l'obtention de
+                universitaires, j'ai laissé un peu de côté ce jeu, m'impliquant dans mes études jusqu'à l'obtention de
                 mon
                 doctorat. </p>
             <p>
                 Titulaire à la fois d'un doctorat en égyptologie et d'un diplôme de Concepteur Développeur
-                d'Applications depuis peu, j'ai pris plaisir à mettre à jour ce jeu en version numérique. Il se veut
+                d'Applications (depuis peupour ce dernier), j'ai pris plaisir à mettre à jour ce jeu en version
+                numérique. Il se veut
                 être une méthode ludique de découverte de l'Égypte ancienne. J'ai eu grand plaisir à travailler aux
                 côtés de Jkail et de Sokou lors de "coding sessions" endiablées et vous pourrez apprécier la qualité du
                 logo et des images thématiques dessinées par ... ! Bravo et surtout merci à eux pour leur aide et la

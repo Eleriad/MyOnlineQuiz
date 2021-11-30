@@ -26,7 +26,16 @@ TODO :
 
       - mettre des required pour tous les input une fois les vérif en JS et PHP effectuées !
 
-Pour la version suivante :
+- Vérifier les bouttons de la page public/index.php
+
+A AJOUTER :
+
+- PREVOIR des photos pour les questions (si il y en a, on lui prévoit une place où s'afficher);
+- PREVOIR une place pour une photo dans les feedbacks ainsi qu'un lien pour en savoir plus !
+
+- PREVOIR un bouton qui permette de nettoyer la base de données photos en php (vérification des images utilisées sur le site et comapraison avec la BDD afin de voir les images non utilisées et les supprimer le cas échéant).
+
+Pour la version suivante (V2) :
 
 - Pour les niveaux, prévoir une page pour l'administrateur afin de donner un poids à chaque niveau de difficulté ;
   l'administrateur peut ajouter pleins de niveaux et les classer les uns par rapports aux autres ;
@@ -35,18 +44,7 @@ Pour la version suivante :
 
 - Sur la page d'index de quiz : prévoir un bouton "sélectionner toutes les catégories" ;
 
-A AJOUTER :
-
-- PREVOIR des photos pour les questions (si il y en a, on lui prévoit une place où s'afficher);
-- PREVOIR une place pour une photo dans les feedbacks ainsi qu'un lien pour en savoir plus !
-
 - "question x/y" avec barre de progression ;
-
-QUESTION D'AMELIORATION :
-
-- Ajouter une colonne "nombre de questions" dans la table catégories pour compter le nombre de questions associé à chaque catégorie ?
-- Si oui, il faut qu'à chaque ajout de question, cela incrémente ce nombre.
-- Type de question : vrai-faux avec une colonne dans la table Questions (is_true_false et booléen pour valider)
 
 CREDITS :
 

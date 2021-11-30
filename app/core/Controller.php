@@ -99,14 +99,13 @@ abstract class Controller
     /******* PICTURES *******/
     protected function characterReplace($data)
     {
-        // TODO : revoir toutes les majuscules !!!
-        $search  = array('à', 'ä', 'â', 'é', 'É', 'è', 'ê', 'ë', 'î', 'ï', 'ô', 'ö', 'ù', 'û', 'ü', ' '); // checked characters
-        $replace = array('a', 'a', 'a', 'e', 'e', 'e', 'e', 'e', 'i', 'i', 'o', 'o', 'u', 'u', 'u', '_'); // replacement's characters
+        $search  = array('à', 'À', 'á', 'Á', 'ä', 'Ä', 'â', 'Â', 'é', 'É', 'è', 'È', 'ê', 'Ê', 'ë', 'Ë', 'î', 'Î', 'ï', 'Ï', 'ô', 'Ô', 'ö', 'Ö', 'ù', 'Ù', 'û', 'Û', 'ü', 'Ü', ' '); // checked characters
+        $replace = array('a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'i', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'u', 'u', 'u', '_'); // replacement's characters
 
         return str_replace($search, $replace, $data);
     }
 
-    protected function checkPictureValidity($data, $size)
+    protected function checkPictureValidity($data, $sizeMax)
     {
         // CHECKING which $_FILES is set
         isset($_FILES["categoriePicture"]) ? $_FILES["categoriePicture"] = $_FILES["categoriePicture"] : $_FILES["categoriePicture"] = null;
@@ -123,6 +122,8 @@ abstract class Controller
         // SETTING $post
         if ($data == $_FILES["categoriePicture"]) {
             $post = $_POST["newCategory"];
+        } else if ($data == $_FILES["editCategoriePicture"]) {
+            $post = $_POST["categorieName"];
         } else if ($data == $_FILES["questionPicture"]) {
             $post = $_FILES["questionPicture"]["name"];
         } else if ($data == $_FILES["feedbackPicture"]) {
@@ -133,7 +134,7 @@ abstract class Controller
         $post = explode('.', $post);
 
         if ($error != 0) {
-            $result = $this->errorMessage($error);
+            $result = 3;
             return $result;
         } else {
             // Exploding the name to distinguish name and extension
@@ -146,7 +147,7 @@ abstract class Controller
             if (in_array($extension, $authorizedExtensions)) {
 
                 // Maximum size for a category picture limited to 2 Mo
-                $maxSize = $size;
+                $maxSize = $sizeMax;
 
                 if ($size <= $maxSize) {
                     // using category name to create the categorie picture's name 
@@ -165,6 +166,18 @@ abstract class Controller
                 return 2;
             }
         }
+    }
+
+    protected function checkErrorMsg($picture, $fileError)
+    {
+        if ($picture == 1) {
+            $error = $this->errorMessage(1);
+        } else if ($picture = 2) {
+            $error = $this->errorMessage(2);
+        } else if ($picture = 3) {
+            $error = $this->errorMessage($fileError);
+        }
+        return $error;
     }
 
     protected function errorMessage($error)
@@ -192,6 +205,13 @@ abstract class Controller
                 return "Une extension de PHP a arrêté l'envoi de fichier !";
                 break;
         }
+    }
+
+    protected function unlinkPicture($path)
+    {
+        $cwd = getcwd(); // TODO : vérifier le chemin une fois en production !!!
+        $cwd = str_replace("\\", "/", $cwd);
+        $unlink = unlink($cwd . '/app/components/img/categorie_pictures/' . $path);
     }
 
     /******* QUIZ *******/
@@ -295,4 +315,4 @@ abstract class Controller
     }
 }
 
-// TODO Prévoir une fonction qui va vérifier tout ce qui est envoyé et assainir les strings ou array envoyés par méthode POST
+// TODO Prévoir une fonction qui va vérifier tout ce qui est envoyé et assainir les strings ou array envoyés par méthode POST ; cf. function IGestPro ou Biblio

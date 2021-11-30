@@ -1,9 +1,10 @@
-<div class="container my-4 p-3">
+<div class="container-fluid quizIndexContainer">
 
     <?php if (isset($data["erreur"])) : ?>
     <div class="alert alert-danger my-3" id="divAlert" role="alert"><?= $data["erreur"]; ?></div>
     <?php endif; ?>
 
+    <h1>Sur quoi voulez-vous être testé ?</h1>
     <!-- TODO : Quiz aléatoire -->
 
     <!-- Formulaire de création du quiz -->

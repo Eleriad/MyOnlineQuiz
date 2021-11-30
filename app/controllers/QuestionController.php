@@ -1,5 +1,6 @@
 <?php
 
+// TODO : ajouter la case 'lien" pour chaque question avec, si le lien existe, un pett "en savoir plus" qui ouvre la page du lien dans un nouvel onglet.
 class QuestionController extends Controller
 {
     /**
@@ -38,6 +39,7 @@ class QuestionController extends Controller
                 $feedbackPicture = $this->checkPictureValidity($_FILES["feedbackPicture"], 2000000);
 
                 if (is_int($questionPicture)) {
+                    // TODO : vérifier pour faire comme dans les catégories !
                     $error = $this->errorMessage($questionPicture);
                     $this->setMsg("error", $error);
                     $this->view('categorie/create', ["error" => $error]);

@@ -11,7 +11,7 @@ class Database
             $host = "localhost";
             $dbname = "myonlinequiz";
             $user = "root";
-            $password = "root";
+            $password = "";
 
             try {
                 self::$_connection = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);

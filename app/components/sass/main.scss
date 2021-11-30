@@ -7,11 +7,13 @@
 @import "partials/public";
 @import "partials/quiz";
 @import "partials/result";
+@import url("https://fonts.googleapis.com/css2?family=Aref+Ruqaa&display=swap");
 
-@font-face {
-  font-family: "TitleFont";
-  src: url("/app/components/font/Filmcryptic.ttf") format("truetype");
-}
+// @font-face {
+//   font-family: "Aref Ruqaa";
+//   src: url("https://fonts.googleapis.com/css2?family=Aref+Ruqaa&display=swap")
+//     format("truetype");
+// }
 
 body,
 html,

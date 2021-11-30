@@ -3,11 +3,12 @@ header {
   background-color: $leather;
   padding: 10px 0;
   display: flex;
+  height: $headerHeight;
   justify-content: center;
 
   h1 {
     color: $white !important;
-    font-family: "TitleFont";
+    font-family: "Aref Ruqaa";
     font-size: 4em;
   }
 

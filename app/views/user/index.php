@@ -1,7 +1,7 @@
 <?php
 /* // TODO :
     (- obtenir les thématiques des quiz et les niveaux) - plus tard
-    - obtenir les dates de connexion (pour voir son activité)
+    - obtenir les dates de connexion (pour voir son activité) - notamment sa date de dernière activité afin de supprimer un utilisateur qui n'est pas venu pendant longtemps ?
     - bannir un utilisateur (bloque son ip pendant x temps)
     */
 ?>

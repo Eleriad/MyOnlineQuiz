@@ -3,9 +3,9 @@
     $currentQuestion = $_SESSION["currentQuestion"];
     $categorieName = "";
 
-    foreach ($data["categorieName"] as $test) {
-        $test2 = implode($test);
-        $categorieName .= $test2 . ", ";
+    foreach ($data["categorieName"] as $name) {
+        $finalName = implode($name);
+        $categorieName .= $finalName . ", ";
     }
 
     $categorieName = rtrim($categorieName, ", ");
@@ -39,7 +39,7 @@
 
                 <!-- TODO : mettre en forme les données en haut du quiz + l'affichage des choix de réponse -->
                 <div class="quizTitle text-center">
-                    <p>Quizz <i><?= $categorieName ?></i>, niveau <i><?= $data["levelName"]["level"] ?></i><br>
+                    <p>Quizz : <i><?= $categorieName ?></i> - niveau <i><?= $data["levelName"]["level"] ?></i><br>
                     <p class="subTitle">
                         <?php
                             echo $questionInt == $_SESSION["questionNb"] ? "Dernière question" : 'Question <strong>' . $questionInt . '</strong> sur <strong>' . $_SESSION["questionNb"] . '</strong>';

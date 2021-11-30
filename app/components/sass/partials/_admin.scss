@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - $headerHeight);
 
   h1 {
     @include titles();
@@ -136,4 +136,18 @@
 
 .userTable {
   width: 80% !important;
+}
+
+#changePicture {
+  border-width: 2px;
+  color: $white;
+  font-weight: bold;
+  padding: 5px 15px;
+  border-radius: 50px;
+  border: 1px solid transparent;
+  background-color: $leather;
+
+  &:hover {
+    background-color: $mongoose;
+  }
 }

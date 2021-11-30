@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Aref+Ruqaa&display=swap");
 .adminContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10,13 +11,14 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
+  height: calc(100vh - $headerHeight);
 }
 
 .adminContainer h1 {
   color: #9b805a;
-  font-family: "TitleFont";
+  font-family: "Aref Ruqaa", serif;
   font-size: 4em;
+  margin-top: 20px;
   text-shadow: 2px 2px 4px #41200d;
 }
 
@@ -219,6 +221,20 @@
   width: 80% !important;
 }
 
+#changePicture {
+  border-width: 2px;
+  color: white;
+  font-weight: bold;
+  padding: 5px 15px;
+  border-radius: 50px;
+  border: 1px solid transparent;
+  background-color: #9b805a;
+}
+
+#changePicture:hover {
+  background-color: #b99d76;
+}
+
 header {
   width: 100%;
   background-color: #9b805a;
@@ -226,6 +242,7 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 70px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -233,7 +250,7 @@ header {
 
 header h1 {
   color: white !important;
-  font-family: "TitleFont";
+  font-family: "Aref Ruqaa";
   font-size: 4em;
 }
 
@@ -381,7 +398,7 @@ header img {
 .rightCol h1 {
   margin-bottom: 30px;
   color: white;
-  font-family: "TitleFont";
+  font-family: "Aref Ruqaa";
   font-size: 4em;
 }
 
@@ -685,6 +702,21 @@ header img {
           justify-content: center;
 }
 
+.quizIndexContainer {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: calc(100vh - $headerHeight);
+  width: 100vw;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 .quizDiv {
   width: 100%;
   height: 100%;
@@ -702,6 +734,16 @@ header img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+#quizForm {
+  margin-top: 100px;
+  max-width: 650px;
+  background-color: #9b805a;
+  padding: 20px 30px;
+  border-radius: 25px;
+  -webkit-box-shadow: 0 15px 20px rgba(65, 32, 13, 0.5);
+          box-shadow: 0 15px 20px rgba(65, 32, 13, 0.5);
 }
 
 div[id^="questionDiv"] {
@@ -835,16 +877,18 @@ div[id^="questionDiv"] {
 }
 
 #initialCat {
-  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
 }
 
 .catLabel {
@@ -885,7 +929,7 @@ div[id^="questionDiv"] {
   border: 1px solid #ca6a32;
   font-size: 1.2em;
   padding: 5px;
-  font-family: "Titlefont";
+  font-family: "Aref Ruqaa";
 }
 
 .answerR {
@@ -933,11 +977,6 @@ div[id^="questionDiv"] {
   background-color: #5c9b15;
 }
 
-@font-face {
-  font-family: "TitleFont";
-  src: url("/app/components/font/Filmcryptic.ttf") format("truetype");
-}
-
 body,
 html,
 ::after {
@@ -964,8 +1003,9 @@ html,
 
 h1 {
   color: #9b805a;
-  font-family: "TitleFont";
+  font-family: "Aref Ruqaa", serif;
   font-size: 4em;
+  margin-top: 20px;
   text-shadow: 2px 2px 4px #41200d;
 }
 

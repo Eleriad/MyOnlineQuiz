@@ -23,12 +23,12 @@ $(document).ready(function () {
         var categories = $("#initialCat");
         var divHeight = categories.height() + 30;
         var questionSelect = $("#questionNbSelect");
-        !categories
-          ? ""
-          : questionSelect.attr(
-              "style",
-              "margin-top: " + divHeight + "px !important"
-            );
+        // !categories
+        //   ? ""
+        //   : questionSelect.attr(
+        //       "style",
+        //       "margin-top: " + divHeight + "px !important"
+        //     );
       },
       error: function (status, error) {
         console.log("échec : " + status + error);
@@ -52,7 +52,7 @@ $(document).ready(function () {
     for (var i = 0; i < array.length; i++) {
       let data = array[i][1];
 
-      var categorieLabel = `<label class="btn mx-1 catLabel" for="${data[0]}"><img src="/app/components/img/categorie_picture/${data[2]}" width="30px" height="30px"><input type="checkbox" id="${data[0]}" value="${data[0]}" name="categories[]" class="onChangeCategorie">${data[1]}</label>`;
+      var categorieLabel = `<label class="btn mx-1 catLabel" for="${data[0]}"><img src="/app/components/img/categorie_pictures/${data[2]}" width="30px" height="30px"><input type="checkbox" id="${data[0]}" value="${data[0]}" name="categories[]" class="onChangeCategorie">${data[1]}</label>`;
 
       $("#initialCat").append(categorieLabel);
     }
