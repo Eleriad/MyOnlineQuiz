@@ -23,12 +23,12 @@ $(document).ready(function () {
         var categories = $("#initialCat");
         var divHeight = categories.height() + 30;
         var questionSelect = $("#questionNbSelect");
-        !categories
-          ? ""
-          : questionSelect.attr(
-              "style",
-              "margin-top: " + divHeight + "px !important"
-            );
+        // !categories
+        //   ? ""
+        //   : questionSelect.attr(
+        //       "style",
+        //       "margin-top: " + divHeight + "px !important"
+        //     );
       },
       error: function (status, error) {
         console.log("échec : " + status + error);

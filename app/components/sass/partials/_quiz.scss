@@ -6,6 +6,14 @@
   justify-content: center;
 } 
 
+.quizIndexContainer {
+  align-items: center;
+  display: flex;
+  height: calc(100vh - $headerHeight);
+  width: 100vw;
+  flex-direction: column;
+}
+
 // Page QUIZ
 .quizDiv {
   width: 100%;
@@ -15,6 +23,15 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+#quizForm {
+  margin-top: 100px;
+  max-width: 650px;
+  background-color: $leather;
+  padding: 20px 30px;
+  border-radius: 25px;
+  box-shadow: 0 15px 20px rgba(65, 32, 13, 0.5);
 }
 
 div[id^="questionDiv"] {
@@ -113,10 +130,11 @@ div[id^="questionDiv"] {
 }
 
 #initialCat {
-  position: absolute;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .catLabel {

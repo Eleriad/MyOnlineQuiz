@@ -11,13 +11,14 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vh;
+  height: calc(100vh - $headerHeight);
 }
 
 .adminContainer h1 {
   color: #9b805a;
   font-family: "Aref Ruqaa", serif;
   font-size: 4em;
+  margin-top: 20px;
   text-shadow: 2px 2px 4px #41200d;
 }
 
@@ -241,6 +242,7 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 70px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -700,6 +702,21 @@ header img {
           justify-content: center;
 }
 
+.quizIndexContainer {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: calc(100vh - $headerHeight);
+  width: 100vw;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 .quizDiv {
   width: 100%;
   height: 100%;
@@ -717,6 +734,16 @@ header img {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+#quizForm {
+  margin-top: 100px;
+  max-width: 650px;
+  background-color: #9b805a;
+  padding: 20px 30px;
+  border-radius: 25px;
+  -webkit-box-shadow: 0 15px 20px rgba(65, 32, 13, 0.5);
+          box-shadow: 0 15px 20px rgba(65, 32, 13, 0.5);
 }
 
 div[id^="questionDiv"] {
@@ -850,16 +877,18 @@ div[id^="questionDiv"] {
 }
 
 #initialCat {
-  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: left;
-      -ms-flex-pack: left;
-          justify-content: left;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
 }
 
 .catLabel {
@@ -976,6 +1005,7 @@ h1 {
   color: #9b805a;
   font-family: "Aref Ruqaa", serif;
   font-size: 4em;
+  margin-top: 20px;
   text-shadow: 2px 2px 4px #41200d;
 }
 

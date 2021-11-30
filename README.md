@@ -26,6 +26,8 @@ TODO :
 
       - mettre des required pour tous les input une fois les vérif en JS et PHP effectuées !
 
+- Vérifier les bouttons de la page public/index.php
+
 A AJOUTER :
 
 - PREVOIR des photos pour les questions (si il y en a, on lui prévoit une place où s'afficher);

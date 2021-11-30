@@ -3,6 +3,7 @@ header {
   background-color: $leather;
   padding: 10px 0;
   display: flex;
+  height: $headerHeight;
   justify-content: center;
 
   h1 {
