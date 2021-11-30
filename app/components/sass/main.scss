@@ -7,11 +7,7 @@
 @import "partials/public";
 @import "partials/quiz";
 @import "partials/result";
-
-@font-face {
-  font-family: "TitleFont";
-  src: url("/app/components/font/Filmcryptic.ttf") format("truetype");
-}
+@import url("https://fonts.googleapis.com/css2?family=Aref+Ruqaa&display=swap");
 
 body,
 html,

@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Aref+Ruqaa&display=swap");
 .adminContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -15,7 +16,7 @@
 
 .adminContainer h1 {
   color: #9b805a;
-  font-family: "TitleFont";
+  font-family: "Aref Ruqaa", serif;
   font-size: 4em;
   text-shadow: 2px 2px 4px #41200d;
 }
@@ -247,7 +248,7 @@ header {
 
 header h1 {
   color: white !important;
-  font-family: "TitleFont";
+  font-family: "Aref Ruqaa";
   font-size: 4em;
 }
 
@@ -395,7 +396,7 @@ header img {
 .rightCol h1 {
   margin-bottom: 30px;
   color: white;
-  font-family: "TitleFont";
+  font-family: "Aref Ruqaa";
   font-size: 4em;
 }
 
@@ -899,7 +900,7 @@ div[id^="questionDiv"] {
   border: 1px solid #ca6a32;
   font-size: 1.2em;
   padding: 5px;
-  font-family: "Titlefont";
+  font-family: "Aref Ruqaa";
 }
 
 .answerR {
@@ -947,11 +948,6 @@ div[id^="questionDiv"] {
   background-color: #5c9b15;
 }
 
-@font-face {
-  font-family: "TitleFont";
-  src: url("/app/components/font/Filmcryptic.ttf") format("truetype");
-}
-
 body,
 html,
 ::after {
@@ -978,7 +974,7 @@ html,
 
 h1 {
   color: #9b805a;
-  font-family: "TitleFont";
+  font-family: "Aref Ruqaa", serif;
   font-size: 4em;
   text-shadow: 2px 2px 4px #41200d;
 }
