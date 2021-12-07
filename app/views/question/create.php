@@ -7,13 +7,15 @@
 
         <div class="mb-3">
             <p>Catégorie(s) :</p>
-            <?php foreach ($data['categories'] as $categories) : ?>
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="categories[]" id="categories"
-                    value="<?= $categories->id_categorie ?>">
-                <label for="categories" class="form-check-label"><?= $categories->name ?></label>
+            <div class="d-flex">
+                <?php foreach ($data['categories'] as $categories) : ?>
+                <div class="form-check mr-3">
+                    <input type="checkbox" class="form-check-input" name="categories[]" id="categories"
+                        value="<?= $categories->id_categorie ?>">
+                    <label for="categories" class="form-check-label"><?= $categories->name ?></label>
+                </div>
+                <?php endforeach ?>
             </div>
-            <?php endforeach ?>
         </div>
 
         <div class="form-group">
@@ -27,42 +29,47 @@
 
         <div class="form-group">
             <label for="question">Question :</label>
-            <input type="text" class="form-control" name="question" id="question">
+            <input type="text" class="form-control" name="question" id="question" placeholder="Question">
         </div>
 
         <div class="form-group">
-            <label for="questionPicture"></label>
+            <label for="questionPicture">Photo de la question :</label>
             <input type="file" name="questionPicture">
         </div>
 
         <div class="form-group">
             <label for="reponse">Bonne réponse :</label>
-            <input type="text" class="form-control" name="reponse" id="reponse">
+            <input type="text" class="form-control" name="reponse" id="reponse" placeholder="Bonne réponse">
         </div>
 
         <div class="form-group">
             <label for="facile">Réponse facile :</label>
-            <input type="text" class="form-control" name="facile" id="facile">
+            <input type="text" class="form-control" name="facile" id="facile" placeholder="2e réponse">
         </div>
 
         <div class="form-group">
             <label for="normal">Réponse normale :</label>
-            <input type="text" class="form-control" name="normal" id="normal">
+            <input type="text" class="form-control" name="normal" id="normal" placeholder="3e réponse">
         </div>
 
         <div class="form-group">
             <label for="difficile">Réponse difficile :</label>
-            <input type="text" class="form-control" name="difficile" id="difficile">
+            <input type="text" class="form-control" name="difficile" id="difficile" placeholder="4e réponse">
         </div>
 
         <div class="form-group">
             <label for="feedback">feedback :</label>
-            <input type="text" class="form-control" name="feedback" id="feedback">
+            <input type="text" class="form-control" name="feedback" id="feedback" placeholder="Feedback">
         </div>
 
         <div class="form-group">
-            <label for="feedbackPicture"></label>
+            <label for="feedbackPicture">Photo du feedback :</label>
             <input type="file" name="feedbackPicture">
+        </div>
+
+        <div class="form-group">
+            <label for="lien">Lien :</label>
+            <input type="text" class="form-control" name="lien" id="lien" placeholder="https://">
         </div>
 
         <button type="submit" name="addQuestion" class="createBtn"><span><i

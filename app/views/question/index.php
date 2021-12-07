@@ -16,6 +16,7 @@
                 <th>Réponse difficile</th>
                 <th>Feedback</th>
                 <th>Photo du feedback</th>
+                <th>Lien</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -44,6 +45,7 @@
                 <td><?= $question->feedback ?></td>
                 <td> <?= $question->feedback_picture == null ? "/" : "<img src='/app/components/img/feedback_pictures/$question->feedback_picture' width='50px'
                         height='50px'>" ?></td>
+                <td><?= $question->lien == null ? "/" : $question->lien ?></td>
                 <td>
                     <a href="/question/edit/<?= $question->id_question ?>" class="modifyBtn"><span><i
                                 class="fas fa-pencil-alt mr-2"></i></span>Modifier</a>

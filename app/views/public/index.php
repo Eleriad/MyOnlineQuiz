@@ -48,7 +48,7 @@
                 <div class="card-body">
                     <h5 class="card-title"><?= $thematique->name ?></h5>
                     <p class="card-text"><?= $thematique->description ?></p>
-                    <a href="#" class="btn">Tester ce quiz</a>
+                    <a href="/quiz/index" class="btn">Tester ce quiz</a>
                 </div>
             </div>
             <?php endforeach; ?>

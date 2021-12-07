@@ -26,6 +26,12 @@ foreach ($data[1] as $categories) {
             <input type="text" class="form-control" name="question" id="question" value="<?= $data[0]->question ?>"
                 disabled>
         </div>
+
+        <div class="form-group">
+            <label for="questionPicture">Photo de la question :</label>
+            <?= $data[0]->question_picture == null ? "" : '<img src="/app/components/img/question_pictures/' . $data[0]->question_picture . '" width="50px" height="50px">' ?>
+        </div>
+
         <div class="form-group">
             <label for="reponse">Bonne réponse :</label>
             <input type="text" class="form-control" name="reponse" id="reponse" value="<?= $data[0]->reponse ?>"
@@ -48,6 +54,16 @@ foreach ($data[1] as $categories) {
             <label for="feedback">feedback :</label>
             <input type="text" class="form-control" name="feedback" id="feedback" value="<?= $data[0]->feedback ?>"
                 disabled>
+        </div>
+
+        <div class="form-group">
+            <label for="feedbackPicture">Photo du feedback :</label>
+            <?= $data[0]->feedback_picture == null ? "" : '<img src="/app/components/img/feedback_pictures/' . $data[0]->feedback_picture . '" width="50px" height="50px">' ?>
+        </div>
+
+        <div class="form-group">
+            <label for="lien">Lien :</label>
+            <input type="text" class="form-control" name="lien" id="lien" value="<?= $data[0]->lien ?>" disabled>
         </div>
 
         <div class="text-center">

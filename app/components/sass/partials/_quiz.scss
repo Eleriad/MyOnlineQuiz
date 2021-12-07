@@ -4,7 +4,7 @@
   height: 100vh;
   width: 100vw;
   justify-content: center;
-} 
+}
 
 .quizIndexContainer {
   align-items: center;
@@ -141,18 +141,17 @@ div[id^="questionDiv"] {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $sapling;
+  background-color: $mongoose;
   color: black;
   padding-left: 0px !important;
 
   &:hover {
-    background-color: #9b805a;
+    background-color: $sapling;
     color: $white;
   }
 
   &.checkedButton {
-    background-color: #9b805a;
-    // color: $white;
+    background-color: $sapling;
   }
 
   input {

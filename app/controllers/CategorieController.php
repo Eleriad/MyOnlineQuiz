@@ -42,7 +42,6 @@ class CategorieController extends Controller
 
                     $newCategory->name = $_POST["newCategory"];
                     $newCategory->categoriePicture = $picture;
-                    // TODO : ajouter une image en blanc <=> en BDD white_picture et main_picture pour la principale
                     $newCategory->description =  $_POST["description"];
                     $newCategory->infos =  $_POST["infos"];
                     $newCategory->create();

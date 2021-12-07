@@ -39,14 +39,13 @@ class QuestionController extends Controller
                 $feedbackPicture = $this->checkPictureValidity($_FILES["feedbackPicture"], 2000000);
 
                 if (is_int($questionPicture)) {
-                    // TODO : vérifier pour faire comme dans les catégories !
                     $error = $this->errorMessage($questionPicture);
                     $this->setMsg("error", $error);
-                    $this->view('categorie/create', ["error" => $error]);
+                    $this->view('question/create', ["error" => $error, "niveaux" => $niveaux, "categories" => $categories]);
                 } else if (is_int($feedbackPicture)) {
                     $error = $this->errorMessage($feedbackPicture);
                     $this->setMsg("error", $error);
-                    $this->view('categorie/create', ["error" => $error]);
+                    $this->view('question/create', ["error" => $error, "niveaux" => $niveaux, "categories" => $categories]);
                 } else {
 
                     // PICTURE MOVING
@@ -62,6 +61,7 @@ class QuestionController extends Controller
                     $question->facile = $_POST['facile'];
                     $question->normal = $_POST['normal'];
                     $question->difficile = $_POST['difficile'];
+                    $question->lien = $_POST['lien'];
                     $question->create();
 
                     $lastId = $this->model('Question')->getLastId();
@@ -88,8 +88,59 @@ class QuestionController extends Controller
 
         if (isset($_POST['editQuestion'])) {
 
+            // TODO : vérifier le POST : il faut vérifier chaque image pour voir si on passe dans la boucle ou non !!!
+            // Ici, si on passe dans le 1er if, on ne teste pas le else if 
+            if (empty($_FILES) || $_FILES["editQuestionPicture"]["error"] == 4) {
+                $editQuestion->question_picture = $editQuestion->question_picture;
+                var_dump(1);
+                // die;
+            } else if (empty($_FILES) || $_FILES["editFeedbackPicture"]["error"] == 4) {
+                $editQuestion->feedback_picture = $editQuestion->feedback_picture;
+                var_dump(2);
+                die;
+            } else {
+                var_dump(3);
+                die;
+                $tmpQuestionName = $_FILES["editQuestionPicture"]["tmp_name"];
+                $tmpFeedbackName = $_FILES["editFeedbackPicture"]["tmp_name"];
+
+                $questionPicture = $this->checkPictureValidity($_FILES["questionPicture"], 2000000);
+                $feedbackPicture = $this->checkPictureValidity($_FILES["feedbackPicture"], 2000000);
+
+                if (is_int($questionPicture)) {
+                    $error = $this->errorMessage($questionPicture);
+                    $this->setMsg("error", $error);
+                    $this->view('question/create', ["error" => $error, "niveaux" => $niveaux, "categories" => $categories]);
+                } else {
+                    // DELETING FORMER PICTURE
+                    $this->unlinkPicture($editQuestion->categorie_picture);
+                    // PICTURE MOVING
+                    move_uploaded_file($tmpQuestionName, "./app/components/img/categorie_pictures/$questionPicture");
+                }
+
+                if (is_int($feedbackPicture)) {
+                    $error = $this->errorMessage($feedbackPicture);
+                    $this->setMsg("error", $error);
+                    $this->view('question/create', ["error" => $error, "niveaux" => $niveaux, "categories" => $categories]);
+                } else {
+                    // DELETING FORMER PICTURE
+                    $this->unlinkPicture($editQuestion->categorie_picture);
+                    // PICTURE MOVING
+                    move_uploaded_file($tmpFeedbackName, "./app/components/img/categorie_pictures/$feedbackPicture");
+                }
+                // var_dump($questionPicture);
+                // var_dump($feedbackPicture);
+                // die;
+            }
+
+
+            // TODO : vérifier pour faire comme dans les catégories !
+
             if ($_POST['categories'] != null) {
                 $editedQuestion = $this->model('Question');
+
+
+
 
                 $editedQuestion->niveauId = $_POST['niveaux'];
                 $editedQuestion->question = $_POST['question'];
@@ -98,6 +149,7 @@ class QuestionController extends Controller
                 $editedQuestion->facile = $_POST['facile'];
                 $editedQuestion->normal = $_POST['normal'];
                 $editedQuestion->difficile = $_POST['difficile'];
+                $editedQuestion->lien = $_POST['lien'];
                 $editedQuestion->update(intval($idQuestion));
 
                 // On supprime toutes les références de la table posséder afin de les recréer ensuite

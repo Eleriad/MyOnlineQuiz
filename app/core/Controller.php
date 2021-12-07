@@ -107,10 +107,11 @@ abstract class Controller
 
     protected function checkPictureValidity($data, $sizeMax)
     {
-        // CHECKING which $_FILES is set
+        // CHECKING    
         isset($_FILES["categoriePicture"]) ? $_FILES["categoriePicture"] = $_FILES["categoriePicture"] : $_FILES["categoriePicture"] = null;
         isset($_FILES["questionPicture"]) ? $_FILES["questionPicture"] = $_FILES["questionPicture"] : $_FILES["questionPicture"] = null;
         isset($_FILES["feedbackPicture"]) ? $_FILES["feedbackPicture"] = $_FILES["feedbackPicture"] : $_FILES["feedbackPicture"] = null;
+        isset($_FILES["editCategoriePicture"]) ? $_FILES["editCategoriePicture"] = $_FILES["editCategoriePicture"] : $_FILES["editCategoriePicture"] = null;
 
         // SETTING VARIABLES
         $name = $data["name"];
@@ -134,7 +135,7 @@ abstract class Controller
         $post = explode('.', $post);
 
         if ($error != 0) {
-            $result = 3;
+            $result = null;
             return $result;
         } else {
             // Exploding the name to distinguish name and extension

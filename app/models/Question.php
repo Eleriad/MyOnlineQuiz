@@ -11,12 +11,13 @@ class Question extends Database
     public $facile;
     public $normal;
     public $difficile;
+    public $lien;
 
     /******* CRUD table questions *******/
     public function create()
     {
-        $sql = "INSERT INTO questions(niveau_id, question, question_picture, feedback, feedback_picture, reponse, facile, normal, difficile) 
-                VALUE(:niveau_id, :question, :question_picture, :feedback, :feedback_picture, :reponse, :facile, :normal, :difficile)";
+        $sql = "INSERT INTO questions(niveau_id, question, question_picture, feedback, feedback_picture, reponse, facile, normal, difficile, lien) 
+                VALUE(:niveau_id, :question, :question_picture, :feedback, :feedback_picture, :reponse, :facile, :normal, :difficile, :lien)";
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam('niveau_id', $this->niveauId, PDO::PARAM_INT);
         $stmt->bindParam('question', $this->question, PDO::PARAM_STR);
@@ -27,6 +28,7 @@ class Question extends Database
         $stmt->bindParam('facile', $this->facile, PDO::PARAM_STR);
         $stmt->bindParam('normal', $this->normal, PDO::PARAM_STR);
         $stmt->bindParam('difficile', $this->difficile, PDO::PARAM_STR);
+        $stmt->bindParam('lien', $this->lien, PDO::PARAM_STR);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
         $result = $stmt->rowCount();
@@ -35,7 +37,7 @@ class Question extends Database
 
     public function update($idQuestion)
     {
-        $sql = "UPDATE questions SET niveau_id = :niveau_id, question = :question, question_picture = :question_picture, feedback = :feedback, feedback_picture = :feedback_picture, reponse = :reponse, facile = :facile, normal =:normal, difficile = :difficile WHERE id_question = $idQuestion";
+        $sql = "UPDATE questions SET niveau_id = :niveau_id, question = :question, question_picture = :question_picture, feedback = :feedback, feedback_picture = :feedback_picture, reponse = :reponse, facile = :facile, normal =:normal, difficile = :difficile, lien = :lien WHERE id_question = $idQuestion";
         $stmt = self::$_connection->prepare($sql);
         $stmt->bindParam('niveau_id', $this->niveauId, PDO::PARAM_INT);
         $stmt->bindParam('question', $this->question, PDO::PARAM_STR);
@@ -46,7 +48,7 @@ class Question extends Database
         $stmt->bindParam('facile', $this->facile, PDO::PARAM_STR);
         $stmt->bindParam('normal', $this->normal, PDO::PARAM_STR);
         $stmt->bindParam('difficile', $this->difficile, PDO::PARAM_STR);
-        // $stmt->bindParam('id_question', $idQuestion, PDO::PARAM_INT);
+        $stmt->bindParam('lien', $this->lien, PDO::PARAM_STR);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
         $result = $stmt->rowCount();

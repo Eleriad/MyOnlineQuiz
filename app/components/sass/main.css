@@ -901,18 +901,18 @@ div[id^="questionDiv"] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-color: #e0c7a4;
+  background-color: #b99d76;
   color: black;
   padding-left: 0px !important;
 }
 
 .catLabel:hover {
-  background-color: #9b805a;
+  background-color: #e0c7a4;
   color: white;
 }
 
 .catLabel.checkedButton {
-  background-color: #9b805a;
+  background-color: #e0c7a4;
 }
 
 .catLabel input {

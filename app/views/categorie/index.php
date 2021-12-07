@@ -18,8 +18,9 @@
         <tbody>
             <?php foreach ($data['categories'] as $categories) : ?>
             <tr>
-                <td><img src="/app/components/img/categorie_pictures/<?= $categories->categorie_picture ?>" width="50px"
-                        height="50px"></td>
+                <td><?= $categories->categorie_picture == null ? $categories->categorie_picture = "/" : $categories->categorie_picture = '<img src="/app/components/img/categorie_pictures/' . $categories->categorie_picture . '" 
+                    width="50px"
+                    height="50px">' ?></td>
                 <td><?= $categories->name ?></td>
                 <td><?= $categories->description ?></td>
                 <td><?= $categories->infos ?></td>
