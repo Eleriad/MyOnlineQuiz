@@ -37,6 +37,58 @@ abstract class Controller
 
     /******* GENERAL *******/
     /**
+     * Function that secures all data from an array
+     * This function strips HTML or PHP tags from a string; converts special characters to HTML entities; 
+     * strips whitespace (or other characters) from the beginning and end of a string and replaces old values by new value in array.
+     * @param $array 
+     * @return array array with secured data
+     */
+    protected function secureArray($array)
+    {
+        $newArray = array();
+        foreach ($array as $key => $value) {
+
+            if (!is_array($value)) {
+                $value = strip_tags($value);
+                $value = htmlspecialchars($value);
+                $value = trim($value);
+                $newArray[$key] = $value;
+            } else {
+                $newArray[$key] = $value;
+            }
+        }
+        return $newArray;
+    }
+
+    /**
+     * Function that secures a specific data
+     * This function strips HTML or PHP tags from a string; converts special characters to HTML entities; 
+     * strips whitespace (or other characters) from the beginning and end of a string and replaces old values by new value in array.
+     * @param $data data to secure
+     * @return $data the secured data
+     */
+    protected function secureString($data)
+    {
+        $data = strip_tags($data);
+        $data = htmlspecialchars($data);
+        $data = trim($data);
+        return $data;
+    }
+
+    /**
+     * Verifies if any data is empty or not
+     * @param $data : any data which can be passed in a post form
+     * @return $data if $data is not empty ; return null if data is empty
+     */
+    protected function isEmpty($data)
+    {
+        if (isset($data) && $data == "") {
+            $data = null;
+        }
+        return $data;
+    }
+
+    /**
      * Function that prepares the displaying of a message depending on his type
      * @param $type : error or success
      * @param $text : set the text of the message in a $_SESSION variable
@@ -315,5 +367,3 @@ abstract class Controller
         return $addView;
     }
 }
-
-// TODO Prévoir une fonction qui va vérifier tout ce qui est envoyé et assainir les strings ou array envoyés par méthode POST ; cf. function IGestPro ou Biblio

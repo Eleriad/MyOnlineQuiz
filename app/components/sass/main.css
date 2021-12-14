@@ -736,8 +736,42 @@ header img {
           flex-direction: column;
 }
 
+#randomQuizForm {
+  margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#randomQuizForm #randomQuiz {
+  font-size: x-large;
+  background-color: #41200d;
+  border-width: 3px;
+  color: white;
+  font-weight: bold;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 10px 30px;
+  border-radius: 50px;
+  border: 1px solid transparent;
+}
+
+#randomQuizForm #randomQuiz:hover {
+  -webkit-transform: scale(107%);
+          transform: scale(107%);
+  box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+}
+
 #quizForm {
-  margin-top: 100px;
+  margin-top: 50px;
   max-width: 650px;
   background-color: #9b805a;
   padding: 20px 30px;

@@ -177,5 +177,27 @@ class Question extends Database
         return $result;
     }
 
+    public function countTotalQuestions()
+    {
+        $sql = "SELECT COUNT(*) FROM questions";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result;
+    }
+
+    public function getRandomQuestions($nb)
+    {
+        $sql = "SELECT * FROM questions AS q 
+                JOIN niveaux AS n ON q.niveau_id = n.id_niveau
+                ORDER BY RAND()
+                LIMIT $nb";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
     //TODO : prévoir 2 fonctions pour vérifier si le nom d'une image existe déjà dans la base... (question & feedback)
 }

@@ -18,17 +18,25 @@ class QuizController extends Controller
         isset($_SESSION["level"]) ? $_SESSION["level"] = "" : null;
 
         if (isset($_POST) && !empty($_POST)) {
-            // Si on a un POST mais pas de catégorie sélectionnée
-            if (!isset($_POST["categories"]) or $_POST["level"] === "0") {
-                $error = "Veuillez sélectionner au moins une catégorie ou un niveau !";
-                $this->view('quiz/index', ["niveaux" => $niveaux, "categories" => $categories, "erreur" => $error, "questionMax" => $questionMax]);
-            }
-            // Si tout est ok, on renvoie sur la page de quizz
-            else {
-                unset($_SESSION["level"], $_SESSION["categories"], $_SESSION["questionNb"]);
-                $_SESSION["level"] = $_POST["level"];
-                $_SESSION["categories"] = $_POST["categories"];
-                $_SESSION["questionNb"] = $_POST["questionNb"];
+
+            if (isset($_POST["startQuiz"])) {
+                // Si on a un POST mais pas de catégorie sélectionnée
+                if (!isset($_POST["categories"]) or $_POST["level"] === "0") {
+                    $error = "Veuillez sélectionner au moins une catégorie et un niveau !";
+                    $this->view('quiz/index', ["niveaux" => $niveaux, "categories" => $categories, "erreur" => $error, "questionMax" => $questionMax]);
+                }
+                // Si tout est ok, on renvoie sur la page de quizz
+                else {
+                    unset($_SESSION["level"], $_SESSION["categories"], $_SESSION["questionNb"], $_SESSION["randomQuiz"]);
+                    $_SESSION["level"] = $_POST["level"];
+                    $_SESSION["categories"] = $_POST["categories"];
+                    $_SESSION["questionNb"] = $_POST["questionNb"];
+                    $_SESSION["randomQuiz"] = false;
+                    header('Location: /quiz/quiz');
+                }
+            } else if (isset($_POST["randomQuiz"])) {
+                unset($_SESSION["level"], $_SESSION["categories"], $_SESSION["questionNb"], $_SESSION["randomQuiz"]);
+                $_SESSION["randomQuiz"] = true;
                 header('Location: /quiz/quiz');
             }
         } else {
@@ -39,7 +47,7 @@ class QuizController extends Controller
     public function quiz()
     {
         // checking the $_SESSION data
-        if (isset($_SESSION['level']) && isset($_SESSION['categories']) && isset($_SESSION['questionNb'])) {
+        if (isset($_SESSION['level']) && isset($_SESSION['categories']) && isset($_SESSION['questionNb']) && $_SESSION['randomQuiz'] == false) {
 
             $level = $_SESSION['level'];
             $nb = $_SESSION['questionNb'];
@@ -75,10 +83,23 @@ class QuizController extends Controller
 
             // Display the quiz/quiz page with the questions for the quiz
             $this->view('quiz/quiz', ["questions" => $questions, "questionLength" => $questionLength, "levelName" => $levelName, "categorieName" => $categorieName]);
+        } else if ($_SESSION['randomQuiz'] === true) {
+            $totalNb = $this->model('Question')->countTotalQuestions();
+            $totalNb = intval($totalNb[0]);
+            $totalNb < 50 ? $totalNb = $totalNb : $totalNb = 50;
+
+            // $randomNb = rand(10, $totalNb);
+            $randomNb = 2;
+            $_SESSION["questionNb"] = $randomNb;
+            $questions = $this->model('Question')->getRandomQuestions($randomNb);
+
+            $this->view('quiz/quiz', ["questions" => $questions]);
         } else {
             $this->view('quiz/quiz');
         }
     }
+
+    // TODO : prévoir une nouvelle page qui affiche le quiz aléatoire ! 
 
     public function results()
     {
