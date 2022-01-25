@@ -20,12 +20,19 @@
     $correctAnswers = $_SESSION["correctAnswers"];
 
     // Retrieving categoriesNames
-    foreach ($data["categorieName"] as $test) {
-        $test2 = implode($test);
-        $categorieName .= $test2 . ", ";
-    }
+    if ($data["categorieName"] == "Aléatoire") {
+        $categorieName = "Aléatoire";
+        $data["levelName"]["level"] = "niveaux divers";
+    } else {
+        foreach ($data["categorieName"] as $test) {
+            $test2 = implode($test);
+            $categorieName .= $test2 . ", ";
+        }
 
-    $categorieName = rtrim($categorieName, ", ");
+        $categorieName = rtrim($categorieName, ", ");
+
+        $data["levelName"]["level"] = "niveau &laquo; " . $data["levelName"]["level"] . " &raquo;";
+    }
 
     foreach ($_SESSION["quizQuestions"] as $question) :
 
@@ -43,7 +50,7 @@
         <div id="questionDiv" class="cont">
 
             <div class="quizTitle text-center">
-                <p>Quizz <i><?= $categorieName ?></i>, niveau <i><?= $data["levelName"]["level"] ?></i><br>
+                <p>Quizz <i><?= $categorieName ?></i> - <?= $data["levelName"]["level"] ?><br>
                 </p>
             </div>
             <div class="questionTitle">
@@ -85,8 +92,5 @@
 
     <div class="buttons pb-5">
         <a href="/quiz/index" class="btn btn-sm endQuizBtn">Choisir un autre quiz</a>
-        <a href="quiz/quiz" class="btn btn-sm endQuizBtn" id="tooltipQuiz" data-toggle="tooltip" data-placement="top"
-            title="Ce quiz aura la/les même(s) thématique(s), le même niveau et le même nombre de questions">Refaire le
-            même quiz</a>
     </div>
 </div>

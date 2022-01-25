@@ -9,13 +9,8 @@ class QuizController extends Controller
         $questionMax = $this->model('Quiz')->getMaxQuestion();
         $questionMax = intval($questionMax[0]);
 
-        // SET SESSION VARIABLE
-        isset($_SESSION["categories"]) ? $_SESSION["categories"] = "" : null;
-        isset($_SESSION["questionNb"]) ? $_SESSION["questionNb"] = "" : null;
-        isset($_SESSION["currentQuestion"]) ? $_SESSION["currentQuestion"] = "" : null;
-        isset($_SESSION["correctAnswers"]) ? $_SESSION["correctAnswers"] = "" : null;
-        isset($_SESSION["quizQuestions"]) ? $_SESSION["quizQuestions"] = "" : null;
-        isset($_SESSION["level"]) ? $_SESSION["level"] = "" : null;
+        // UNSET ALL SESSION VARIABLES EXCEPT USER_ID and ROLE
+        unset($_SESSION["randomQuiz"], $_SESSION["categories"], $_SESSION["questionNb"], $_SESSION["currentQuestion"], $_SESSION["correctAnswers"], $_SESSION["quizQuestions"], $_SESSION["level"]);
 
         if (isset($_POST) && !empty($_POST)) {
 
@@ -27,7 +22,7 @@ class QuizController extends Controller
                 }
                 // Si tout est ok, on renvoie sur la page de quizz
                 else {
-                    unset($_SESSION["level"], $_SESSION["categories"], $_SESSION["questionNb"], $_SESSION["randomQuiz"]);
+                    // unset($_SESSION["level"], $_SESSION["categories"], $_SESSION["questionNb"], $_SESSION["randomQuiz"]);
                     $_SESSION["level"] = $_POST["level"];
                     $_SESSION["categories"] = $_POST["categories"];
                     $_SESSION["questionNb"] = $_POST["questionNb"];
@@ -35,9 +30,9 @@ class QuizController extends Controller
                     header('Location: /quiz/quiz');
                 }
             } else if (isset($_POST["randomQuiz"])) {
-                unset($_SESSION["level"], $_SESSION["categories"], $_SESSION["questionNb"], $_SESSION["randomQuiz"]);
+                // unset($_SESSION["level"], $_SESSION["categories"], $_SESSION["questionNb"], $_SESSION["randomQuiz"]);
                 $_SESSION["randomQuiz"] = true;
-                header('Location: /quiz/quiz');
+                header('Location: /quiz/randomQuiz');
             }
         } else {
             $this->view('quiz/index', ["niveaux" => $niveaux, "categories" => $categories, "questionMax" => $questionMax]);
@@ -83,54 +78,61 @@ class QuizController extends Controller
 
             // Display the quiz/quiz page with the questions for the quiz
             $this->view('quiz/quiz', ["questions" => $questions, "questionLength" => $questionLength, "levelName" => $levelName, "categorieName" => $categorieName]);
-        } else if ($_SESSION['randomQuiz'] === true) {
-            $totalNb = $this->model('Question')->countTotalQuestions();
-            $totalNb = intval($totalNb[0]);
-            $totalNb < 50 ? $totalNb = $totalNb : $totalNb = 50;
-
-            // $randomNb = rand(10, $totalNb);
-            $randomNb = 2;
-            $_SESSION["questionNb"] = $randomNb;
-            $questions = $this->model('Question')->getRandomQuestions($randomNb);
-
-            $this->view('quiz/quiz', ["questions" => $questions]);
         } else {
             $this->view('quiz/quiz');
         }
     }
 
-    // TODO : prévoir une nouvelle page qui affiche le quiz aléatoire ! 
+    public function randomQuiz()
+    {
+        // Définition de la variable de session
+        $_SESSION["currentQuestion"] = 0;
+
+        $totalNb = $this->model('Question')->countTotalQuestions();
+        $totalNb = intval($totalNb[0]);
+        $totalNb < 20 ? $totalNb = $totalNb : $totalNb = 20;
+
+        $randomNb = rand(10, $totalNb);
+        $_SESSION["questionNb"] = $randomNb;
+        $questions = $this->model('Question')->getRandomQuestions($randomNb);
+
+        $this->view('quiz/randomQuiz', ["questions" => $questions]);
+    }
 
     public function results()
     {
         $userAnswers = $_POST["userAnswers"][0];
         $userAnswersArray = explode(",", $userAnswers);
 
-        $categoriesArray = $_SESSION['categories'];
+        if (isset($_POST["randomQuiz"])) {
+            $categorieName = "Aléatoire";
+            $levelName = null;
+        } else {
+            $categoriesArray = $_SESSION['categories'];
 
-        $count = count($categoriesArray); // count the number of data in categoriesArray
+            $count = count($categoriesArray); // count the number of data in categoriesArray
 
-        // if there only one categorie is selected
-        if ($count === 1) {
-            $categories = intval($categoriesArray[0]);
-        }
-        // if more than one categorie are selected
-        else {
-            $categories = null;
-            foreach ($categoriesArray as $nbs) {
-                $categories .= $nbs;
-                $categories .= ",";
+            // if there only one categorie is selected
+            if ($count === 1) {
+                $categories = intval($categoriesArray[0]);
             }
-            // Delete the last comma of the categories' list
-            $categories = substr($categories, 0, -1);
+            // if more than one categorie are selected
+            else {
+                $categories = null;
+                foreach ($categoriesArray as $nbs) {
+                    $categories .= $nbs;
+                    $categories .= ",";
+                }
+                // Delete the last comma of the categories' list
+                $categories = substr($categories, 0, -1);
+            }
+
+            $categorieName = $this->model('Quiz')->getCategorieName($categoriesArray);
+
+            $level = $_SESSION['level'];
+            $levelName = $this->model('Quiz')->getLevelName($level);
         }
-
-        $categorieName = $this->model('Quiz')->getCategorieName($categoriesArray);
-
-        $level = $_SESSION['level'];
-        $levelName = $this->model('Quiz')->getLevelName($level);
 
         $this->view('quiz/results', ["usersAnswersArray" => $userAnswersArray, "categorieName" => $categorieName, "levelName" => $levelName]);
-        //TODO : annuler les variables de session si on clique sur refaire un quiz ou refaire le même quiz !
     }
 }

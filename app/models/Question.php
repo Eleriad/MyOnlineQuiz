@@ -188,14 +188,12 @@ class Question extends Database
 
     public function getRandomQuestions($nb)
     {
-        $sql = "SELECT * FROM questions AS q 
-                JOIN niveaux AS n ON q.niveau_id = n.id_niveau
+        $sql = "SELECT question, feedback, reponse, facile, normal, difficile FROM questions AS q 
                 ORDER BY RAND()
                 LIMIT $nb";
         $stmt = self::$_connection->prepare($sql);
         $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Question');
-        $result = $stmt->fetchAll();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 

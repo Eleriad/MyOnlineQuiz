@@ -5,13 +5,10 @@
     <?php endif; ?>
 
     <h1>Sur quoi voulez-vous être testé ?</h1>
-    <!-- TODO : Quiz aléatoire
-    faire un SELECT avec un nombre de questions avec un LIMIT = y et un IN = liste des catégories retenues
--->
 
     <form action="" method="post" id="randomQuizForm">
         <button type="submit" class="btn" name="randomQuiz" id="randomQuiz" data-toggle="tooltip" data-placement="right"
-            title="Attention, en cliquant sur ce bouton, vous allez tomber sur 10 à 50 questions de tous niveaux et de toutes les catégories !">Quiz
+            title="Attention, en cliquant sur ce bouton, vous allez tomber sur 10 à 20 questions de tous niveaux et de toutes les catégories !">Quiz
             aléatoire</button>
     </form>
 

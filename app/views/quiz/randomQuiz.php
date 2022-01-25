@@ -1,23 +1,18 @@
 <div class="container-fluid quizContainer">
     <?php
-    $currentQuestion = $_SESSION["currentQuestion"];
-    $categorieName = "";
-
-    foreach ($data["categorieName"] as $name) {
-        $finalName = implode($name);
-        $categorieName .= $finalName . ", ";
-    }
-
-    $categorieName = "" ? $categorieName = "" : $categorieName = rtrim($categorieName, ", ");
+    $currentQuestion = $_SESSION["currentQuestion"]; // 0 at this moment
+    $categorieName = "Aléatoire"; // categorieName set as "Aléatoire"
     $questionInt = 1;
     $correctAnswers = [];
     $quizQuestions = [];
 
     foreach ($data["questions"] as $question) :
-        $correctAnswers[$currentQuestion] = $question["reponse"];
+        $question = (array) $question; // convert $question from Object to array
+
+        $correctAnswers[$currentQuestion] = $question["reponse"]; // setting the correct answer for the current question with the correct answer from DB
         $_SESSION["correctAnswers"] = $correctAnswers; // gathering all correct answers
 
-        $currentQuestion++;
+        $currentQuestion++; // incrementation of CurrentQuestion
         $choix = array_slice($question, 2);
         $shuffle = shuffle($choix);
         array_push($quizQuestions, $question);
@@ -27,6 +22,9 @@
     <input type="hidden" name="maxQuestion" value="<?= $_SESSION["questionNb"] ?>">
     <form action="/quiz/results" method="POST">
         <div class="quizDiv">
+
+            <!-- Input hidden pour récupérer en AJAX le numéro de la question en cours -->
+            <input type="hidden" name="randomQuiz" value="randomQuiz">
 
             <!-- Input hidden pour récupérer en AJAX le numéro de la question en cours -->
             <input type="hidden" name="currentQuestion" value="<?= $currentQuestion ?>">
@@ -40,7 +38,6 @@
                 <!-- TODO : mettre en forme les données en haut du quiz + l'affichage des choix de réponse -->
                 <div class="quizTitle text-center">
                     <p>Quizz <i><?= $categorieName ?></i>
-                        <?= isset($data["levelName"]["level"]) ? '- niveau ' . $data["levelName"]["level"] : "aléatoire" ?><br>
                     <p class="subTitle">
                         <?php
                             echo $questionInt == $_SESSION["questionNb"] ? "Dernière question" : 'Question <strong>' . $questionInt . '</strong> sur <strong>' . $_SESSION["questionNb"] . '</strong>';
