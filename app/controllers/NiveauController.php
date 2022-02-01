@@ -11,6 +11,7 @@ class NiveauController extends Controller
     public function create()
     {
         if (isset($_POST['addLevel'])) {
+            $_POST = $this->secureArray($_POST);
             $newNiveau = $this->model('Niveau');
             $newNiveau->level = $_POST['newLevel'];
             $newNiveau->create();
@@ -25,6 +26,7 @@ class NiveauController extends Controller
         $editNiveau = $this->model('Niveau')->getNiveauById($idNiveau);
 
         if (isset($_POST['updateLevel'])) {
+            $_POST = $this->secureArray($_POST);
             $editNiveau->level = $_POST['levelName'];
             $editNiveau->update();
             header('Location: /niveau/index');

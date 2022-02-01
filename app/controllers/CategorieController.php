@@ -19,6 +19,7 @@ class CategorieController extends Controller
     public function create()
     {
         if (isset($_POST["addCategory"])) {
+            $_POST = $this->secureArray($_POST);
 
             $tmpName = $_FILES["categoriePicture"]["tmp_name"];
 
@@ -63,6 +64,8 @@ class CategorieController extends Controller
         $categorie = $this->model('Categorie')->getCategorieById($idCategorie);
 
         if (isset($_POST['updateCategorie'])) {
+            $_POST = $this->secureArray($_POST);
+
             if (empty($_FILES) || $_FILES["editCategoriePicture"]["error"] == 4) {
                 $categorie->categorie_picture = $categorie->categorie_picture;
             } else {

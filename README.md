@@ -13,10 +13,6 @@ QuestionVF : si ce qu'on retourne ne contient que 2 éléments, alors on a affai
 
 TODO :
 
-- Vérifier tous les post, notamment si le feedback débute par des guillements simples ou doubles avec secureArray et SecureString
-
-- Vérifier tous les POST qui pourraient être vides avec la fonction isEmpty
-
 - ajouter des messages à chaque vérification (revoir toutes les pages !)
   Faire le phpdoc pour toutes les functions :-(
 

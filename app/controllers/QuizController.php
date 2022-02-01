@@ -13,6 +13,7 @@ class QuizController extends Controller
         unset($_SESSION["randomQuiz"], $_SESSION["categories"], $_SESSION["questionNb"], $_SESSION["currentQuestion"], $_SESSION["correctAnswers"], $_SESSION["quizQuestions"], $_SESSION["level"]);
 
         if (isset($_POST) && !empty($_POST)) {
+            $_POST = $this->secureArray($_POST);
 
             if (isset($_POST["startQuiz"])) {
                 // Si on a un POST mais pas de catégorie sélectionnée
@@ -105,6 +106,7 @@ class QuizController extends Controller
         $userAnswersArray = explode(",", $userAnswers);
 
         if (isset($_POST["randomQuiz"])) {
+            $_POST = $this->secureArray($_POST);
             $categorieName = "Aléatoire";
             $levelName = null;
         } else {

@@ -25,6 +25,7 @@ class QuestionController extends Controller
         $question = $this->model('Question');
 
         if (isset($_POST["addQuestion"])) {
+            $_POST = $this->secureArray($_POST);
 
             if (!isset($_FILES["questionPicture"])) {
                 $question->questionPicture = null;
@@ -61,7 +62,7 @@ class QuestionController extends Controller
                     $question->facile = $_POST['facile'];
                     $question->normal = $_POST['normal'];
                     $question->difficile = $_POST['difficile'];
-                    $question->lien = $_POST['lien'];
+                    $question->lien = $this->isEmpty($_POST['lien']);
                     $question->create();
 
                     $lastId = $this->model('Question')->getLastId();
@@ -87,6 +88,7 @@ class QuestionController extends Controller
         $categorieNames = $this->model('Question')->getCategoryNameByQuestionId($idQuestion);
 
         if (isset($_POST['editQuestion'])) {
+            $_POST = $this->secureArray($_POST);
 
             // TODO : vérifier le POST : il faut vérifier chaque image pour voir si on passe dans la boucle ou non !!!
             // Ici, si on passe dans le 1er if, on ne teste pas le else if 
@@ -149,7 +151,7 @@ class QuestionController extends Controller
                 $editedQuestion->facile = $_POST['facile'];
                 $editedQuestion->normal = $_POST['normal'];
                 $editedQuestion->difficile = $_POST['difficile'];
-                $editedQuestion->lien = $_POST['lien'];
+                $editedQuestion->lien = $this->isEmpty($_POST['lien']);
                 $editedQuestion->update(intval($idQuestion));
 
                 // On supprime toutes les références de la table posséder afin de les recréer ensuite

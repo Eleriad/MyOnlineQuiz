@@ -9,6 +9,8 @@ class AjaxController extends Controller
     public function getCategoriesByLevel()
     {
         if (isset($_POST) && isset($_POST["level"])) {
+            $_POST = $this->secureArray($_POST);
+
             $level = $_POST["level"];
             $newCategories = $this->model("Quiz")->getCategoriesByLevel($level);
 
@@ -27,8 +29,8 @@ class AjaxController extends Controller
      */
     public function getMaxQuestions()
     {
+        $_POST = $this->secureArray($_POST);
         $maxNb = $this->model("Quiz")->getQuestionsNb($_POST["data"], $_POST["level"]);
-
         echo json_encode($maxNb);
     }
 }

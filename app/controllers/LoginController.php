@@ -16,6 +16,7 @@ class LoginController extends Controller
 
         // REGISTERING
         if (isset($_POST["register"])) {
+            $_POST = $this->secureArray($_POST);
 
             // EMAIL CHEKING
             if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {

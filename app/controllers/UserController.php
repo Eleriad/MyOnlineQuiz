@@ -11,6 +11,7 @@ class UserController extends Controller
     public function create()
     {
         if (isset($_POST["addUser"])) {
+            $_POST = $this->secureArray($_POST);
 
             $user = $this->model('User');
 
@@ -20,16 +21,22 @@ class UserController extends Controller
                 $checkEmail = $this->model('User')->checkIfEmailExists($_POST['email']);
 
                 if ($checkEmail == 0) {
-                    $user->username = $_POST['username'];
-                    $user->email = $_POST['email']; // TODO : vérifier si l'email est au bon format avec une regex
-                    $user->passwordHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
-                    $_POST['role'] == "0" ? $user->role = "user" : $user->role = $_POST['role'];
 
-                    $user->create();
+                    if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+                        $user->username = $_POST['username'];
+                        $user->email = $_POST['email'];
+                        $user->passwordHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
+                        $_POST['role'] == "0" ? $user->role = "user" : $user->role = $_POST['role'];
 
-                    $this->setMsg("success", "Nouvel utilisateur créé !");
+                        $user->create();
 
-                    header('Location: /user/index');
+                        $this->setMsg("success", "Nouvel utilisateur créé !");
+
+                        header('Location: /user/index');
+                    } else {
+                        $this->setMsg("error", "Le format de l'e-mail n'est pas valide !");
+                        $this->view('user/create');
+                    }
                 } else if ($checkEmail == 1) {
                     $this->setMsg("error", "Cet email est déjà utilisé par un autre utilisateur !");
                     $this->view('user/create');
@@ -45,10 +52,10 @@ class UserController extends Controller
 
     public function edit($userId)
     {
-
         $editUser = $this->model('User')->getUserById($userId);
 
         if (isset($_POST["editUser"])) {
+            $_POST = $this->secureArray($_POST);
 
             $checkUser = $this->model('User')->checkIfUsernameExists($_POST['username']);
 
@@ -56,16 +63,21 @@ class UserController extends Controller
                 $checkEmail = $this->model('User')->checkIfEmailExists($_POST['email']);
 
                 if ($checkEmail == 0) {
-                    $editUser->username = $_POST['username'];
-                    $editUser->email = $_POST['email']; // TODO : vérifier si l'email est au bon format avec une regex
-                    $_POST["password"] = "" ? $editUser->passwordHash = $editUser->passwordHash : $editUser->passwordHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
-                    $editUser->role = $_POST['role'];
+                    if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+                        $editUser->username = $_POST['username'];
+                        $editUser->email = $_POST['email'];
+                        $_POST["password"] = "" ? $editUser->passwordHash = $editUser->passwordHash : $editUser->passwordHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
+                        $editUser->role = $_POST['role'];
 
-                    $editUser->update();
+                        $editUser->update();
 
-                    $this->setMsg("success", "Utilisateur modifié avec succès !");
+                        $this->setMsg("success", "Utilisateur modifié avec succès !");
 
-                    header('Location: /user/index');
+                        header('Location: /user/index');
+                    } else {
+                        $this->setMsg("error", "Le format de l'e-mail n'est pas valide !");
+                        $this->view('user/edit');
+                    }
                 } else if ($checkEmail == 1) {
                     $this->setMsg("error", "Cet email est déjà utilisé par un autre utilisateur !");
                     $this->view('user/edit');
