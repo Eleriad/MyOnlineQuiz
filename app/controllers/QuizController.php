@@ -4,6 +4,12 @@ class QuizController extends Controller
 {
     public function index()
     {
+        // PAGE AND VIEWS
+        $pageId = 5;
+        $title = "Quiz - Index";
+        $this->checkPage($pageId, $title);
+        $this->checkNewView($pageId);
+
         $niveaux = $this->model('Niveau')->getAllNiveauxById();
         $categories = $this->model('Categorie')->getAllCategoriesByName();
         $questionMax = $this->model('Quiz')->getMaxQuestion();
@@ -42,6 +48,12 @@ class QuizController extends Controller
 
     public function quiz()
     {
+        // PAGE AND VIEWS
+        $pageId = 6;
+        $title = "Quiz";
+        $this->checkPage($pageId, $title);
+        $this->checkNewView($pageId);
+
         // checking the $_SESSION data
         if (isset($_SESSION['level']) && isset($_SESSION['categories']) && isset($_SESSION['questionNb']) && $_SESSION['randomQuiz'] == false) {
 
@@ -86,6 +98,12 @@ class QuizController extends Controller
 
     public function randomQuiz()
     {
+        // PAGE AND VIEWS
+        $pageId = 7;
+        $title = "Random Quiz";
+        $this->checkPage($pageId, $title);
+        $this->checkNewView($pageId);
+
         // Définition de la variable de session
         $_SESSION["currentQuestion"] = 0;
 
@@ -102,6 +120,12 @@ class QuizController extends Controller
 
     public function results()
     {
+        // PAGE AND VIEWS
+        $pageId = 8;
+        $title = "Results";
+        $this->checkPage($pageId, $title);
+        $this->checkNewView($pageId);
+
         $userAnswers = $_POST["userAnswers"][0];
         $userAnswersArray = explode(",", $userAnswers);
 

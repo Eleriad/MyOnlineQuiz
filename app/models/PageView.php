@@ -7,10 +7,7 @@ class PageView extends Database
 
     /******* CRUD *******/
     /**
-     * Function that create a new unique visitor in DB
-     * @param string $visitorIp <=> visitor's IP adress
-     * @param int $pageId <=> page's id
-     * @return void
+     * SQL Request to create a new unique visitor in DB
      */
     public function create($visitorIp, $pageId)
     {
@@ -24,12 +21,36 @@ class PageView extends Database
         return $result;
     }
 
+    /******* GETTER *******/
+    /**
+     * SQL Request to get the total of views in the website
+     */
+    public function getAllWebsiteViews()
+    {
+        $sql = "SELECT sum(total_views) as total_views FROM pages";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Page');
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
+    /**
+     * SQL Request to get all the informations of all the views of the website
+     */
+    public function getAllPageViews()
+    {
+        $sql = "SELECT * FROM pages";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Page');
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
     /******* CHECK *******/
     /**
-     * Function that check if a visitor is unique or not
-     * @param string $visitorIp <=> visitor's IP adress
-     * @param int $pageId <=> page's id
-     * @return int 1 if visitor already exists in DB or 0 if not
+     * SQL Request to check if a visitor is unique or not
      */
     public function checkUniqueIp($visitorIp, $pageId)
     {

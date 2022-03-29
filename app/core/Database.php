@@ -4,6 +4,9 @@ class Database
 {
     protected static $_connection = null;
 
+    /**
+     * Function that allows the connexion with the DB
+     */
     public function __construct()
     {
         if (self::$_connection == null) {

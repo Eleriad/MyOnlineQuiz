@@ -1,5 +1,5 @@
 <div class="container-fluid adminContainer">
-    <h1>Bienvenue sur la page d'accueil Administrateur</h1>
+    <h1 class="adminTitle">Bienvenue sur la page d'accueil Administrateur</h1>
 
     <div class="row">
         <div class="col-3">
@@ -40,7 +40,7 @@
     </div>
 
     <div class="btnDiv">
-        <a href="/admin/views" class="returnBtn"><span><i class="fas fa-list-ol mr-2"></i></span>
+        <a href="/admin/views" class="returnBtn mr-3"><span><i class="fas fa-list-ol mr-2"></i></span>
             Voir les vues du site</a>
         <a href="/quiz/index" class="returnBtn"><span><i class="far fa-arrow-alt-circle-left mr-2"></i></span>
             Retour</a>

@@ -2,21 +2,17 @@
 
 PHP Quiz with MVC and POO
 
-Idée : 4 propositions à chaque fois :
-
-- pour une question facile, 2 propositions à écarter facilement ;
-- Pour une question normale, 1 proposition à écarter facilement,
-- Pour une question difficile, tous les propositions peuvent être les bonnes
-- Pour une question divin, les réponses sont très difficiles (dates à 1 année près, auteur inconnu, ...)
-
-QuestionVF : si ce qu'on retourne ne contient que 2 éléments, alors on a affaire à une question VRAI ou FAUX ;-)
-
 TODO :
 
-- ajouter des messages à chaque vérification (revoir toutes les pages !)
-  Faire le phpdoc pour toutes les functions :-(
+- Faire le phpdoc pour toutes les functions :-(
+- Faire la partie "mot de passe oublié" (Sokou)
+- vérifier qu'il ait bien des messages à chaque création / modification / suppression
+- vérifier qu'il ait bien des titres à chaque page
+- vérifier à l'aide d'une requête SQL si une catégorie a déjà le même nom
+- vérifier à l'aide d'une requête SQL si un niveau a déjà le même nom
+- vérifier à l'aide d'une requête SQL si une image a déjà le même nom
 
-      - Faire les vérification des niveaux et catégories en JS et PHP  :
+      - Faire les vérification des niveaux et catégories en JS et PHP  : (Sokou)
 
           - si l'input est vide (JS & PHP) ;
 
@@ -24,16 +20,18 @@ TODO :
 
       - mettre des required pour tous les input une fois les vérif en JS et PHP effectuées !
 
-- Vérifier les bouttons de la page public/index.php
+- Vérifier que tous les boutons renvoient bien au bon endroit (notamment page public/index.php)
 
-A AJOUTER :
+######################################
+
+Pour la version suivante (V2) :
 
 - PREVOIR des photos pour les questions (si il y en a, on lui prévoit une place où s'afficher);
 - PREVOIR une place pour une photo dans les feedbacks ainsi qu'un lien pour en savoir plus !
 
-- PREVOIR un bouton qui permette de nettoyer la base de données photos en php (vérification des images utilisées sur le site et comapraison avec la BDD afin de voir les images non utilisées et les supprimer le cas échéant).
+- PREVOIR un bouton qui permette de nettoyer la base de données photos en php (vérification des images utilisées sur le site et comparaison avec la BDD afin de voir les images non utilisées et les supprimer le cas échéant).
 
-Pour la version suivante (V2) :
+- PREVOIR une case 'lien" pour chaque question avec, si le lien existe, un pett "en savoir plus" qui ouvre la page du lien dans un nouvel onglet.
 
 - Pour les niveaux, prévoir une page pour l'administrateur afin de donner un poids à chaque niveau de difficulté ;
   l'administrateur peut ajouter pleins de niveaux et les classer les uns par rapports aux autres ;

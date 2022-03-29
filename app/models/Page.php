@@ -7,6 +7,9 @@ class Page extends Database
     public $totalView;
 
     /******* CRUD *******/
+    /**
+     * SQL Request to create a Page
+     */
     public function create($id, $name, $totalViews)
     {
         $sql = "INSERT INTO pages(id, name, total_views) VALUE(:id, :name, :total_views)";
@@ -20,6 +23,9 @@ class Page extends Database
         return $result;
     }
 
+    /**
+     * SQL Request to update a specific Page
+     */
     public function update($pageId)
     {
         $sql = "UPDATE pages SET total_views = total_views + 1 WHERE id='$pageId'";
@@ -33,27 +39,10 @@ class Page extends Database
     }
 
     /******* GETTER *******/
-    public function getAllWebsiteViews()
-    {
-        $sql = "SELECT sum(total_views) as total_views FROM pages";
-        $stmt = self::$_connection->prepare($sql);
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Page');
-        $result = $stmt->fetchAll();
-        return $result;
-    }
-
-    public function getAllPageViews()
-    {
-        $sql = "SELECT * FROM pages";
-        $stmt = self::$_connection->prepare($sql);
-        $stmt->execute();
-        $stmt->setFetchMode(PDO::FETCH_CLASS, 'Page');
-        $result = $stmt->fetchAll();
-        return $result;
-    }
-
-    public function countPage($pageId)
+    /**
+     * SQL Request to get all the information about a specific page of the website
+     */
+    public function getPage($pageId)
     {
         $sql = "SELECT * FROM pages WHERE id = $pageId";
         $stmt = self::$_connection->prepare($sql);

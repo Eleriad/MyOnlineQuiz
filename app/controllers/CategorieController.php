@@ -4,17 +4,17 @@ class CategorieController extends Controller
 {
     /**
      * Function that displays all categories
-     * @return void
+     * @return view with all information about the categories
      */
     public function index()
     {
         $categories = $this->model('Categorie')->getCategories();
-        $this->view('categorie/index', ["categories" => $categories]);
+        $this->view('categorie/index', ["title" => "Categories - Display", "categories" => $categories]);
     }
 
     /**
-     * Function that allows an administrator to create a new category by giving a name, a description and a picture
-     * @return void
+     * Function that allows the Administrator to create a new category by giving it a name, a description and a picture
+     * @return view with inputs to create the category with a message that tells if the creation was successfull or not
      */
     public function create()
     {
@@ -55,10 +55,15 @@ class CategorieController extends Controller
                 }
             }
         } else {
-            $this->view('categorie/create');
+            $this->view('categorie/create', ["title" => "Categories - Create"]);
         }
     }
 
+    /**
+     * Funtion that the Administrator to modify a category identified by its ID
+     * @param int $idCategorie = the ID of the category which will be modified
+     * @return view with inputs to modify the category with a message that tells if the modification was successfull or not
+     */
     public function edit($idCategorie)
     {
         $categorie = $this->model('Categorie')->getCategorieById($idCategorie);
@@ -93,13 +98,14 @@ class CategorieController extends Controller
             $this->setMsg("success", "L'image et/ou la catégorie ont bien été modifiées !");
             header('Location: /categorie/index');
         } else {
-            $this->view('categorie/edit', ["title" => "Page de connexion", "catégorie" => $categorie]);
+            $this->view('categorie/edit', ["title" => "Categories - Modify", "catégorie" => $categorie]);
         }
     }
 
     /**
      * Function that check if delete button is pressed and, if so, unlink the linked picture and delete the category
-     * @param int $idCategorie <=> id of the category to delete
+     * @param int $idCategorie = id of the category to delete
+     * @return view of the deletion page with all the information about the category to be deleted
      */
     public function delete($idCategorie)
     {
@@ -111,7 +117,7 @@ class CategorieController extends Controller
             $this->setMsg("success", "L'image et la catégorie ont bien été supprimées !");
             header('Location: /categorie/index');
         } else {
-            $this->view('categorie/delete', ["title" => "Page de connexion", "catégorie" => $categorie]);
+            $this->view('categorie/delete', ["title" => "Categories - Delete", "catégorie" => $categorie]);
         }
     }
 }

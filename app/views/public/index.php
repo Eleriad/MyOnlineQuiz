@@ -10,7 +10,7 @@
                 doctorat. </p>
             <p>
                 Titulaire à la fois d'un doctorat en égyptologie et d'un diplôme de Concepteur Développeur
-                d'Applications (depuis peupour ce dernier), j'ai pris plaisir à mettre à jour ce jeu en version
+                d'Applications (depuis peu pour ce dernier), j'ai pris plaisir à mettre à jour ce jeu en version
                 numérique. Il se veut
                 être une méthode ludique de découverte de l'Égypte ancienne. J'ai eu grand plaisir à travailler aux
                 côtés de Jkail et de Sokou lors de "coding sessions" endiablées et vous pourrez apprécier la qualité du

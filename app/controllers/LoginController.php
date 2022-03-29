@@ -3,7 +3,7 @@
 class LoginController extends Controller
 {
     /**
-     * Function that check if user already exists and, if not, insert him into the DB
+     * Function that checks if a user already exists and, if not, insert him into the DB
      * @return void
      */
     public function register()

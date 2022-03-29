@@ -33,11 +33,6 @@
         </div>
 
         <div class="form-group">
-            <label for="questionPicture">Photo de la question :</label>
-            <input type="file" name="questionPicture">
-        </div>
-
-        <div class="form-group">
             <label for="reponse">Bonne réponse :</label>
             <input type="text" class="form-control" name="reponse" id="reponse" placeholder="Bonne réponse">
         </div>
@@ -63,11 +58,6 @@
         </div>
 
         <div class="form-group">
-            <label for="feedbackPicture">Photo du feedback :</label>
-            <input type="file" name="feedbackPicture">
-        </div>
-
-        <div class="form-group">
             <label for="lien">Lien :</label>
             <input type="text" class="form-control" name="lien" id="lien" placeholder="https://">
         </div>
@@ -77,6 +67,4 @@
         <a href="/question/index" class="returnBtn"><span><i
                     class="far fa-arrow-alt-circle-left mr-2"></i></span>Retour</a>
     </form>
-    <!-- TODO : planifier une liste des photos existantes pour les question et le feedback côté administrateur...
-        Peut-on proposer pour une question une photo qui existe déjà ? -->
 </div>

@@ -88,6 +88,7 @@ abstract class Controller
         return $data;
     }
 
+    /******* MESSAGES *******/
     /**
      * Function that prepares the displaying of a message depending on his type
      * @param $type : error or success
@@ -122,7 +123,7 @@ abstract class Controller
     /**
      * Function that destroy the session and all his variables
      * Then, delete all cookies
-     * @return void
+     * @return view home/index
      */
     protected function disconnect()
     {
@@ -149,6 +150,11 @@ abstract class Controller
     }
 
     /******* PICTURES *******/
+    /**
+     * Function that search if $data contains any accentuated characters and, if so, replace them by non accentuated characters to avoid issues on DB
+     * @param string $data
+     * @return string $data
+     */
     protected function characterReplace($data)
     {
         $search  = array('à', 'À', 'á', 'Á', 'ä', 'Ä', 'â', 'Â', 'é', 'É', 'è', 'È', 'ê', 'Ê', 'ë', 'Ë', 'î', 'Î', 'ï', 'Ï', 'ô', 'Ô', 'ö', 'Ö', 'ù', 'Ù', 'û', 'Û', 'ü', 'Ü', ' '); // checked characters
@@ -157,6 +163,12 @@ abstract class Controller
         return str_replace($search, $replace, $data);
     }
 
+    /**
+     * Function that checks all information about a picture in order to see if the specificities asked by the website have been correctly done
+     * In this case, check the extension adn the size of the picture then give a name to the picture
+     * @param $data <=> $_FILES data
+     * @param int $sizeMax <=> the max size allowed by the Administrator for any picture
+     */
     protected function checkPictureValidity($data, $sizeMax)
     {
         // CHECKING    
@@ -221,6 +233,12 @@ abstract class Controller
         }
     }
 
+    /**
+     * Function that checks the error int given if any error appears while trying to insert a picture in DB
+     * @param string $picture <=> result of the previous function 
+     * @param [type] $fileError <=> error int in the $_FILES data
+     * @return void
+     */
     protected function checkErrorMsg($picture, $fileError)
     {
         if ($picture == 1) {
@@ -233,6 +251,11 @@ abstract class Controller
         return $error;
     }
 
+    /**
+     * Function that displays the specific message depending of the error int given when trying to insert a picture in DB
+     * @param int $error
+     * @return string <=> the specific message related to the error
+     */
     protected function errorMessage($error)
     {
         switch ($error) {
@@ -255,11 +278,15 @@ abstract class Controller
                 return "Échec de l'écrire du fichier sur le disque, merci de réessayer !";
                 break;
             case $error == 8:
-                return "Une extension de PHP a arrêté l'envoi de fichier !";
+                return "Une extension de PHP a arrêté l'envoi de fichier, merci de réessayer !";
                 break;
         }
     }
 
+    /**
+     * Function that unlink a picture
+     * @param string $path <=> the place where the pciture is kept
+     */
     protected function unlinkPicture($path)
     {
         $cwd = getcwd(); // TODO : vérifier le chemin une fois en production !!!
@@ -268,6 +295,12 @@ abstract class Controller
     }
 
     /******* QUIZ *******/
+    /**
+     * Function that displays a specific message depending of the results of the quiz
+     * @param int $score <=> score made by the user
+     * @param int $maxQuestions <=> max number of questions for the quiz
+     * @return string <=> the message
+     */
     protected function displayResult($score, $maxQuestions)
     {
         $third = 33 / 100 * $maxQuestions;
@@ -292,6 +325,13 @@ abstract class Controller
         }
     }
 
+    /**
+     * Function that check if the user made the correct choice for a specific question during the quiz
+     * @param array $choix <=> list of the possible answers
+     * @param int $userAnswer <=> choice made by the user
+     * @param int $correctAnswer <=> correct answer
+     * @return string <=> correct, incorrect of empty depending of the result
+     */
     protected function checkAnswers($choix, $userAnswer, $correctAnswer)
     {
         $result = array();
@@ -324,11 +364,17 @@ abstract class Controller
      */
     protected function checkPage($pageId, $title)
     {
-        $pageCount = $this->model('Page')->countPage($pageId);
+        $pageCount = $this->model('Page')->getPage($pageId);
         $pageCount == 0 ? $this->model('Page')->create($pageId, $title, 0) : $pageCount = $pageId;
         return $pageCount;
     }
 
+    /**
+     * Function that checks if a visitor - identified by his IP - has already visited the  page or not
+     * @param int $userIp <=> IP of the visitor
+     * @param int $pageId <=> ID of the visited page
+     * @return boolean true if Unique IP, False if not
+     */
     protected function isUniqueView($userIp, $pageId)
     {
         $check = $this->model('PageView')->checkUniqueIp($userIp, $pageId);
@@ -336,6 +382,13 @@ abstract class Controller
         return $check;
     }
 
+    /**
+     * Function thats update the number of views for a specific page depending of the previous function
+     * @param int $uniqueIp <=> boolean depending of the result of the previous function
+     * @param IP $visitorIp <=> IP of the visitor
+     * @param int $pageId <=> ID of the visited page
+     * @return void
+     */
     protected function addView($uniqueIp, $visitorIp, $pageId)
     {
         if ($uniqueIp === true) {
@@ -359,6 +412,11 @@ abstract class Controller
         }
     }
 
+    /**
+     * Function that checks if there is a new view or not
+     * @param int $pageId <=> ID of the visited page
+     * @return $addView
+     */
     protected function checkNewView($pageId)
     {
         $visitorIp = $_SERVER['REMOTE_ADDR'];

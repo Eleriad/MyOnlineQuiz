@@ -120,6 +120,10 @@
 .btnDiv {
   display: flex;
   flex-direction: row;
+
+  btn {
+    margin: 10px 0;
+  }
 }
 
 #DataTables_Table_0_wrapper {

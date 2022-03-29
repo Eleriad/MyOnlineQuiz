@@ -1,11 +1,10 @@
 <?php
 
-// TODO : ajouter la case 'lien" pour chaque question avec, si le lien existe, un pett "en savoir plus" qui ouvre la page du lien dans un nouvel onglet.
 class QuestionController extends Controller
 {
     /**
-     * Function that displays all questions in the question/index view
-     * @return void
+     * Function that displays all questions
+     * @return view with all information about the questions
      */
     public function index()
     {
@@ -18,6 +17,10 @@ class QuestionController extends Controller
         $this->view('question/index', ["title" => "Tableau des Questions", "questions" => $questions]);
     }
 
+    /**
+     * Function that allows the Administrator to create a new question by giving it a name
+     * @return view with inputs to create the question with a message that tells if the creation was successfull or not
+     */
     public function create()
     {
         $niveaux = $this->model('Niveau')->getNiveaux();
@@ -27,59 +30,34 @@ class QuestionController extends Controller
         if (isset($_POST["addQuestion"])) {
             $_POST = $this->secureArray($_POST);
 
-            if (!isset($_FILES["questionPicture"])) {
-                $question->questionPicture = null;
-            } else if (!isset($_FILES["feedbackPicture"])) {
-                $question->feedbackPicture = null;
-            } else {
+            $question->niveauId = $_POST['niveaux'];
+            $question->question = $_POST['question'];
+            $question->feedback = $_POST['feedback'];
+            $question->reponse = $_POST['reponse'];
+            $question->facile = $_POST['facile'];
+            $question->normal = $_POST['normal'];
+            $question->difficile = $_POST['difficile'];
+            $question->lien = $this->isEmpty($_POST['lien']);
+            $question->create();
 
-                $tmpQuestionName = $_FILES["questionPicture"]["tmp_name"];
-                $tmpFeedbackName = $_FILES["feedbackPicture"]["tmp_name"];
+            $lastId = $this->model('Question')->getLastId();
 
-                $questionPicture = $this->checkPictureValidity($_FILES["questionPicture"], 2000000);
-                $feedbackPicture = $this->checkPictureValidity($_FILES["feedbackPicture"], 2000000);
-
-                if (is_int($questionPicture)) {
-                    $error = $this->errorMessage($questionPicture);
-                    $this->setMsg("error", $error);
-                    $this->view('question/create', ["error" => $error, "niveaux" => $niveaux, "categories" => $categories]);
-                } else if (is_int($feedbackPicture)) {
-                    $error = $this->errorMessage($feedbackPicture);
-                    $this->setMsg("error", $error);
-                    $this->view('question/create', ["error" => $error, "niveaux" => $niveaux, "categories" => $categories]);
-                } else {
-
-                    // PICTURE MOVING
-                    move_uploaded_file($tmpQuestionName, "./app/components/img/question_pictures/$questionPicture");
-                    move_uploaded_file($tmpFeedbackName, "./app/components/img/feedback_pictures/$feedbackPicture");
-
-                    $question->niveauId = $_POST['niveaux'];
-                    $question->question = $_POST['question'];
-                    $question->questionPicture = $questionPicture;
-                    $question->feedback = $_POST['feedback'];
-                    $question->feedbackPicture = $feedbackPicture;
-                    $question->reponse = $_POST['reponse'];
-                    $question->facile = $_POST['facile'];
-                    $question->normal = $_POST['normal'];
-                    $question->difficile = $_POST['difficile'];
-                    $question->lien = $this->isEmpty($_POST['lien']);
-                    $question->create();
-
-                    $lastId = $this->model('Question')->getLastId();
-
-                    foreach ($_POST['categories'] as $categorie) {
-                        $this->model('Question')->assignCategorieToQuestion($lastId, $categorie);
-                    }
-
-                    // LOCATION
-                    header('Location: /question/index');
-                }
+            foreach ($_POST['categories'] as $categorie) {
+                $this->model('Question')->createCategorieToQuestion($lastId, $categorie);
             }
+
+            // LOCATION
+            header('Location: /question/index');
         } else {
             $this->view('question/create', ["niveaux" => $niveaux, "categories" => $categories]);
         }
     }
 
+    /**
+     * Funtion that the Administrator to modify a question identified by its ID
+     * @param int $idQuestion = the ID of the question which will be modified
+     * @return view with inputs to modify the question with a message that tells if the modification was successfull or not
+     */
     public function edit($idQuestion)
     {
         $editQuestion = $this->model('Question')->getQuestionById($idQuestion);
@@ -90,59 +68,8 @@ class QuestionController extends Controller
         if (isset($_POST['editQuestion'])) {
             $_POST = $this->secureArray($_POST);
 
-            // TODO : vérifier le POST : il faut vérifier chaque image pour voir si on passe dans la boucle ou non !!!
-            // Ici, si on passe dans le 1er if, on ne teste pas le else if 
-            if (empty($_FILES) || $_FILES["editQuestionPicture"]["error"] == 4) {
-                $editQuestion->question_picture = $editQuestion->question_picture;
-                var_dump(1);
-                // die;
-            } else if (empty($_FILES) || $_FILES["editFeedbackPicture"]["error"] == 4) {
-                $editQuestion->feedback_picture = $editQuestion->feedback_picture;
-                var_dump(2);
-                die;
-            } else {
-                var_dump(3);
-                die;
-                $tmpQuestionName = $_FILES["editQuestionPicture"]["tmp_name"];
-                $tmpFeedbackName = $_FILES["editFeedbackPicture"]["tmp_name"];
-
-                $questionPicture = $this->checkPictureValidity($_FILES["questionPicture"], 2000000);
-                $feedbackPicture = $this->checkPictureValidity($_FILES["feedbackPicture"], 2000000);
-
-                if (is_int($questionPicture)) {
-                    $error = $this->errorMessage($questionPicture);
-                    $this->setMsg("error", $error);
-                    $this->view('question/create', ["error" => $error, "niveaux" => $niveaux, "categories" => $categories]);
-                } else {
-                    // DELETING FORMER PICTURE
-                    $this->unlinkPicture($editQuestion->categorie_picture);
-                    // PICTURE MOVING
-                    move_uploaded_file($tmpQuestionName, "./app/components/img/categorie_pictures/$questionPicture");
-                }
-
-                if (is_int($feedbackPicture)) {
-                    $error = $this->errorMessage($feedbackPicture);
-                    $this->setMsg("error", $error);
-                    $this->view('question/create', ["error" => $error, "niveaux" => $niveaux, "categories" => $categories]);
-                } else {
-                    // DELETING FORMER PICTURE
-                    $this->unlinkPicture($editQuestion->categorie_picture);
-                    // PICTURE MOVING
-                    move_uploaded_file($tmpFeedbackName, "./app/components/img/categorie_pictures/$feedbackPicture");
-                }
-                // var_dump($questionPicture);
-                // var_dump($feedbackPicture);
-                // die;
-            }
-
-
-            // TODO : vérifier pour faire comme dans les catégories !
-
             if ($_POST['categories'] != null) {
                 $editedQuestion = $this->model('Question');
-
-
-
 
                 $editedQuestion->niveauId = $_POST['niveaux'];
                 $editedQuestion->question = $_POST['question'];
@@ -158,7 +85,6 @@ class QuestionController extends Controller
                 $editedQuestion->deleteCategorieToQuestion(intval($idQuestion));
 
                 $categories = $this->model('Question')->checkCategorieByQuestionId($idQuestion);
-
 
                 foreach ($_POST['categories'] as $categorie) {
                     $categorie = intval($categorie);
@@ -177,9 +103,9 @@ class QuestionController extends Controller
     }
 
     /**
-     * Function that display all data for a specific question and allows admin to delete the question
-     * @param int $idQuestion : the id of the question to delete
-     * @return void
+     * Function that check if delete button is pressed and, if so, delete the question
+     * @param int $idQuestion = id of the question to delete
+     * @return view of the deletion page with all the information about the question to be deleted
      */
     public function delete($idQuestion)
     {

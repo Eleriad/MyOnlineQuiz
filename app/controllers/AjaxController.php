@@ -4,7 +4,7 @@ class AjaxController extends Controller
 {
     /**
      * Function that get all categories given a specific level
-     * @return void
+     * @return json
      */
     public function getCategoriesByLevel()
     {
@@ -25,7 +25,7 @@ class AjaxController extends Controller
 
     /**
      * Function that get the maximum number of questions in order to display it on the quiz/index view
-     * @return void
+     * @return json
      */
     public function getMaxQuestions()
     {

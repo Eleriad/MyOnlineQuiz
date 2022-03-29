@@ -47,12 +47,6 @@
         </div>
 
         <div class="form-group">
-            <label for="editQuestionPicture">Photo de la question :</label>
-            <input type="file" name="editQuestionPicture">
-            <?= $data['question']->question_picture == null ? "" : '<img src="/app/components/img/question_pictures/' . $data['question']->question_picture . '" width="50px" height="50px">' ?>
-        </div>
-
-        <div class="form-group">
             <label for="reponse">Bonne réponse :</label>
             <input type="text" class="form-control" name="reponse" id="reponse"
                 value="<?= $data["question"]->reponse ?>">
@@ -78,12 +72,6 @@
             <label for="feedback">feedback :</label>
             <input type="text" class="form-control" name="feedback" id="feedback"
                 value="<?= $data["question"]->feedback ?>">
-        </div>
-
-        <div class="form-group">
-            <label for="editFeedbackPicture">Photo du feedback :</label>
-            <input type="file" name="editFeedbackPicture">
-            <?= $data['question']->feedback_picture == null ? "" : '<img src="/app/components/img/feedback_pictures/' . $data['question']->feedback_picture . '" width="50px" height="50px">' ?>
         </div>
 
         <div class="form-group">

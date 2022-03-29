@@ -15,7 +15,7 @@
 }
 
 .adminContainer h1 {
-  color: #9b805a;
+  color: #41200d;
   font-family: "Aref Ruqaa", serif;
   font-size: 4em;
   margin-top: 20px;
@@ -201,6 +201,10 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+.btnDiv btn {
+  margin: 10px 0;
 }
 
 #DataTables_Table_0_wrapper {
@@ -1036,7 +1040,7 @@ html,
 }
 
 h1 {
-  color: #9b805a;
+  color: #41200d;
   font-family: "Aref Ruqaa", serif;
   font-size: 4em;
   margin-top: 20px;

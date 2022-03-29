@@ -8,6 +8,9 @@ class User extends Database
     public $role;
 
     /******* CRUD *******/
+    /**
+     * SQL Request to create a new User
+     */
     public function create()
     {
         // Vérification du rôle : user par défaut sauf si l'utilisateur est créé directement dans la section Administrateur
@@ -25,6 +28,9 @@ class User extends Database
         return $result;
     }
 
+    /**
+     * SQL Request to update a specific User
+     */
     public function update()
     {
         $sql = "UPDATE users SET username = :username, email = :email, password_hash = :password_hash, role = :role WHERE id = :id";
@@ -40,6 +46,9 @@ class User extends Database
         return $result;
     }
 
+    /**
+     * SQL Request to delete a specific User
+     */
     public function delete()
     {
         $sql = "DELETE FROM users WHERE id = :id";
@@ -51,6 +60,9 @@ class User extends Database
     }
 
     /******* GETTER *******/
+    /**
+     * SQL Request to get all users
+     */
     public function getAllUsers()
     {
         $sql = "SELECT * FROM users";
@@ -61,6 +73,9 @@ class User extends Database
         return $result;
     }
 
+    /**
+     * SQL Request to get a specific user by his ID
+     */
     public function getUserById($id)
     {
         $sql = "SELECT * FROM users WHERE id = $id";
@@ -72,7 +87,9 @@ class User extends Database
         return $result;
     }
 
-    /******* FINDER *******/
+    /**
+     * SQL Request get a specific User by his Name
+     */
     public function findUserByName($username)
     {
         $sql = "SELECT * FROM users WHERE username = :username";
@@ -84,16 +101,9 @@ class User extends Database
         return $result;
     }
 
-    public function checkIfUsernameExists($username)
-    {
-        $sql = "SELECT * FROM users WHERE username = :username";
-        $stmt = self::$_connection->prepare($sql);
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-        $stmt->execute();
-        $result = $stmt->rowCount();
-        return $result;
-    }
-
+    /**
+     * SQL Request to get a specific User by his email
+     */
     public function findUserByMail($email)
     {
         $sql = "SELECT * FROM users WHERE email = :email";
@@ -105,6 +115,22 @@ class User extends Database
         return $result;
     }
 
+    /**
+     * SQL Request to check if a specific User Name already exists in DB or not
+     */
+    public function checkIfUsernameExists($username)
+    {
+        $sql = "SELECT * FROM users WHERE username = :username";
+        $stmt = self::$_connection->prepare($sql);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->rowCount();
+        return $result;
+    }
+
+    /**
+     * SQL Request to check if a specific User email already exists in DB or not
+     */
     public function checkIfEmailExists($email)
     {
         $sql = "SELECT * FROM users WHERE email = :email";

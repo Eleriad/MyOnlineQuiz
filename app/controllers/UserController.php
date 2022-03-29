@@ -2,12 +2,20 @@
 
 class UserController extends Controller
 {
+    /**
+     * Function that displays all users who created an account in the website
+     * @return view user/index with all information about the users
+     */
     public function index()
     {
         $users = $this->model('User')->getAllUsers();
         $this->view('user/index', ["users" => $users]);
     }
 
+    /**
+     * Function that allows the Administrator to create a new user by giving it a name, an email, a password as well as a role
+     * @return view with inputs to create the user with a message that tells if the creation was successfull or not
+     */
     public function create()
     {
         if (isset($_POST["addUser"])) {
@@ -50,6 +58,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Funtion that the Administrator to modify a user identified by its ID
+     * @param int $userId = the ID of the user which will be modified
+     * @return view with inputs to modify the user with a message that tells if the modification was successfull or not
+     */
     public function edit($userId)
     {
         $editUser = $this->model('User')->getUserById($userId);
@@ -91,6 +104,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * Function that check if delete button is pressed and, if so, delete the user
+     * @param int $userId = id of the user to delete
+     * @return view of the deletion page with all the information about the user to be deleted
+     */
     public function delete($userId)
     {
         $deleteUser = $this->model('User')->getUserById($userId);

@@ -4,11 +4,7 @@ class Quiz extends Database
 {
     /******* GETTER *******/
     /**
-     * Function that select a specific number of random questions given a level and one or more categories
-     * @param [int] $level
-     * @param [int or array] $categories
-     * @param [int] $limit
-     * @return void
+     * SQL Request to get random Questions for Select Quiz by giving the level, the category(es) and the maximum number of questions
      */
     public function getRandomQuestions($level, $categories, $limit)
     {
@@ -25,6 +21,9 @@ class Quiz extends Database
         return $result;
     }
 
+    /**
+     * SQL Request to get the maximum number of questions available in DB
+     */
     public function getMaxQuestion()
     {
         $sql = "SELECT COUNT(id_question) FROM questions";
@@ -34,6 +33,9 @@ class Quiz extends Database
         return $result;
     }
 
+    /**
+     * SQL Request to get all Categories related to a specific Level
+     */
     public function getCategoriesByLevel($level)
     {
         $sql = "SELECT DISTINCT c.name, c.id_categorie, c.categorie_picture 
@@ -49,6 +51,9 @@ class Quiz extends Database
         return $result;
     }
 
+    /**
+     * SQL Request to get the name of a specific Level by giving his ID
+     */
     public function getLevelName($level)
     {
         $sql = "SELECT level FROM niveaux WHERE id_niveau = $level";
@@ -58,6 +63,9 @@ class Quiz extends Database
         return $result;
     }
 
+    /**
+     * SQL Request to get the Name of a Categorie by giving his ID
+     */
     public function getCategorieName($idCategorie)
     {
         // Implode Categorie array to extract categorie IDs
@@ -70,6 +78,9 @@ class Quiz extends Database
         return $result;
     }
 
+    /**
+     * SQL Request to get the number of questions related to one or more Categorie(s) and one Level
+     */
     public function getQuestionsNb($idCategorie, $level)
     {
         // Implode Categorie array to extract categorie IDs
@@ -88,6 +99,9 @@ class Quiz extends Database
     }
 
     /******* COUNT *******/
+    /**
+     * SQL Request to count the number of questions related to a specific Level and depending on one or more Categorie(s)
+     */
     public function countQuestionsByLevel($idCategorie, $idLevel)
     {
         // Implode Categorie array to extract categorie IDs

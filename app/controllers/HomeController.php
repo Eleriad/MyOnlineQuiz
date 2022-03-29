@@ -3,8 +3,8 @@
 class HomeController extends Controller
 {
     /**
-     * Function that displays the home/index view and allows any visitor to sing in or log in
-     * @return void
+     * Function that displays the home/index view and allows any visitor to sign in or log in
+     * @return view with inputs allowing connexion or 
      */
     public function index()
     {
@@ -44,10 +44,14 @@ class HomeController extends Controller
         if (isset($_SESSION) && isset($_SESSION["user_id"])) {
             header('Location: /public/index');
         } else {
-            $this->view('home/index', ["title" => $title]);
+            $this->view('home/index', ["title" => "Page de connexion"]);
         }
     }
 
+    /**
+     * Function that allows any user to disconnect and return to the login page
+     * @return view home/index
+     */
     public function disconnection()
     {
         $this->disconnect();
