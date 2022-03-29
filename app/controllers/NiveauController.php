@@ -23,6 +23,7 @@ class NiveauController extends Controller
             $newNiveau = $this->model('Niveau');
             $newNiveau->level = $_POST['newLevel'];
             $newNiveau->create();
+            $this->setMsg("success", "Le niveau a bien été créé !");
             header('Location: /niveau/index');
         } else {
             $this->view('niveau/create', ['title' => 'Niveaux - Create']);
@@ -42,6 +43,7 @@ class NiveauController extends Controller
             $_POST = $this->secureArray($_POST);
             $editNiveau->level = $_POST['levelName'];
             $editNiveau->update();
+            $this->setMsg("success", "Le nom du niveau a bien été modifié !");
             header('Location: /niveau/index');
         } else {
             $this->view('niveau/edit', ['title' => 'Niveaux - Create', "editNiveau" => $editNiveau]);
@@ -59,6 +61,7 @@ class NiveauController extends Controller
 
         if (isset($_POST['deleteLevel'])) {
             $editNiveau->delete();
+            $this->setMsg("success", "Le niveau a bien été supprimé !");
             header('Location: /niveau/index');
         } else {
             $this->view('niveau/delete', ['title' => 'Niveaux - Create', 'editNiveau' => $editNiveau]);

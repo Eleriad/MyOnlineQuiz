@@ -2,10 +2,11 @@
 $user = $data["editUser"];
 ?>
 
-<div class="text-center">
+<div class="adminContainer text-center">
     <h1>Modification d'un utilisateur</h1>
-</div>
-<div class="container text-center">
+
+    <?php $this->displayMsg(); ?>
+
     <form action="" method="post">
         <div class="form-group">
             <label for="username">Identifiant :

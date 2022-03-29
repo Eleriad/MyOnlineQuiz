@@ -4,7 +4,6 @@ PHP Quiz with MVC and POO
 
 TODO :
 
-- vérifier qu'il ait bien des messages à chaque création / modification / suppression
 - Faire la partie "mot de passe oublié" (Sokou)
 - vérifier à l'aide d'une requête SQL si une catégorie a déjà le même nom
 - vérifier à l'aide d'une requête SQL si un niveau a déjà le même nom
@@ -39,6 +38,10 @@ Pour la version suivante (V2) :
 - Sur la page d'index de quiz : prévoir un bouton "sélectionner toutes les catégories" ;
 
 - "question x/y" avec barre de progression ;
+
+- obtenir les thématiques des quiz et les niveaux - plus tard
+- obtenir les dates de connexion (pour voir son activité) - notamment sa date de dernière activité afin de supprimer un utilisateur qui n'est pas venu pendant longtemps ?
+- bannir un utilisateur (bloque son ip pendant x temps)
 
 CREDITS :
 

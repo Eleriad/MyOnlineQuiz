@@ -30,24 +30,36 @@ class QuestionController extends Controller
         if (isset($_POST["addQuestion"])) {
             $_POST = $this->secureArray($_POST);
 
-            $question->niveauId = $_POST['niveaux'];
-            $question->question = $_POST['question'];
-            $question->feedback = $_POST['feedback'];
-            $question->reponse = $_POST['reponse'];
-            $question->facile = $_POST['facile'];
-            $question->normal = $_POST['normal'];
-            $question->difficile = $_POST['difficile'];
-            $question->lien = $this->isEmpty($_POST['lien']);
-            $question->create();
+            if ($_POST['categories'] != null) {
 
-            $lastId = $this->model('Question')->getLastId();
+                $question->niveauId = $_POST['niveaux'];
+                $question->question = $_POST['question'];
+                $question->feedback = $_POST['feedback'];
+                $question->reponse = $_POST['reponse'];
+                $question->facile = $_POST['facile'];
+                $question->normal = $_POST['normal'];
+                $question->difficile = $_POST['difficile'];
+                $question->lien = $this->isEmpty($_POST['lien']);
+                $question->create();
 
-            foreach ($_POST['categories'] as $categorie) {
-                $this->model('Question')->createCategorieToQuestion($lastId, $categorie);
+                $lastId = $this->model('Question')->getLastId();
+
+                foreach ($_POST['categories'] as $categorie) {
+                    $this->model('Question')->createCategorieToQuestion($lastId, $categorie);
+                }
+
+                // MESSAGE
+                $this->setMsg("success", "La question a bien été créée !");
+
+                // LOCATION
+                header('Location: /question/index');
+            } else {
+                // MESSAGE
+                $this->setMsg("error", "La question n'a pu être créée car aucune catégorie n'a été sélectionnée !");
+
+                // En cas d'erreur, retour sur la page edit avec message explicatif
+                header('Location: /question/create');
             }
-
-            // LOCATION
-            header('Location: /question/index');
         } else {
             $this->view('question/create', ["title" => "Questions - Create", "niveaux" => $niveaux, "categories" => $categories]);
         }
@@ -69,6 +81,7 @@ class QuestionController extends Controller
             $_POST = $this->secureArray($_POST);
 
             if ($_POST['categories'] != null) {
+
                 $editedQuestion = $this->model('Question');
 
                 $editedQuestion->niveauId = $_POST['niveaux'];
@@ -90,12 +103,16 @@ class QuestionController extends Controller
                     $categorie = intval($categorie);
                     $editedQuestion->createCategorieToQuestion($idQuestion, $categorie);
                 }
+
+                $this->setMsg("success", "La question a bien été modifiée !");
                 // On renvoie sur la page d'index
                 header('Location: /question/index');
             } else {
+                // MESSAGE
+                $this->setMsg("error", "La question n'a pu être modifiée car aucune catégorie n'a été sélectionnée !");
 
                 // En cas d'erreur, retour sur la page edit avec message explicatif
-                header('Location: /question/edit/' . $idQuestion . '?Message=errCat');
+                header('Location: /question/edit/' . $idQuestion);
             }
         } else {
             $this->view('question/edit', ["title" => "Questions - Update", "question" => $editQuestion, "niveaux" => $niveaux, "categories" => $categories, "categorieNames" => $categorieNames]);
@@ -114,6 +131,7 @@ class QuestionController extends Controller
 
         if (isset($_POST['deleteQuestion'])) {
             $deleteQuestion->delete($deleteQuestion->id_question);
+            $this->setMsg("success", "La question a bien été supprimée !");
             header('Location: /question/index');
         } else {
             $this->view('question/delete', ["title" => "Questions - Delete", "deleteQuestion" => $deleteQuestion, "deleteCategorie" => $deleteCategories]);

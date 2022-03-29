@@ -1,8 +1,9 @@
-    <div class="text-center">
-        <h1>Page d'accueil des Niveaux</h1>
-    </div>
+<div class="adminContainer">
+    <h1>Page d'accueil des niveaux</h1>
 
-    <div class="container py-4">
+    <?php $this->displayMsg(); ?>
+
+    <div class="container">
         <table class="table w-100 levelTable">
             <thead>
                 <tr>
@@ -26,13 +27,14 @@
         </table>
     </div>
 
-    <div class="text-center">
+    <div class="text-center mt-5">
         <a href="/niveau/create" class="createBtn"><i class="fas fa-plus mr-2"></i>Nouveau niveau</a></a>
         <a href="/admin/index" class="returnBtn"><span><i
                     class="far fa-arrow-alt-circle-left mr-2"></i></span>Retour</a>
     </div>
+</div>
 
-    <script>
+<script>
 $(document).ready(function() {
     var table = $('.levelTable').DataTable({
         language: {
@@ -52,4 +54,4 @@ $(document).ready(function() {
         ],
     });
 });
-    </script>
+</script>

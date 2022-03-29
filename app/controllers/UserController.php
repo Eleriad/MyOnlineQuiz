@@ -89,15 +89,15 @@ class UserController extends Controller
                         header('Location: /user/index');
                     } else {
                         $this->setMsg("error", "Le format de l'e-mail n'est pas valide !");
-                        $this->view('user/edit');
+                        $this->view('user/edit', ["title" => "Users - Update", "editUser" => $editUser]);
                     }
                 } else if ($checkEmail == 1) {
                     $this->setMsg("error", "Cet email est déjà utilisé par un autre utilisateur !");
-                    $this->view('user/edit');
+                    $this->view('user/edit', ["title" => "Users - Update", "editUser" => $editUser]);
                 }
             } else if ($checkUser == 1) {
                 $this->setMsg("error", "Ce nom d'utilisateur existe déjà !");
-                $this->view('user/edit', ["title" => "Users - Update"]);
+                $this->view('user/edit', ["title" => "Users - Update", "editUser" => $editUser]);
             }
         } else {
             $this->view('user/edit', ["title" => "Users - Update", "editUser" => $editUser]);
@@ -115,6 +115,7 @@ class UserController extends Controller
 
         if (isset($_POST['deleteUser'])) {
             $deleteUser->delete();
+            $this->setMsg("success", "Utilisateur supprimé avec succès !");
             header('Location: /user/index');
         } else {
             $this->view('user/delete', ["title" => "Users - Delete", "deleteUser" => $deleteUser]);

@@ -1,9 +1,7 @@
 <div class="adminContainer">
     <h1>Page d'accueil des catégories</h1>
 
-    <?php
-    $this->displayMsg();
-    ?>
+    <?php $this->displayMsg(); ?>
 
     <table class="table categorieTable">
         <thead>

@@ -47,6 +47,8 @@ class CategorieController extends Controller
                     $newCategory->infos =  $_POST["infos"];
                     $newCategory->create();
 
+                    $this->setMsg("success", "La catégorie a bien été créée !");
+
                     // REDIRECTION
                     header('Location: /categorie/index');
                 } else {
@@ -82,7 +84,7 @@ class CategorieController extends Controller
                 if (is_int($picture)) {
                     $error = $this->checkErrorMsg($picture, $_FILES["editCategoriePicture"]["error"]);
                     $this->setMsg("error", $error);
-                    $this->view('categorie/edit');
+                    header('Location: /categorie/edit');
                 } else {
                     // DELETING FORMER PICTURE
                     $this->unlinkPicture($categorie->categorie_picture);

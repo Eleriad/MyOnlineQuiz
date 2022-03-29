@@ -1,19 +1,9 @@
-<?php
-/* // TODO :
-    (- obtenir les thématiques des quiz et les niveaux) - plus tard
-    - obtenir les dates de connexion (pour voir son activité) - notamment sa date de dernière activité afin de supprimer un utilisateur qui n'est pas venu pendant longtemps ?
-    - bannir un utilisateur (bloque son ip pendant x temps)
-    */
-?>
-<div class="text-center">
+<div class="adminContainer text-center">
     <h1>Page d'accueil de gestion des utilisateurs</h1>
-</div>
 
-<?php
-$this->displayMsg();
-?>
-<div class="container-fluid userContainer p-4 mt-4">
-    <table class="table userTable">
+    <?php $this->displayMsg(); ?>
+
+    <table class="table userTable mt-5">
         <thead>
             <tr>
                 <th>id</th>
@@ -40,10 +30,10 @@ $this->displayMsg();
             <?php endforeach; ?>
         </tbody>
     </table>
-</div>
 
-<div class="text-center">
-    <a href="/user/create" class="createBtn"><i class="fas fa-plus mr-2"></i>Ajouter un nouvel utilisateur</a>
+    <div class="text-center">
+        <a href="/user/create" class="createBtn"><i class="fas fa-plus mr-2"></i>Ajouter un nouvel utilisateur</a>
 
-    <a href="/admin/index" class="returnBtn"><span><i class="far fa-arrow-alt-circle-left mr-2"></i></span>Retour</a>
-</div>
+        <a href="/admin/index" class="returnBtn"><span><i
+                    class="far fa-arrow-alt-circle-left mr-2"></i></span>Retour</a>
+    </div>

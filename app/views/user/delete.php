@@ -1,11 +1,9 @@
 <?php
 $user = $data["deleteUser"];
 ?>
+<div class="adminContainer text-center">
+    <h1>Suppression d'un utilisateur</h1>
 
-<div class="text-center">
-    <h1>Modification d'un utilisateur</h1>
-</div>
-<div class="container text-center">
     <form action="" method="post">
         <div class="form-group">
             <label for="username">Identifiant :
