@@ -9,7 +9,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->model('User')->getAllUsers();
-        $this->view('user/index', ["users" => $users]);
+        $this->view('user/index', ["title" => "Users - Display", "users" => $users]);
     }
 
     /**
@@ -51,10 +51,10 @@ class UserController extends Controller
                 }
             } else if ($checkUser == 1) {
                 $this->setMsg("error", "Ce nom d'utilisateur existe déjà !");
-                $this->view('user/create');
+                $this->view('user/create', ["title" => "Users - Create"]);
             }
         } else {
-            $this->view('user/create');
+            $this->view('user/create', ["title" => "Users - Create"]);
         }
     }
 
@@ -97,10 +97,10 @@ class UserController extends Controller
                 }
             } else if ($checkUser == 1) {
                 $this->setMsg("error", "Ce nom d'utilisateur existe déjà !");
-                $this->view('user/edit');
+                $this->view('user/edit', ["title" => "Users - Update"]);
             }
         } else {
-            $this->view('user/edit', ["editUser" => $editUser]);
+            $this->view('user/edit', ["title" => "Users - Update", "editUser" => $editUser]);
         }
     }
 
@@ -117,7 +117,7 @@ class UserController extends Controller
             $deleteUser->delete();
             header('Location: /user/index');
         } else {
-            $this->view('user/delete', ["deleteUser" => $deleteUser]);
+            $this->view('user/delete', ["title" => "Users - Delete", "deleteUser" => $deleteUser]);
         }
     }
 }

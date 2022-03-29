@@ -98,7 +98,7 @@ class CategorieController extends Controller
             $this->setMsg("success", "L'image et/ou la catégorie ont bien été modifiées !");
             header('Location: /categorie/index');
         } else {
-            $this->view('categorie/edit', ["title" => "Categories - Modify", "catégorie" => $categorie]);
+            $this->view('categorie/edit', ["title" => "Categories - Update", "catégorie" => $categorie]);
         }
     }
 

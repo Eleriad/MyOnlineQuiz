@@ -4,7 +4,8 @@
 
 <form action="" id="form4" method="post">
     <div class="form-group">
-        <label>Nom du niveau : <input type="text" class="form-control" value="<?= $data->level ?>" disabled></label>
+        <label>Nom du niveau : <input type="text" class="form-control" value="<?= $data["editNiveau"]->level ?>"
+                disabled></label>
 
         <div class="text-center mt-3">
             <button type="submit" name="deleteLevel" class="createBtn"><span><i

@@ -10,7 +10,7 @@ class PublicController extends Controller
     {
         // PAGE AND VIEWS
         $pageId = 3;
-        $title = "Accueil";
+        $title = "Home";
         $this->checkPage($pageId, $title);
         $this->checkNewView($pageId);
 
@@ -26,7 +26,7 @@ class PublicController extends Controller
     {
         // PAGE AND VIEWS
         $pageId = 4;
-        $title = "Liste des thématiques";
+        $title = "Thématiques";
         $this->checkPage($pageId, $title);
         $this->checkNewView($pageId);
 

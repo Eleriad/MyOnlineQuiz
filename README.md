@@ -4,10 +4,8 @@ PHP Quiz with MVC and POO
 
 TODO :
 
-- Faire le phpdoc pour toutes les functions :-(
-- Faire la partie "mot de passe oublié" (Sokou)
 - vérifier qu'il ait bien des messages à chaque création / modification / suppression
-- vérifier qu'il ait bien des titres à chaque page
+- Faire la partie "mot de passe oublié" (Sokou)
 - vérifier à l'aide d'une requête SQL si une catégorie a déjà le même nom
 - vérifier à l'aide d'une requête SQL si un niveau a déjà le même nom
 - vérifier à l'aide d'une requête SQL si une image a déjà le même nom

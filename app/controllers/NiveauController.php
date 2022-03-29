@@ -9,7 +9,7 @@ class NiveauController extends Controller
     public function index()
     {
         $niveaux = $this->model('Niveau')->getNiveaux();
-        $this->view('niveau/index', ['niveaux' => $niveaux]);
+        $this->view('niveau/index', ['title' => 'Niveaux - Display', 'niveaux' => $niveaux]);
     }
 
     /**
@@ -25,7 +25,7 @@ class NiveauController extends Controller
             $newNiveau->create();
             header('Location: /niveau/index');
         } else {
-            $this->view('niveau/create');
+            $this->view('niveau/create', ['title' => 'Niveaux - Create']);
         }
     }
 
@@ -44,7 +44,7 @@ class NiveauController extends Controller
             $editNiveau->update();
             header('Location: /niveau/index');
         } else {
-            $this->view('niveau/edit', $editNiveau);
+            $this->view('niveau/edit', ['title' => 'Niveaux - Create', "editNiveau" => $editNiveau]);
         }
     }
 
@@ -61,7 +61,7 @@ class NiveauController extends Controller
             $editNiveau->delete();
             header('Location: /niveau/index');
         } else {
-            $this->view('niveau/delete', $editNiveau);
+            $this->view('niveau/delete', ['title' => 'Niveaux - Create', 'editNiveau' => $editNiveau]);
         }
     }
 }

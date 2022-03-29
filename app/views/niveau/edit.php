@@ -5,7 +5,7 @@
    <form action="" id="form4" method="post">
        <div class="form-group">
            <label>Nom du niveau : <input type="text" name="levelName" class="form-control"
-                   value="<?= $data->level ?>"></label>
+                   value="<?= $data["editNiveau"]->level ?>"></label>
 
            <div class="text-center mt-3">
                <button type="submit" name="updateLevel" class="createBtn"><span><i

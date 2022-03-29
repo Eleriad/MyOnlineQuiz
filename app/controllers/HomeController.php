@@ -10,7 +10,7 @@ class HomeController extends Controller
     {
         // PAGE AND VIEWS
         $pageId = 1;
-        $title = "Page de connexion";
+        $title = "Connexion";
         $this->checkPage($pageId, $title);
         $this->checkNewView($pageId);
 

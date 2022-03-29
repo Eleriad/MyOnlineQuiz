@@ -2,6 +2,10 @@
 
 class QuizController extends Controller
 {
+    /**
+     * Function that displays the quiz/index view which allow a user to choose the type of questions he wants to answer
+     * @return view quiz/index
+     */
     public function index()
     {
         // PAGE AND VIEWS
@@ -29,7 +33,6 @@ class QuizController extends Controller
                 }
                 // Si tout est ok, on renvoie sur la page de quizz
                 else {
-                    // unset($_SESSION["level"], $_SESSION["categories"], $_SESSION["questionNb"], $_SESSION["randomQuiz"]);
                     $_SESSION["level"] = $_POST["level"];
                     $_SESSION["categories"] = $_POST["categories"];
                     $_SESSION["questionNb"] = $_POST["questionNb"];
@@ -37,15 +40,18 @@ class QuizController extends Controller
                     header('Location: /quiz/quiz');
                 }
             } else if (isset($_POST["randomQuiz"])) {
-                // unset($_SESSION["level"], $_SESSION["categories"], $_SESSION["questionNb"], $_SESSION["randomQuiz"]);
                 $_SESSION["randomQuiz"] = true;
                 header('Location: /quiz/randomQuiz');
             }
         } else {
-            $this->view('quiz/index', ["niveaux" => $niveaux, "categories" => $categories, "questionMax" => $questionMax]);
+            $this->view('quiz/index', ["title" => "Quiz - Index", "niveaux" => $niveaux, "categories" => $categories, "questionMax" => $questionMax]);
         }
     }
 
+    /**
+     * Function that displays the quiz page with all the questions
+     * @return view quiz/quiz
+     */
     public function quiz()
     {
         // PAGE AND VIEWS
@@ -90,12 +96,16 @@ class QuizController extends Controller
             $categorieName = $this->model('Quiz')->getCategorieName($categoriesArray);
 
             // Display the quiz/quiz page with the questions for the quiz
-            $this->view('quiz/quiz', ["questions" => $questions, "questionLength" => $questionLength, "levelName" => $levelName, "categorieName" => $categorieName]);
+            $this->view('quiz/quiz', ["title" => "Quiz", "questions" => $questions, "questionLength" => $questionLength, "levelName" => $levelName, "categorieName" => $categorieName]);
         } else {
-            $this->view('quiz/quiz');
+            $this->view('quiz/quiz', ["title" => "Quiz"]);
         }
     }
 
+    /**
+     * Function that displays the random quiz view
+     * @return view quiz/randomQuiz
+     */
     public function randomQuiz()
     {
         // PAGE AND VIEWS
@@ -115,9 +125,13 @@ class QuizController extends Controller
         $_SESSION["questionNb"] = $randomNb;
         $questions = $this->model('Question')->getRandomQuestions($randomNb);
 
-        $this->view('quiz/randomQuiz', ["questions" => $questions]);
+        $this->view('quiz/randomQuiz', ["title" => "Random Quiz", "questions" => $questions]);
     }
 
+    /**
+     * Function that displays the results for the quiz
+     * @return view quiz/results
+     */
     public function results()
     {
         // PAGE AND VIEWS
@@ -159,6 +173,6 @@ class QuizController extends Controller
             $levelName = $this->model('Quiz')->getLevelName($level);
         }
 
-        $this->view('quiz/results', ["usersAnswersArray" => $userAnswersArray, "categorieName" => $categorieName, "levelName" => $levelName]);
+        $this->view('quiz/results', ["title" => "Quiz' Results", "usersAnswersArray" => $userAnswersArray, "categorieName" => $categorieName, "levelName" => $levelName]);
     }
 }

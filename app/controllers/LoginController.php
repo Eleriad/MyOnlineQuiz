@@ -10,7 +10,7 @@ class LoginController extends Controller
     {
         // PAGE AND VIEWS
         $pageId = 2;
-        $title = "Page d'inscription";
+        $title = "Registration";
         $this->checkPage($pageId, $title);
         $this->checkNewView($pageId);
 

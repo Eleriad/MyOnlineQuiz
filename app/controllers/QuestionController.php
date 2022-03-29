@@ -14,7 +14,7 @@ class QuestionController extends Controller
             $question->categories = $this->model('Question')->getCategoryNameByQuestionId($question->id_question);
         }
 
-        $this->view('question/index', ["title" => "Tableau des Questions", "questions" => $questions]);
+        $this->view('question/index', ["title" => "Questions - Display", "questions" => $questions]);
     }
 
     /**
@@ -49,7 +49,7 @@ class QuestionController extends Controller
             // LOCATION
             header('Location: /question/index');
         } else {
-            $this->view('question/create', ["niveaux" => $niveaux, "categories" => $categories]);
+            $this->view('question/create', ["title" => "Questions - Create", "niveaux" => $niveaux, "categories" => $categories]);
         }
     }
 
@@ -98,7 +98,7 @@ class QuestionController extends Controller
                 header('Location: /question/edit/' . $idQuestion . '?Message=errCat');
             }
         } else {
-            $this->view('question/edit', ["question" => $editQuestion, "niveaux" => $niveaux, "categories" => $categories, "categorieNames" => $categorieNames]);
+            $this->view('question/edit', ["title" => "Questions - Update", "question" => $editQuestion, "niveaux" => $niveaux, "categories" => $categories, "categorieNames" => $categorieNames]);
         }
     }
 
@@ -116,7 +116,7 @@ class QuestionController extends Controller
             $deleteQuestion->delete($deleteQuestion->id_question);
             header('Location: /question/index');
         } else {
-            $this->view('question/delete', [$deleteQuestion, $deleteCategories]);
+            $this->view('question/delete', ["title" => "Questions - Delete", "deleteQuestion" => $deleteQuestion, "deleteCategorie" => $deleteCategories]);
         }
     }
 }
