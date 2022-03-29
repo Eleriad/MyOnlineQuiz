@@ -30,3 +30,8 @@
         </div>
     </div>
 </div>
+
+<script>
+const header = document.querySelector('header');
+header.style.display = "none";
+</script>
