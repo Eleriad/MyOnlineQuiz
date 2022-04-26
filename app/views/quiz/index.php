@@ -39,7 +39,7 @@
     </form>
 </div>
 
-<script src="/app/components/js/quizIndex.js"></script>
+<script src="<?= APP_COMPONENT . "js/quizIndex.js" ?>"></script>
 
 <script>
 $(document).ready(function() {

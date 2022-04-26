@@ -1,9 +1,9 @@
 <div class="container-fluid homeContainer">
     <div class="container connectDiv">
         <div class="col col-6 leftCol">
-            <img src="/app/components/img/Thot ombre 1.svg" class="logo"
-                onmouseover="this.src='/app/components/img/Thot Sépia.svg'"
-                onmouseout="this.src='/app/components/img/Thot ombre 1.svg'">
+            <img src="<?= APP_COMPONENT . IMG . "Thot_Ombre.svg" ?>" class="logo"
+                onmouseover="this.src='<?= APP_COMPONENT . IMG . 'Thot_Sepia.svg' ?>'"
+                onmouseout="this.src='<?= APP_COMPONENT . IMG . 'Thot_Ombre.svg' ?>'">
             <a href="/login/register" class="accountBtn registerBtn">Créer un compte</a>
         </div>
 

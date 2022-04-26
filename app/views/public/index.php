@@ -44,7 +44,7 @@
             <?php foreach ($data["thématiques"] as $thematique) : ?>
             <div class="col col-lg-3 text-center card">
                 <img class="card-img-top"
-                    src="/app/components/img/categorie_pictures/<?= $thematique->categorie_picture ?>">
+                    src="<?= APP_COMPONENT . IMG . "categorie_pictures/" . $thematique->categorie_picture ?>">
                 <div class="card-body">
                     <h5 class="card-title"><?= $thematique->name ?></h5>
                     <p class="card-text"><?= $thematique->description ?></p>

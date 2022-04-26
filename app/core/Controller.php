@@ -291,7 +291,7 @@ abstract class Controller
     {
         $cwd = getcwd(); // TODO : vérifier le chemin une fois en production !!!
         $cwd = str_replace("\\", "/", $cwd);
-        $unlink = unlink($cwd . '/app/components/img/categorie_pictures/' . $path);
+        $unlink = unlink($cwd . APP_COMPONENT . IMG . 'categorie_pictures/' . $path);
     }
 
     /******* QUIZ *******/

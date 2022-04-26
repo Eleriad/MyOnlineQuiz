@@ -12,6 +12,8 @@ TODO :
 - vérifier la bonne syntaxe du mail à la connexion (majuscule).
 - Faire la partie "mot de passe oublié" (Sokou)
 
+- SEO (cf. Jkail)
+
 - si la valeur existe déjà à la création ou à la modification (voir pour l'orthographe avec ou sans "s" par exemple ; faire un try-catch pour afficher l'erreur en cas de doublon (Sql avec unique)) - en PHP uniquement;
 
   - vérifier à l'aide d'une requête SQL si une catégorie a déjà le même nom

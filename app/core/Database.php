@@ -11,10 +11,10 @@ class Database
     {
         if (self::$_connection == null) {
 
-            $host = "localhost";
-            $dbname = "myonlinequiz";
-            $user = "root";
-            $password = "root";
+            $host = DB_HOST;
+            $dbname = DB_NAME;
+            $user = DB_USER;
+            $password = DB_PASSWORD;
 
             try {
                 self::$_connection = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);

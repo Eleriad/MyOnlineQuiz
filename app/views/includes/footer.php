@@ -1,4 +1,4 @@
-   <script src="/app/components/js/general.js"></script>
+   <script src="<?= APP_COMPONENT . "js/general.js" ?>"></script>
    </body>
 
    </html>

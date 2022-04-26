@@ -38,7 +38,7 @@
 $(document).ready(function() {
     var table = $('.levelTable').DataTable({
         language: {
-            url: "/app/components/bootstrap/dataTable/media/french.json"
+            url: "<?= APP_COMPONENT . BOOTSTRAP . DATATABLE . "media/french.json" ?>"
         },
         paging: true,
         scrollX: true,

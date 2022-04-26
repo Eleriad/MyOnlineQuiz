@@ -88,4 +88,4 @@
     ?>
 </div>
 
-<script src="/app/components/js/quizRun.js"></script>
+<script src="<?= APP_COMPONENT . "js/quizRun.js" ?>"></script>

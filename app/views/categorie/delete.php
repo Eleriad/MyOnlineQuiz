@@ -13,7 +13,7 @@
 
             <div class="form-group">
                 <label for="categoriePicture"><img
-                        src="/app/components/img/categorie_pictures/<?= $data["catégorie"]->categorie_picture ?>"
+                        src="<?= APP_COMPONENT . IMG . "categorie_pictures/" . $data["catégorie"]->categorie_picture ?>"
                         width="100px" height="100px"></label>
                 <input type="file" name="categoriePicture">
             </div>

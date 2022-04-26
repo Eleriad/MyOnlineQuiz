@@ -6,7 +6,7 @@
         $nb = 1;
         foreach ($data["categories"] as $categorie) : ?>
         <div class="rond r<?= $nb ?>" data-anim="<?= $nb ?>"><img
-                src="/app/components/img/categorie_pictures/<?= $categorie->categorie_picture ?>" width="50px"
+                src="<?= APP_COMPONENT . IMG . "categorie_pictures/" . $categorie->categorie_picture ?>" width="50px"
                 height="50px"></div>
 
         <div class="box b<?= $nb ?>" data-anim="<?= $nb ?>">
@@ -22,4 +22,4 @@
     </div>
 </div>
 
-<script src="/app/components/js/publicCategories.js"></script>
+<script src="<?= APP_COMPONENT . "js/publicCategories.js" ?>"></script>

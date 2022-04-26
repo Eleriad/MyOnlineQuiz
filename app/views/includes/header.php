@@ -18,7 +18,7 @@
     <header>
         <div class="row text-left">
             <div class="col col-lg-auto">
-                <a href="/public/index"><img src="/app/components/img/Thot ombre 1.svg"></a>
+                <a href="/public/index"><img src="<?= APP_COMPONENT . IMG . "Thot_Ombre.svg" ?>"></a>
                 <a href="/public/index" class="btn btn-sm headerBtn"><i class="fas fa-home mr-2"></i>Accueil</a>
             </div>
             <div class="col col-lg-auto">
