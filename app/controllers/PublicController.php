@@ -14,8 +14,9 @@ class PublicController extends Controller
         $this->checkPage($pageId, $title);
         $this->checkNewView($pageId);
 
+        $currentQuestions = $this->model('Question')->countTotalQuestions();
         $thematiques = $this->model('Categorie')->getThreeLastCategories();
-        $this->view('public/index', ["title" => $title, "thématiques" => $thematiques]);
+        $this->view('public/index', ["title" => $title, "currentQuestions" => $currentQuestions, "thématiques" => $thematiques]);
     }
 
     /**

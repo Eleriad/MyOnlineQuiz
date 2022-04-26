@@ -801,6 +801,9 @@ div[id^="questionDiv"] {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
 }
 
 .questionTitle {
@@ -864,6 +867,7 @@ div[id^="questionDiv"] {
 }
 
 .quizTitle {
+  margin-top: 2rem;
   margin-bottom: 2rem;
   font-size: 1.5rem;
 }
@@ -960,9 +964,10 @@ div[id^="questionDiv"] {
 
 .divFeedback {
   min-width: 70%;
+  max-width: 90%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  margin: 15px auto;
+  margin: 3rem auto;
   background-color: #e0c7a4;
   border: 1px solid #ca6a32;
   font-size: 1.2em;
@@ -1013,6 +1018,12 @@ div[id^="questionDiv"] {
 
 .correct {
   background-color: #5c9b15;
+}
+
+.resultDiv {
+  font-family: "Aref Ruqaa", serif;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 body,

@@ -1,7 +1,8 @@
 .divFeedback {
   min-width: 70%;
+  max-width: 90%;
   justify-content: space-around;
-  margin: 15px auto;
+  margin: 3rem auto;
   background-color: $sapling;
   border: 1px solid $tuscany;
   font-size: 1.2em;
@@ -33,4 +34,10 @@
 
 .correct {
   background-color: $christi;
+}
+
+.resultDiv {
+  font-family: "Aref Ruqaa", serif;
+  font-weight: bold;
+  font-size: 1.5rem;
 }

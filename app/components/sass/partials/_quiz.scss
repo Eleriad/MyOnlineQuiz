@@ -68,6 +68,9 @@ div[id^="questionDiv"] {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -webkit-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
+  -moz-box-shadow: 11px 10px 5px 0px rgba(65, 32, 13, 0.75);
 }
 
 .questionTitle {
@@ -107,6 +110,7 @@ div[id^="questionDiv"] {
 }
 
 .quizTitle {
+  margin-top: 2rem;
   margin-bottom: 2rem;
   font-size: 1.5rem;
 

@@ -37,7 +37,9 @@
     <div class="flex-column py-4">
         <h4 class="mb-4">Derniers quiz</h4>
         <p>De nouvelles questions sont régulièrement ajoutées dans la base et de nouvelles thématiques créées : voici
-            les dernières en date !</p>
+            les dernières en date ! Actuellement, notre site vous propose pas moins de
+            <strong> <?= $data['currentQuestions'][0] ?> questions </strong> !
+        </p>
 
         <div class="cards d-flex flex-row pb-4 justify-content-center">
 

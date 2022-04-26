@@ -8,6 +8,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // REDIRECT USER IF SESSION ALREADY EXISTS
+        if (!empty($_SESSION)) {
+            header('Location: /public/index');
+        }
+
         // PAGE AND VIEWS
         $pageId = 1;
         $title = "Connexion";
